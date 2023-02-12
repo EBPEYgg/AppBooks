@@ -6,7 +6,8 @@ namespace WinFormsApp1
         {
             InitializeComponent();
 
-            //EnumsListBox.DataSource = Color;
+            Color tests = new Color();
+            EnumsListBox.DataSource = tests;
         }
     }
 }
