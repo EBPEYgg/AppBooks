@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Metrics;
 using System.Windows.Forms;
 using WinFormsApp1.Model;
 
@@ -6,7 +7,7 @@ namespace WinFormsApp1
 {
     public partial class MainForm : Form
     {
-        private Type selectedType;
+        //public List<Country> selectedType { get; set; }
         public MainForm()
         {
             InitializeComponent();
@@ -55,15 +56,15 @@ namespace WinFormsApp1
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            //Weekday text;
-            //if (Enum.TryParse(ParseTextBox.Text, out text))
-            //{
-            //    ResultParsingLabel.Text = $"Это день недели {text} = {(int)text}";
-            //}
-            //else
-            //{
-            //    ResultParsingLabel.Text = $"Это не день недели!";
-            //}
+            Weekday text;
+            if (Enum.TryParse(ParseTextBox.Text, out text))
+            {
+                ResultParsingLabel.Text = $"Это день недели {text} = {(int)text}";
+            }
+            else
+            {
+                ResultParsingLabel.Text = $"Это не день недели!";
+            }
         }
 
         private void SeasonButton_Click(object sender, EventArgs e)
@@ -76,6 +77,7 @@ namespace WinFormsApp1
                 case Season.Spring:
                     EnumsPage.BackColor = System.Drawing.Color.LightGreen;
                     this.BackColor = System.Drawing.Color.LightGreen;
+                    FuckButton.Visible = true;
                     break;
                 case Season.Summer:
                     MessageBox.Show("Ура! Солнце!");
@@ -83,8 +85,16 @@ namespace WinFormsApp1
                 case Season.Autumn:
                     EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
                     this.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    FuckButton.Visible = true;
                     break;
             }
+        }
+
+        private void FuckButton_Click(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.Color.White;
+            EnumsPage.BackColor = System.Drawing.Color.White;
+            FuckButton.Visible = false;
         }
     }
 }

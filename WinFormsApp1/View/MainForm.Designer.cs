@@ -36,12 +36,13 @@
             this.ValueTextBox = new System.Windows.Forms.TextBox();
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ParseTextBox = new System.Windows.Forms.TextBox();
             this.ResultParsingLabel = new System.Windows.Forms.Label();
             this.ParseButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.FuckButton = new System.Windows.Forms.Button();
             this.SeasonComboBox = new System.Windows.Forms.ComboBox();
             this.SeasonButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
@@ -131,12 +132,12 @@
             this.EnumsListBox.TabIndex = 0;
             this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged);
             // 
-            // textBox1
+            // ParseTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(10, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(224, 27);
-            this.textBox1.TabIndex = 8;
+            this.ParseTextBox.Location = new System.Drawing.Point(10, 39);
+            this.ParseTextBox.Name = "ParseTextBox";
+            this.ParseTextBox.Size = new System.Drawing.Size(224, 27);
+            this.ParseTextBox.TabIndex = 8;
             // 
             // ResultParsingLabel
             // 
@@ -169,7 +170,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.ParseTextBox);
             this.groupBox2.Controls.Add(this.ParseButton);
             this.groupBox2.Controls.Add(this.ResultParsingLabel);
             this.groupBox2.Location = new System.Drawing.Point(20, 470);
@@ -181,6 +182,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.FuckButton);
             this.groupBox3.Controls.Add(this.SeasonComboBox);
             this.groupBox3.Controls.Add(this.SeasonButton);
             this.groupBox3.Location = new System.Drawing.Point(433, 470);
@@ -189,6 +191,17 @@
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Season handle";
+            // 
+            // FuckButton
+            // 
+            this.FuckButton.Location = new System.Drawing.Point(11, 78);
+            this.FuckButton.Name = "FuckButton";
+            this.FuckButton.Size = new System.Drawing.Size(251, 29);
+            this.FuckButton.TabIndex = 2;
+            this.FuckButton.Text = "Fuck go back!";
+            this.FuckButton.UseVisualStyleBackColor = true;
+            this.FuckButton.Visible = false;
+            this.FuckButton.Click += new System.EventHandler(this.FuckButton_Click);
             // 
             // SeasonComboBox
             // 
@@ -241,11 +254,12 @@
         private ListBox EnumsListBox;
         private Label ResultParsingLabel;
         private Button ParseButton;
-        private TextBox textBox1;
+        private TextBox ParseTextBox;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private ComboBox SeasonComboBox;
         private Button SeasonButton;
+        private Button FuckButton;
     }
 }
