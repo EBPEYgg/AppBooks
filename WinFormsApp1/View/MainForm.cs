@@ -27,7 +27,7 @@ namespace WinFormsApp1
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //ValuesListBox.Items.Clear();
+            ValuesListBox.Items.Clear();
             //switch (EnumsListBox.SelectedIndex)
             //{
             //    case 1:
@@ -50,11 +50,6 @@ namespace WinFormsApp1
             //        break;
             //}
             //ValuesListBox.Items.AddRange(Enum.GetNames(selectedType));
-        }
-
-        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
