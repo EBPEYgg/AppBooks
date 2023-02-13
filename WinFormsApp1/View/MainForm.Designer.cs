@@ -153,7 +153,7 @@
             this.ParseButton.Name = "ParseButton";
             this.ParseButton.Size = new System.Drawing.Size(121, 29);
             this.ParseButton.TabIndex = 6;
-            this.ParseButton.Text = "Parse Button";
+            this.ParseButton.Text = "Parse";
             this.ParseButton.UseVisualStyleBackColor = true;
             this.ParseButton.Click += new System.EventHandler(this.ParseButton_Click);
             // 
