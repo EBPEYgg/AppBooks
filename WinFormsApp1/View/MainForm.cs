@@ -7,18 +7,13 @@ namespace WinFormsApp1
 {
     public partial class MainForm : Form
     {
-        //public List<Country> selectedType { get; set; }
+        //public List<Enums> selectedType { get; set; }
         public MainForm()
         {
             InitializeComponent();
 
-            string[] NameEnums = { "Color", "Education Form", "Genre", "Manufactures", "Season", "Weekday" };
-            EnumsListBox.Items.AddRange(NameEnums);
-
-            //EnumsListBox.Items.AddRange(Enum.GetNames(typeof(Enum)));
+            EnumsListBox.Items.AddRange(Enum.GetNames(typeof(Enums)));
             EnumsListBox.SelectedIndex = 0;
-
-
 
             foreach (var item in Enum.GetValues(typeof(Season)))
             {
@@ -59,12 +54,13 @@ namespace WinFormsApp1
             Weekday text;
             if (Enum.TryParse(ParseTextBox.Text, out text))
             {
-                ResultParsingLabel.Text = $"Это день недели {text} = {(int)text}";
+                ResultParsingLabel.Text = $"Это день недели ({text} = {(int)text})";
             }
             else
             {
                 ResultParsingLabel.Text = $"Это не день недели!";
             }
+            ResultParsingLabel.Visible = true;
         }
 
         private void SeasonButton_Click(object sender, EventArgs e)
