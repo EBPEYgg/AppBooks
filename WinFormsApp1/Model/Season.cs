@@ -8,9 +8,9 @@ namespace WinFormsApp1.Model
 {
     public enum Season
     {
-        Summer,
         Winter,
-        Autumn,
-        Spring
+        Spring,
+        Summer,
+        Autumn
     }
 }

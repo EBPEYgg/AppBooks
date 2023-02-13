@@ -133,15 +133,15 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(22, 69);
+            this.textBox1.Location = new System.Drawing.Point(10, 39);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
+            this.textBox1.Size = new System.Drawing.Size(224, 27);
             this.textBox1.TabIndex = 8;
             // 
             // ResultParsingLabel
             // 
             this.ResultParsingLabel.AutoSize = true;
-            this.ResultParsingLabel.Location = new System.Drawing.Point(59, 72);
+            this.ResultParsingLabel.Location = new System.Drawing.Point(10, 78);
             this.ResultParsingLabel.Name = "ResultParsingLabel";
             this.ResultParsingLabel.Size = new System.Drawing.Size(50, 20);
             this.ResultParsingLabel.TabIndex = 7;
@@ -149,9 +149,9 @@
             // 
             // ParseButton
             // 
-            this.ParseButton.Location = new System.Drawing.Point(197, 67);
+            this.ParseButton.Location = new System.Drawing.Point(240, 39);
             this.ParseButton.Name = "ParseButton";
-            this.ParseButton.Size = new System.Drawing.Size(121, 29);
+            this.ParseButton.Size = new System.Drawing.Size(88, 29);
             this.ParseButton.TabIndex = 6;
             this.ParseButton.Text = "Parse";
             this.ParseButton.UseVisualStyleBackColor = true;
@@ -193,14 +193,14 @@
             // SeasonComboBox
             // 
             this.SeasonComboBox.FormattingEnabled = true;
-            this.SeasonComboBox.Location = new System.Drawing.Point(28, 56);
+            this.SeasonComboBox.Location = new System.Drawing.Point(11, 39);
             this.SeasonComboBox.Name = "SeasonComboBox";
             this.SeasonComboBox.Size = new System.Drawing.Size(151, 28);
             this.SeasonComboBox.TabIndex = 1;
             // 
             // SeasonButton
             // 
-            this.SeasonButton.Location = new System.Drawing.Point(185, 55);
+            this.SeasonButton.Location = new System.Drawing.Point(168, 38);
             this.SeasonButton.Name = "SeasonButton";
             this.SeasonButton.Size = new System.Drawing.Size(94, 29);
             this.SeasonButton.TabIndex = 0;

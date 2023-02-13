@@ -23,6 +23,7 @@ namespace WinFormsApp1
             {
                 SeasonComboBox.Items.Add(item);
             }
+            SeasonComboBox.SelectedIndex = 0;
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,12 +75,14 @@ namespace WinFormsApp1
                     break;
                 case Season.Spring:
                     EnumsPage.BackColor = System.Drawing.Color.LightGreen;
+                    this.BackColor = System.Drawing.Color.LightGreen;
                     break;
                 case Season.Summer:
                     MessageBox.Show("Ура! Солнце!");
                     break;
                 case Season.Autumn:
                     EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    this.BackColor = ColorTranslator.FromHtml("#e29c45");
                     break;
             }
         }
