@@ -134,6 +134,7 @@
             this.ValuesListBox.ScrollAlwaysVisible = true;
             this.ValuesListBox.Size = new System.Drawing.Size(180, 304);
             this.ValuesListBox.TabIndex = 1;
+            this.ValuesListBox.SelectedIndexChanged += new System.EventHandler(this.ValuesListBox_SelectedIndexChanged);
             // 
             // EnumsListBox
             // 
@@ -152,7 +153,7 @@
             this.ClassesPage.Location = new System.Drawing.Point(4, 29);
             this.ClassesPage.Name = "ClassesPage";
             this.ClassesPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ClassesPage.Size = new System.Drawing.Size(778, 384);
+            this.ClassesPage.Size = new System.Drawing.Size(786, 391);
             this.ClassesPage.TabIndex = 1;
             this.ClassesPage.Text = "Classes";
             this.ClassesPage.UseVisualStyleBackColor = true;
