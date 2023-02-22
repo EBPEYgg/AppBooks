@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1
+﻿namespace Programming
 {
     partial class MainForm
     {
@@ -340,7 +340,7 @@
             this.Controls.Add(this.WeekdayParsingGroupBox);
             this.Controls.Add(this.EnumerationsGroupBox);
             this.Name = "MainForm";
-            this.Text = "My app";
+            this.Text = "I ❤ programming";
             this.tabControl1.ResumeLayout(false);
             this.EnumsPage.ResumeLayout(false);
             this.EnumsPage.PerformLayout();

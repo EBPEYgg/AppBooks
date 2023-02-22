@@ -1,11 +1,11 @@
-using System;
+п»їusing System;
 using System.Diagnostics.Metrics;
 using System.Security.Cryptography;
 using System.Windows.Forms;
-using WinFormsApp1.Model;
+using Programming.Model;
 using System.Linq;
 
-namespace WinFormsApp1
+namespace Programming
 {
     public partial class MainForm : Form
     {
@@ -19,7 +19,7 @@ namespace WinFormsApp1
 
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));
             SeasonComboBox.SelectedIndex = 0;
-            //считать листбокс1 -> строку -> тип -> datasource
+            //СЃС‡РёС‚Р°С‚СЊ Р»РёСЃС‚Р±РѕРєСЃ1 -> СЃС‚СЂРѕРєСѓ -> С‚РёРї -> datasource
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -33,27 +33,27 @@ namespace WinFormsApp1
                     ValuesListBox.Items.AddRange(values);
                     break;
                 case "EducationForm":
-                    foreach (var item in Enum.GetValues(typeof(EducationForm)))
-                        ValuesListBox.Items.Add(item);
+                    values = Enum.GetValues(typeof(EducationForm)).Cast<object>().ToArray();
+                    ValuesListBox.Items.AddRange(values);
                     break;
                 case "Genre":
-                    foreach (var item in Enum.GetValues(typeof(Genre)))
-                        ValuesListBox.Items.Add(item);
+                    values = Enum.GetValues(typeof(Genre)).Cast<object>().ToArray();
+                    ValuesListBox.Items.AddRange(values);
                     break;
                 case "Manufactures":
-                    foreach (var item in Enum.GetValues(typeof(Manufactures)))
-                        ValuesListBox.Items.Add(item);
+                    values = Enum.GetValues(typeof(Manufactures)).Cast<object>().ToArray();
+                    ValuesListBox.Items.AddRange(values);
                     break;
                 case "Season":
-                    foreach (var item in Enum.GetValues(typeof(Season)))
-                        ValuesListBox.Items.Add(item);
+                    values = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
+                    ValuesListBox.Items.AddRange(values);
                     break;
                 case "Weekday":
-                    foreach (var item in Enum.GetValues(typeof(Weekday)))
-                        ValuesListBox.Items.Add(item);
+                    values = Enum.GetValues(typeof(Weekday)).Cast<object>().ToArray();
+                    ValuesListBox.Items.AddRange(values);
                     break;
                 default:
-                    throw new ArgumentException("ашибка EnumsListBox_SelectedIndexChanged");
+                    throw new ArgumentException("Р°С€РёР±РєР° EnumsListBox_SelectedIndexChanged");
             }
         }
 
@@ -62,11 +62,11 @@ namespace WinFormsApp1
             Weekday text;
             if (Enum.TryParse(ParseTextBox.Text, out text))
             {
-                ResultParsingLabel.Text = $"Это день недели ({text} = {(int) text})";
+                ResultParsingLabel.Text = $"Р­С‚Рѕ РґРµРЅСЊ РЅРµРґРµР»Рё ({text} = {(int) text})";
             }
             else
             {
-                ResultParsingLabel.Text = $"Это не день недели!";
+                ResultParsingLabel.Text = $"Р­С‚Рѕ РЅРµ РґРµРЅСЊ РЅРµРґРµР»Рё!";
             }
             ResultParsingLabel.Visible = true;
         }
@@ -76,7 +76,7 @@ namespace WinFormsApp1
             switch (Enum.Parse(typeof(Season), SeasonComboBox.Text))
             {
                 case Season.Winter:
-                    MessageBox.Show("Бррр! Холодно!");
+                    MessageBox.Show("Р‘СЂСЂСЂ! РҐРѕР»РѕРґРЅРѕ!");
                     break;
                 case Season.Spring:
                     EnumsPage.BackColor = System.Drawing.Color.LightGreen;
@@ -84,7 +84,7 @@ namespace WinFormsApp1
                     FuckButton.Visible = true;
                     break;
                 case Season.Summer:
-                    MessageBox.Show("Ура! Солнце!");
+                    MessageBox.Show("РЈСЂР°! РЎРѕР»РЅС†Рµ!");
                     break;
                 case Season.Autumn:
                     EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
