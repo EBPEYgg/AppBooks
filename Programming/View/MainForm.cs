@@ -10,8 +10,8 @@ namespace Programming
         {
             InitializeComponent();
 
-            string[] Enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };          
-            EnumsListBox.DataSource = Enums;
+            string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };          
+            EnumsListBox.DataSource = enums;
             EnumsListBox.SelectedIndex = 0;
 
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));
@@ -23,7 +23,7 @@ namespace Programming
             ValuesListBox.Items.Clear();
 
             string enumeration = EnumsListBox.Text;
-            Type type = Type.GetType($"Programming.Model.Enums.{enumeration}");
+            Type? type = Type.GetType($"Programming.Model.Enums.{enumeration}");
             var values = Enum.GetValues(type).Cast<object>().ToArray();
             ValuesListBox.Items.AddRange(values);
 
@@ -46,25 +46,23 @@ namespace Programming
 
         private void SeasonButton_Click(object sender, EventArgs e)
         {
+            this.BackColor = System.Drawing.Color.White;
+            EnumsPage.BackColor = System.Drawing.Color.White;
             switch (Enum.Parse(typeof(Season), SeasonComboBox.Text))
             {
                 case Season.Winter:
-                    this.BackColor = System.Drawing.Color.White;
-                    EnumsPage.BackColor = System.Drawing.Color.White;
                     MessageBox.Show("Бррр! Холодно!");
                     break;
                 case Season.Spring:
-                    EnumsPage.BackColor = System.Drawing.Color.LightGreen;
                     this.BackColor = System.Drawing.Color.LightGreen;
+                    EnumsPage.BackColor = System.Drawing.Color.LightGreen;
                     break;
                 case Season.Summer:
-                    this.BackColor = System.Drawing.Color.White;
-                    EnumsPage.BackColor = System.Drawing.Color.White;
                     MessageBox.Show("Ура! Солнце!");
                     break;
                 case Season.Autumn:
-                    EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
                     this.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
                     break;
             }
         }
