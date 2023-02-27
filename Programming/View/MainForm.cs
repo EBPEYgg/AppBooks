@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Diagnostics.Metrics;
-using System.Security.Cryptography;
 using System.Windows.Forms;
-using Programming.Model;
-using System.Linq;
+using Programming.Model.Enums;
 
 namespace Programming
 {
@@ -13,54 +10,30 @@ namespace Programming
         {
             InitializeComponent();
 
-            string[] Enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
-            EnumsListBox.Items.AddRange(Enums);
+            string[] Enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };          
+            EnumsListBox.DataSource = Enums;
             EnumsListBox.SelectedIndex = 0;
 
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));
             SeasonComboBox.SelectedIndex = 0;
-            //считать листбокс1 -> строку -> тип -> datasource
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValuesListBox.Items.Clear();
 
-            switch (EnumsListBox.SelectedItem)
-            {
-                case "Color":
-                    var values = Enum.GetValues(typeof(Model.Color)).Cast<object>().ToArray();
-                    ValuesListBox.Items.AddRange(values);
-                    break;
-                case "EducationForm":
-                    values = Enum.GetValues(typeof(EducationForm)).Cast<object>().ToArray();
-                    ValuesListBox.Items.AddRange(values);
-                    break;
-                case "Genre":
-                    values = Enum.GetValues(typeof(Genre)).Cast<object>().ToArray();
-                    ValuesListBox.Items.AddRange(values);
-                    break;
-                case "Manufactures":
-                    values = Enum.GetValues(typeof(Manufactures)).Cast<object>().ToArray();
-                    ValuesListBox.Items.AddRange(values);
-                    break;
-                case "Season":
-                    values = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
-                    ValuesListBox.Items.AddRange(values);
-                    break;
-                case "Weekday":
-                    values = Enum.GetValues(typeof(Weekday)).Cast<object>().ToArray();
-                    ValuesListBox.Items.AddRange(values);
-                    break;
-                default:
-                    throw new ArgumentException("ашибка EnumsListBox_SelectedIndexChanged");
-            }
+            string enumeration = EnumsListBox.Text;
+            Type type = Type.GetType($"Programming.Model.Enums.{enumeration}");
+            var values = Enum.GetValues(type).Cast<object>().ToArray();
+            ValuesListBox.Items.AddRange(values);
+
+            ValueTextBox.Clear();
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
             Weekday text;
-            if (Enum.TryParse(ParseTextBox.Text, out text))
+            if (Enum.TryParse(ParseTextBox.Text, out text) && text >= 0)
             {
                 ResultParsingLabel.Text = $"Это день недели ({text} = {(int) text})";
             }
@@ -76,29 +49,24 @@ namespace Programming
             switch (Enum.Parse(typeof(Season), SeasonComboBox.Text))
             {
                 case Season.Winter:
+                    this.BackColor = System.Drawing.Color.White;
+                    EnumsPage.BackColor = System.Drawing.Color.White;
                     MessageBox.Show("Бррр! Холодно!");
                     break;
                 case Season.Spring:
                     EnumsPage.BackColor = System.Drawing.Color.LightGreen;
                     this.BackColor = System.Drawing.Color.LightGreen;
-                    FuckButton.Visible = true;
                     break;
                 case Season.Summer:
+                    this.BackColor = System.Drawing.Color.White;
+                    EnumsPage.BackColor = System.Drawing.Color.White;
                     MessageBox.Show("Ура! Солнце!");
                     break;
                 case Season.Autumn:
                     EnumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
                     this.BackColor = ColorTranslator.FromHtml("#e29c45");
-                    FuckButton.Visible = true;
                     break;
             }
-        }
-
-        private void FuckButton_Click(object sender, EventArgs e)
-        {
-            this.BackColor = System.Drawing.Color.White;
-            EnumsPage.BackColor = System.Drawing.Color.White;
-            FuckButton.Visible = false;
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.AppTabControl = new System.Windows.Forms.TabControl();
             this.EnumsPage = new System.Windows.Forms.TabPage();
             this.IntValueLabel = new System.Windows.Forms.Label();
             this.ChooseValueLabel = new System.Windows.Forms.Label();
@@ -52,10 +52,9 @@
             this.EnumerationsGroupBox = new System.Windows.Forms.GroupBox();
             this.WeekdayParsingGroupBox = new System.Windows.Forms.GroupBox();
             this.SeasonHandleGroupBox = new System.Windows.Forms.GroupBox();
-            this.FuckButton = new System.Windows.Forms.Button();
             this.SeasonComboBox = new System.Windows.Forms.ComboBox();
             this.SeasonButton = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.AppTabControl.SuspendLayout();
             this.EnumsPage.SuspendLayout();
             this.ClassesPage.SuspendLayout();
             this.RectanglesGroupBox.SuspendLayout();
@@ -64,16 +63,16 @@
             this.SeasonHandleGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // AppTabControl
             // 
-            this.tabControl1.Controls.Add(this.EnumsPage);
-            this.tabControl1.Controls.Add(this.ClassesPage);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(3, 23);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(794, 424);
-            this.tabControl1.TabIndex = 0;
+            this.AppTabControl.Controls.Add(this.EnumsPage);
+            this.AppTabControl.Controls.Add(this.ClassesPage);
+            this.AppTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AppTabControl.Location = new System.Drawing.Point(3, 23);
+            this.AppTabControl.Name = "AppTabControl";
+            this.AppTabControl.SelectedIndex = 0;
+            this.AppTabControl.Size = new System.Drawing.Size(794, 424);
+            this.AppTabControl.TabIndex = 0;
             // 
             // EnumsPage
             // 
@@ -270,7 +269,7 @@
             // 
             // EnumerationsGroupBox
             // 
-            this.EnumerationsGroupBox.Controls.Add(this.tabControl1);
+            this.EnumerationsGroupBox.Controls.Add(this.AppTabControl);
             this.EnumerationsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.EnumerationsGroupBox.Name = "EnumerationsGroupBox";
             this.EnumerationsGroupBox.Size = new System.Drawing.Size(800, 450);
@@ -292,7 +291,6 @@
             // 
             // SeasonHandleGroupBox
             // 
-            this.SeasonHandleGroupBox.Controls.Add(this.FuckButton);
             this.SeasonHandleGroupBox.Controls.Add(this.SeasonComboBox);
             this.SeasonHandleGroupBox.Controls.Add(this.SeasonButton);
             this.SeasonHandleGroupBox.Location = new System.Drawing.Point(422, 470);
@@ -301,17 +299,6 @@
             this.SeasonHandleGroupBox.TabIndex = 10;
             this.SeasonHandleGroupBox.TabStop = false;
             this.SeasonHandleGroupBox.Text = "Season handle";
-            // 
-            // FuckButton
-            // 
-            this.FuckButton.Location = new System.Drawing.Point(11, 78);
-            this.FuckButton.Name = "FuckButton";
-            this.FuckButton.Size = new System.Drawing.Size(251, 29);
-            this.FuckButton.TabIndex = 2;
-            this.FuckButton.Text = "Fuck go back!";
-            this.FuckButton.UseVisualStyleBackColor = true;
-            this.FuckButton.Visible = false;
-            this.FuckButton.Click += new System.EventHandler(this.FuckButton_Click);
             // 
             // SeasonComboBox
             // 
@@ -341,7 +328,7 @@
             this.Controls.Add(this.EnumerationsGroupBox);
             this.Name = "MainForm";
             this.Text = "I ❤ programming";
-            this.tabControl1.ResumeLayout(false);
+            this.AppTabControl.ResumeLayout(false);
             this.EnumsPage.ResumeLayout(false);
             this.EnumsPage.PerformLayout();
             this.ClassesPage.ResumeLayout(false);
@@ -357,7 +344,7 @@
 
         #endregion
 
-        private TabControl tabControl1;
+        private TabControl AppTabControl;
         private TabPage EnumsPage;
         private Label IntValueLabel;
         private Label ChooseValueLabel;
@@ -373,7 +360,6 @@
         private GroupBox SeasonHandleGroupBox;
         private ComboBox SeasonComboBox;
         private Button SeasonButton;
-        private Button FuckButton;
         private TabPage ClassesPage;
         private GroupBox RectanglesGroupBox;
         private TextBox ColorTextBox;
