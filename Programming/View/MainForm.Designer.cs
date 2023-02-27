@@ -39,14 +39,14 @@
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.ClassesPage = new System.Windows.Forms.TabPage();
             this.RectanglesGroupBox = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.RectanglesListBox = new System.Windows.Forms.ListBox();
             this.FindButton = new System.Windows.Forms.Button();
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
-            this.LenghtTextBox = new System.Windows.Forms.TextBox();
+            this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.WidthLabel = new System.Windows.Forms.Label();
-            this.LenghtLabel = new System.Windows.Forms.Label();
+            this.LengthLabel = new System.Windows.Forms.Label();
             this.ParseTextBox = new System.Windows.Forms.TextBox();
             this.ResultParsingLabel = new System.Windows.Forms.Label();
             this.ParseButton = new System.Windows.Forms.Button();
@@ -160,14 +160,14 @@
             // 
             // RectanglesGroupBox
             // 
-            this.RectanglesGroupBox.Controls.Add(this.listBox1);
+            this.RectanglesGroupBox.Controls.Add(this.RectanglesListBox);
             this.RectanglesGroupBox.Controls.Add(this.FindButton);
             this.RectanglesGroupBox.Controls.Add(this.ColorTextBox);
             this.RectanglesGroupBox.Controls.Add(this.WidthTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.LenghtTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.LengthTextBox);
             this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.WidthLabel);
-            this.RectanglesGroupBox.Controls.Add(this.LenghtLabel);
+            this.RectanglesGroupBox.Controls.Add(this.LengthLabel);
             this.RectanglesGroupBox.Location = new System.Drawing.Point(6, 6);
             this.RectanglesGroupBox.Name = "RectanglesGroupBox";
             this.RectanglesGroupBox.Size = new System.Drawing.Size(766, 372);
@@ -175,14 +175,21 @@
             this.RectanglesGroupBox.TabStop = false;
             this.RectanglesGroupBox.Text = "Rectangles";
             // 
-            // listBox1
+            // RectanglesListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(24, 35);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(177, 244);
-            this.listBox1.TabIndex = 7;
+            this.RectanglesListBox.FormattingEnabled = true;
+            this.RectanglesListBox.ItemHeight = 20;
+            this.RectanglesListBox.Items.AddRange(new object[] {
+            "Rectangle 1",
+            "Rectangle 2",
+            "Rectangle 3",
+            "Rectangle 4",
+            "Rectangle 5"});
+            this.RectanglesListBox.Location = new System.Drawing.Point(24, 35);
+            this.RectanglesListBox.Name = "RectanglesListBox";
+            this.RectanglesListBox.Size = new System.Drawing.Size(177, 244);
+            this.RectanglesListBox.TabIndex = 7;
+            this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
             // FindButton
             // 
@@ -199,6 +206,7 @@
             this.ColorTextBox.Name = "ColorTextBox";
             this.ColorTextBox.Size = new System.Drawing.Size(125, 27);
             this.ColorTextBox.TabIndex = 5;
+            this.ColorTextBox.TextChanged += new System.EventHandler(this.ColorTextBox_TextChanged);
             // 
             // WidthTextBox
             // 
@@ -206,13 +214,15 @@
             this.WidthTextBox.Name = "WidthTextBox";
             this.WidthTextBox.Size = new System.Drawing.Size(125, 27);
             this.WidthTextBox.TabIndex = 4;
+            this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
-            // LenghtTextBox
+            // LengthTextBox
             // 
-            this.LenghtTextBox.Location = new System.Drawing.Point(222, 58);
-            this.LenghtTextBox.Name = "LenghtTextBox";
-            this.LenghtTextBox.Size = new System.Drawing.Size(125, 27);
-            this.LenghtTextBox.TabIndex = 3;
+            this.LengthTextBox.Location = new System.Drawing.Point(222, 58);
+            this.LengthTextBox.Name = "LengthTextBox";
+            this.LengthTextBox.Size = new System.Drawing.Size(125, 27);
+            this.LengthTextBox.TabIndex = 3;
+            this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
             // 
             // ColorLabel
             // 
@@ -232,14 +242,14 @@
             this.WidthLabel.TabIndex = 1;
             this.WidthLabel.Text = "Width:";
             // 
-            // LenghtLabel
+            // LengthLabel
             // 
-            this.LenghtLabel.AutoSize = true;
-            this.LenghtLabel.Location = new System.Drawing.Point(222, 35);
-            this.LenghtLabel.Name = "LenghtLabel";
-            this.LenghtLabel.Size = new System.Drawing.Size(57, 20);
-            this.LenghtLabel.TabIndex = 0;
-            this.LenghtLabel.Text = "Lenght:";
+            this.LengthLabel.AutoSize = true;
+            this.LengthLabel.Location = new System.Drawing.Point(222, 35);
+            this.LengthLabel.Name = "LengthLabel";
+            this.LengthLabel.Size = new System.Drawing.Size(57, 20);
+            this.LengthLabel.TabIndex = 0;
+            this.LengthLabel.Text = "Length:";
             // 
             // ParseTextBox
             // 
@@ -373,11 +383,11 @@
         private GroupBox RectanglesGroupBox;
         private TextBox ColorTextBox;
         private TextBox WidthTextBox;
-        private TextBox LenghtTextBox;
+        private TextBox LengthTextBox;
         private Label ColorLabel;
         private Label WidthLabel;
-        private Label LenghtLabel;
-        private ListBox listBox1;
+        private Label LengthLabel;
+        private ListBox RectanglesListBox;
         private Button FindButton;
     }
 }
