@@ -27,7 +27,7 @@ namespace Programming
             var values = Enum.GetValues(type).Cast<object>().ToArray();
             ValuesListBox.Items.AddRange(values);
 
-            ValueTextBox.Clear();
+            ValueIntTextBox.Clear();
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
@@ -69,9 +69,9 @@ namespace Programming
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ValueTextBox.Clear();
+            ValueIntTextBox.Clear();
             var value = (int)ValuesListBox.SelectedItem;
-            ValueTextBox.Text = value.ToString();
+            ValueIntTextBox.Text = value.ToString();
         }
     }
 }

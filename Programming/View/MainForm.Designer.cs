@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.AppTabControl = new System.Windows.Forms.TabControl();
             this.EnumsPage = new System.Windows.Forms.TabPage();
             this.IntValueLabel = new System.Windows.Forms.Label();
             this.ChooseValueLabel = new System.Windows.Forms.Label();
             this.ChooseEnumerationLabel = new System.Windows.Forms.Label();
-            this.ValueTextBox = new System.Windows.Forms.TextBox();
+            this.ValueIntTextBox = new System.Windows.Forms.TextBox();
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.ClassesPage = new System.Windows.Forms.TabPage();
@@ -79,7 +80,7 @@
             this.EnumsPage.Controls.Add(this.IntValueLabel);
             this.EnumsPage.Controls.Add(this.ChooseValueLabel);
             this.EnumsPage.Controls.Add(this.ChooseEnumerationLabel);
-            this.EnumsPage.Controls.Add(this.ValueTextBox);
+            this.EnumsPage.Controls.Add(this.ValueIntTextBox);
             this.EnumsPage.Controls.Add(this.ValuesListBox);
             this.EnumsPage.Controls.Add(this.EnumsListBox);
             this.EnumsPage.Location = new System.Drawing.Point(4, 29);
@@ -117,12 +118,12 @@
             this.ChooseEnumerationLabel.TabIndex = 3;
             this.ChooseEnumerationLabel.Text = "Choose enumeration:";
             // 
-            // ValueTextBox
+            // ValueIntTextBox
             // 
-            this.ValueTextBox.Location = new System.Drawing.Point(409, 31);
-            this.ValueTextBox.Name = "ValueTextBox";
-            this.ValueTextBox.Size = new System.Drawing.Size(125, 27);
-            this.ValueTextBox.TabIndex = 2;
+            this.ValueIntTextBox.Location = new System.Drawing.Point(409, 31);
+            this.ValueIntTextBox.Name = "ValueIntTextBox";
+            this.ValueIntTextBox.Size = new System.Drawing.Size(125, 27);
+            this.ValueIntTextBox.TabIndex = 2;
             // 
             // ValuesListBox
             // 
@@ -269,6 +270,8 @@
             // 
             // EnumerationsGroupBox
             // 
+            this.EnumerationsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EnumerationsGroupBox.Controls.Add(this.AppTabControl);
             this.EnumerationsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.EnumerationsGroupBox.Name = "EnumerationsGroupBox";
@@ -279,6 +282,8 @@
             // 
             // WeekdayParsingGroupBox
             // 
+            this.WeekdayParsingGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.WeekdayParsingGroupBox.Controls.Add(this.ParseTextBox);
             this.WeekdayParsingGroupBox.Controls.Add(this.ParseButton);
             this.WeekdayParsingGroupBox.Controls.Add(this.ResultParsingLabel);
@@ -291,6 +296,8 @@
             // 
             // SeasonHandleGroupBox
             // 
+            this.SeasonHandleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SeasonHandleGroupBox.Controls.Add(this.SeasonComboBox);
             this.SeasonHandleGroupBox.Controls.Add(this.SeasonButton);
             this.SeasonHandleGroupBox.Location = new System.Drawing.Point(422, 470);
@@ -326,6 +333,8 @@
             this.Controls.Add(this.SeasonHandleGroupBox);
             this.Controls.Add(this.WeekdayParsingGroupBox);
             this.Controls.Add(this.EnumerationsGroupBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(850, 650);
             this.Name = "MainForm";
             this.Text = "I ❤ programming";
             this.AppTabControl.ResumeLayout(false);
@@ -349,7 +358,7 @@
         private Label IntValueLabel;
         private Label ChooseValueLabel;
         private Label ChooseEnumerationLabel;
-        private TextBox ValueTextBox;
+        private TextBox ValueIntTextBox;
         private ListBox ValuesListBox;
         private ListBox EnumsListBox;
         private Label ResultParsingLabel;
