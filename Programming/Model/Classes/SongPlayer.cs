@@ -12,9 +12,9 @@
 
         public SongPlayer(string? nameMusicGroup, string? nameSong, int songTimeSeconds)
         {
-            nameMusicGroup = "";
-            nameSong = "";
-            songTimeSeconds = 0;
+            this.nameMusicGroup = nameMusicGroup;
+            this.nameSong = nameSong;
+            this.songTimeSeconds = songTimeSeconds;
         }
     }
 }

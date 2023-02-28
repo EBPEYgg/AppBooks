@@ -39,10 +39,10 @@
 
         public ContactPhone(int id, string? name, string? surname, int number)
         {
-            id = -1;
-            name = "";
-            surname = "";
-            number = 0;
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.number = number;
         }
     }
 }

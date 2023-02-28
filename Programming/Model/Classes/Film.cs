@@ -22,11 +22,11 @@
 
         public Film(string? nameFilm, int timeFilm, int yearFilm, string? genreFilm, double ratingFilm)
         {
-            nameFilm = "";
-            timeFilm = 0;
-            yearFilm = 1900;
-            genreFilm = "";
-            ratingFilm = 0;
+            this.nameFilm = nameFilm;
+            this.timeFilm = timeFilm;
+            this.yearFilm = yearFilm;
+            this.genreFilm = genreFilm;
+            this.ratingFilm = ratingFilm;
         }
     }
 }

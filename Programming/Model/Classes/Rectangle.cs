@@ -2,23 +2,23 @@
 {
     internal class Rectangle
     {
-        private double lengthRectangle
+        private double length
         {
-            get { return lengthRectangle; }
-            set { if (Validator.AssertOnPositiveValue(lengthRectangle)) lengthRectangle = value; }
+            get { return length; }
+            set { if (Validator.AssertOnPositiveValue(length)) length = value; }
         }
-        private double widthRectangle
+        private double width
         {
-            get { return widthRectangle; }
-            set { if (Validator.AssertOnPositiveValue(widthRectangle)) widthRectangle = value; }
+            get { return width; }
+            set { if (Validator.AssertOnPositiveValue(width)) width = value; }
         }
-        private string? colorRectangle { get; set; }
+        private string? color { get; set; }
 
-        public Rectangle()
+        public Rectangle(double length, double width, string? color)
         {
-            lengthRectangle = 0;
-            widthRectangle = 0;
-            colorRectangle = "";
+            this.length = length;
+            this.width = width;
+            this.color = color;
         }
     }
 }

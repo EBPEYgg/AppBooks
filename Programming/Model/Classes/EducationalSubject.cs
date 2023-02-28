@@ -16,9 +16,9 @@
 
         public EducationalSubject(string? name, int learnHoursTime, int mark)
         {
-            name = "";
-            learnHoursTime = 0;
-            mark = 0;
+            this.name = name;
+            this.learnHoursTime = learnHoursTime;
+            this.mark = mark;
         }
     }
 }

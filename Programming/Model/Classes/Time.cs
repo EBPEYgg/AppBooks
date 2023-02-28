@@ -18,9 +18,22 @@
             set { if (Validator.AssertValueInRange(seconds, -1, 61)) seconds = value; }
         }
 
+        public Time(int seconds)
+        {
+            this.seconds = seconds;
+        }
+
+        public Time(int seconds, int minutes)
+        {
+            this.seconds = seconds;
+            this.minutes = minutes;
+        }
+
         public Time(int seconds, int minutes, int hours)
         {
-            seconds = minutes = hours = 0;
+            this.seconds = seconds;
+            this.minutes = minutes;
+            this.hours = hours;
         }
     }
 }

@@ -12,9 +12,9 @@
 
         public Flight(string? departurePoint, string? destination, int flightTimeMinute)
         {
-            departurePoint = "";
-            destination = "";
-            flightTimeMinute = 0;
+            this.departurePoint = departurePoint;
+            this.destination = destination;
+            this.flightTimeMinute = flightTimeMinute;
         }
     }
 }
