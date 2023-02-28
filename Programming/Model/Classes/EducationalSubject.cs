@@ -2,16 +2,23 @@
 {
     internal class EducationalSubject
     {
-        private string? nameSubject { get; set; }
-        private int learnHoursTimeSubject
+        private string? name { get; set; }
+        private int learnHoursTime
         {
-            get { return learnHoursTimeSubject; }
-            set { if (learnHoursTimeSubject > 0) learnHoursTimeSubject = value; }
+            get { return learnHoursTime; }
+            set { if (Validator.AssertOnPositiveValue(learnHoursTime)) learnHoursTime = value; }
         }
-        private int markSubject
+        private int mark
         {
-            get { return markSubject; }
-            set { if (markSubject >= 1 && markSubject <= 5) markSubject = value; }
+            get { return mark; }
+            set { if (Validator.AssertValueInRange(mark, 0, 6)) mark = value; }
+        }
+
+        public EducationalSubject(string? name, int learnHoursTime, int mark)
+        {
+            name = "";
+            learnHoursTime = 0;
+            mark = 0;
         }
     }
 }

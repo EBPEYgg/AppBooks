@@ -6,18 +6,27 @@
         private int timeFilm
         {
             get { return timeFilm; }
-            set { if (timeFilm > 0) timeFilm = value; }
+            set { if (Validator.AssertOnPositiveValue(timeFilm)) timeFilm = value; }
         }
         private int yearFilm
         {
             get { return yearFilm; }
-            set { if (yearFilm > 1900 && yearFilm < 2024) yearFilm = value; }
+            set { if (Validator.AssertValueInRange(yearFilm, 1900, 2024)) yearFilm = value; }
         }
         private string? genreFilm { get; set; }
         private double ratingFilm
         {
             get { return ratingFilm; }
-            set { if (ratingFilm > 0 && ratingFilm <= 10) ratingFilm = value; }
+            set { if (Validator.AssertOnPositiveValue(ratingFilm) && ratingFilm <= 10) ratingFilm = value; }
+        }
+
+        public Film(string? nameFilm, int timeFilm, int yearFilm, string? genreFilm, double ratingFilm)
+        {
+            nameFilm = "";
+            timeFilm = 0;
+            yearFilm = 1900;
+            genreFilm = "";
+            ratingFilm = 0;
         }
     }
 }

@@ -26,8 +26,8 @@ namespace Programming
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));
             SeasonComboBox.SelectedIndex = 0;
 
-            Programming.Model.Classes.Rectangle rectangle = new Programming.Model.Classes.Rectangle();
-            Film film = new Film();
+            //Programming.Model.Classes.Rectangle rectangle = new Programming.Model.Classes.Rectangle();
+            //Film film = new Film("Not comedy", 102, 2011, "Comedy", 7.0);
             string[] _rectangles = new string[RectanglesListBox.Items.Count];
         }
 

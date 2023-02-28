@@ -10,12 +10,17 @@
         private int minutes
         {
             get { return minutes; }
-            set { if (minutes >= 0 && minutes < 60) hours = value; }
+            set { if (minutes >= 0 && minutes < 60) minutes = value; }
         }
         private int seconds
         {
             get { return seconds; }
-            set { if (seconds >= 0 && seconds < 60) hours = value; }
+            set { if (Validator.AssertValueInRange(seconds, -1, 61)) seconds = value; }
+        }
+
+        public Time(int seconds, int minutes, int hours)
+        {
+            seconds = minutes = hours = 0;
         }
     }
 }

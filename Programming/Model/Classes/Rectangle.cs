@@ -5,13 +5,20 @@
         private double lengthRectangle
         {
             get { return lengthRectangle; }
-            set { if (lengthRectangle > 0) lengthRectangle = value; }
+            set { if (Validator.AssertOnPositiveValue(lengthRectangle)) lengthRectangle = value; }
         }
         private double widthRectangle
         {
             get { return widthRectangle; }
-            set { if (widthRectangle > 0) widthRectangle = value; }
+            set { if (Validator.AssertOnPositiveValue(widthRectangle)) widthRectangle = value; }
         }
         private string? colorRectangle { get; set; }
+
+        public Rectangle()
+        {
+            lengthRectangle = 0;
+            widthRectangle = 0;
+            colorRectangle = "";
+        }
     }
 }

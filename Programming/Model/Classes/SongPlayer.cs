@@ -7,7 +7,14 @@
         private int songTimeSeconds
         {
             get { return songTimeSeconds; }
-            set { if (songTimeSeconds > 0) songTimeSeconds = value; }
+            set { if (Validator.AssertOnPositiveValue(songTimeSeconds)) songTimeSeconds = value; }
+        }
+
+        public SongPlayer(string? nameMusicGroup, string? nameSong, int songTimeSeconds)
+        {
+            nameMusicGroup = "";
+            nameSong = "";
+            songTimeSeconds = 0;
         }
     }
 }

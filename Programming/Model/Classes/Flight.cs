@@ -7,7 +7,14 @@
         private int flightTimeMinute
         {
             get { return flightTimeMinute; }
-            set { if (flightTimeMinute > 0) flightTimeMinute = value; }
+            set { if (Validator.AssertOnPositiveValue(flightTimeMinute)) flightTimeMinute = value; }
+        }
+
+        public Flight(string? departurePoint, string? destination, int flightTimeMinute)
+        {
+            departurePoint = "";
+            destination = "";
+            flightTimeMinute = 0;
         }
     }
 }
