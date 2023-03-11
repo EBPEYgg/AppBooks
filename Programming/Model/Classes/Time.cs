@@ -1,39 +1,74 @@
-﻿namespace Programming.Model.Classes
+﻿internal class Time
 {
-    internal class Time
+    private int _hours;
+    private int _minutes;
+    private int _seconds;
+
+    public int Hours
     {
-        private int hours
+        get
         {
-            get { return hours; }
-            set { if (hours >= 0 && hours < 24) hours = value; }
+            return _hours;
         }
-        private int minutes
+        set
         {
-            get { return minutes; }
-            set { if (minutes >= 0 && minutes < 60) minutes = value; }
+            if (Validator.AssertValueInRange(value, -1, 24))
+            {
+                _hours = value;
+            }
         }
-        private int seconds
-        {
-            get { return seconds; }
-            set { if (Validator.AssertValueInRange(seconds, -1, 61)) seconds = value; }
-        }
+    }
 
-        public Time(int seconds)
+    public int Minutes
+    {
+        get
         {
-            this.seconds = seconds;
+            return _minutes;
         }
+        set
+        {
+            if (Validator.AssertValueInRange(value, -1, 60))
+            {
+                _minutes = value;
+            }
+        }
+    }
 
-        public Time(int seconds, int minutes)
+    public int Seconds
+    {
+        get
         {
-            this.seconds = seconds;
-            this.minutes = minutes;
+            return _seconds;
         }
+        set
+        {
+            if (Validator.AssertValueInRange(value, -1, 60))
+            {
+                _seconds = value;
+            }
+        }
+    }
 
-        public Time(int seconds, int minutes, int hours)
-        {
-            this.seconds = seconds;
-            this.minutes = minutes;
-            this.hours = hours;
-        }
+    public Time()
+    {
+
+    }
+
+    public Time(int seconds)
+    {
+        this.Seconds = seconds;
+    }
+
+    public Time(int seconds, int minutes)
+    {
+        this.Seconds = seconds;
+        this.Minutes = minutes;
+    }
+
+    public Time(int seconds, int minutes, int hours)
+    {
+        this.Seconds = seconds;
+        this.Minutes = minutes;
+        this.Hours = hours;
     }
 }

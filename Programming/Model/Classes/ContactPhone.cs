@@ -1,48 +1,102 @@
-﻿namespace Programming.Model.Classes
+﻿internal class ContactPhone
 {
-    internal class ContactPhone
-    {
-        private int id { get; set; }
-        private string? name
-        {
-            get { return name; }
-            set { AssertStringContainsOnlyEnglishLetters(name); }
-        }
-        private string? surname 
-        { 
-            get { return surname; }
-            set { AssertStringContainsOnlyEnglishLetters(surname); }
-        }
-        private int number
-        {
-            get { return number; }
-            set { if (number == 11) number = value; }
-        }
+    private string? _name;
+    private string? _surname;
+    private int _number;
+    private string? propertyError;
 
-        private bool AssertStringContainsOnlyEnglishLetters(string name)
+    public int Id { get; set; }
+
+    public string? Name
+    {
+        get 
+        { 
+            return _name;
+        }
+        set 
         {
             try
             {
-                for (int i = 0; i < name.Length; i++)
+                propertyError = nameof(Name);
+                if (!AssertStringContainsOnlyEnglishLetters(value))
                 {
-                    if (((name[i] >= 'a') && (name[i] <= 'z')) || ((name[i] >= 'A') && (name[i] <= 'Z')))
-                        return true;
+                    throw new ArgumentException($"Допустима только латиница в свойстве {propertyError}");
                 }
-                return false;
+                _name = value;
             }
-            catch
+            catch (ArgumentException ex)
             {
-                throw new ArgumentException("Допустима только латиница");
+                MessageBox.Show(ex.Message, "Ошибка ввода");
             }
-            
         }
+    }
 
-        public ContactPhone(int id, string? name, string? surname, int number)
-        {
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
-            this.number = number;
+    public string? Surname
+    {
+        get 
+        { 
+            return _surname; 
         }
+        set 
+        {
+            try
+            {
+                propertyError = nameof(Surname);
+                if (!AssertStringContainsOnlyEnglishLetters(value))
+                {
+                    throw new ArgumentException($"Допустима только латиница в свойстве {propertyError}");
+                }
+                _surname = value;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка ввода");
+            }
+        }
+    }
+
+    public int Number
+    {
+        get 
+        { 
+            return _number; 
+        }
+        set
+        {
+            if (_number.ToString().Length == 11)
+            {
+                _number = value;
+            }
+        }
+    }
+
+    private bool AssertStringContainsOnlyEnglishLetters(string? name)
+    {
+        int flag = 0;
+        for (int i = 0; i < name?.Length; i++)
+        {
+            if (!((name[i] >= 'a') && (name[i] <= 'z')) || ((name[i] >= 'A') && (name[i] <= 'Z')))
+            {
+                flag += 1;
+            }
+        }
+        if (flag > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public ContactPhone()
+    {
+
+    }
+
+    public ContactPhone(int id, string? name, string? surname, int number)
+    {
+        this.Id = id;
+        this.Name = name;
+        this.Surname = surname;
+        this.Number = number;
     }
 }

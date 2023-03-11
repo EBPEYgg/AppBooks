@@ -1,24 +1,49 @@
-﻿namespace Programming.Model.Classes
+﻿internal class EducationalSubject
 {
-    internal class EducationalSubject
-    {
-        private string? name { get; set; }
-        private int learnHoursTime
-        {
-            get { return learnHoursTime; }
-            set { if (Validator.AssertOnPositiveValue(learnHoursTime)) learnHoursTime = value; }
-        }
-        private int mark
-        {
-            get { return mark; }
-            set { if (Validator.AssertValueInRange(mark, 0, 6)) mark = value; }
-        }
+    private int _learnHoursTime;
+    private int _mark;
 
-        public EducationalSubject(string? name, int learnHoursTime, int mark)
-        {
-            this.name = name;
-            this.learnHoursTime = learnHoursTime;
-            this.mark = mark;
+    public string? Name { get; set; }
+
+    public int LearnHoursTime
+    {
+        get 
+        { 
+            return _learnHoursTime; 
         }
+        set 
+        {
+            if (Validator.AssertOnPositiveValue(value))
+            {
+                _learnHoursTime = value;
+            }
+        }
+    }
+
+    public int Mark
+    {
+        get 
+        { 
+            return _mark; 
+        }
+        set 
+        {
+            if (Validator.AssertValueInRange(value, 0, 6))
+            {
+                _mark = value;
+            }
+        }
+    }
+
+    public EducationalSubject()
+    {
+
+    }
+
+    public EducationalSubject(string? name, int learnHoursTime, int mark)
+    {
+        this.Name = name;
+        this.LearnHoursTime = learnHoursTime;
+        this.Mark = mark;
     }
 }

@@ -1,20 +1,35 @@
-﻿namespace Programming.Model.Classes
+﻿internal class Flight
 {
-    internal class Flight
-    {
-        private string? departurePoint { get; set; }
-        private string? destination { get; set; }
-        private int flightTimeMinute
-        {
-            get { return flightTimeMinute; }
-            set { if (Validator.AssertOnPositiveValue(flightTimeMinute)) flightTimeMinute = value; }
-        }
+    private int _flightTimeMinute;
 
-        public Flight(string? departurePoint, string? destination, int flightTimeMinute)
-        {
-            this.departurePoint = departurePoint;
-            this.destination = destination;
-            this.flightTimeMinute = flightTimeMinute;
+    public string? DeparturePoint { get; set; }
+
+    public string? Destination { get; set; }
+
+    public int FlightTimeMinute
+    {
+        get 
+        { 
+            return _flightTimeMinute; 
         }
+        set 
+        {
+            if (Validator.AssertOnPositiveValue(value))
+            {
+                _flightTimeMinute = value;
+            }
+        }
+    }
+
+    public Flight()
+    {
+
+    }
+
+    public Flight(string? departurePoint, string? destination, int flightTimeMinute)
+    {
+        this.DeparturePoint = departurePoint;
+        this.Destination = destination;
+        this.FlightTimeMinute = flightTimeMinute;
     }
 }

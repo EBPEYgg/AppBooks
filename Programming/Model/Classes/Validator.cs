@@ -1,65 +1,64 @@
-﻿namespace Programming.Model.Classes
+﻿/// <summary>
+/// Класс с методами для проверки входящих значений.
+/// </summary>
+
+static internal class Validator
 {
-    static internal class Validator
+    /// <summary>
+    /// Проверяет число на положительность.
+    /// </summary>
+    /// <returns>Возвращает число, если оно > 0.</returns>
+    public static bool AssertOnPositiveValue(int number)
     {
-        public static bool AssertOnPositiveValue(int number)
+        if (number < 0)
         {
-            try
-            {
-                if (number > 0) 
-                    return true;
-                else 
-                    return false;
-            }
-            catch
-            {
-                throw new ArgumentException("Входное значение не является положительным");
-            }
+            throw new ArgumentException("Число не является положительным.");
         }
+        return number > 0;
+    }
 
-        public static bool AssertOnPositiveValue(double number)
+    /// <summary>
+    /// Проверяет число на положительность.
+    /// </summary>
+    /// <returns>Возвращает число, если оно > 0.</returns>
+    public static bool AssertOnPositiveValue(double number)
+    {
+        if (number < 0)
         {
-            try
-            {
-                if (number > 0) 
-                    return true;
-                else 
-                    return false;
-            }
-            catch
-            {
-                throw new ArgumentException("Входное значение не является положительным");
-            }
+            throw new ArgumentException("Число не является положительным.");
         }
+        return number > 0;
+    }
 
-        public static bool AssertValueInRange(int value, int min, int max)
+    /// <summary>
+    /// Проверяет число на вхождение в заданный диапазон.
+    /// </summary>
+    /// <param name="value">Число, которое нужно проверить.</param>
+    /// <param name="min">Минимальная граница диапазона (не включительно).</param>
+    /// <param name="max">Максимальная граница диапазона (не включительно).</param>
+    /// <returns>Возвращает число, если оно входит в заданный диапазон.</returns>
+    public static bool AssertValueInRange(int value, int min, int max)
+    {
+        if ((value < min) || (value > max))
         {
-            try
-            {
-                if ((min < value) && (max > value))
-                    return true;
-
-                return false;
-            }
-            catch
-            {
-                throw new ArgumentException("Число не входит в диапазон");
-            }
+            throw new ArgumentException("Число не входит в заданный диапазон.");
         }
+        return (min < value) && (max > value);
+    }
 
-        public static bool AssertValueInRange(double value, double min, double max)
+    /// <summary>
+    /// Проверяет число на вхождение в заданный диапазон.
+    /// </summary>
+    /// <param name="value">Число, которое нужно проверить.</param>
+    /// <param name="min">Минимальная граница диапазона (не включительно).</param>
+    /// <param name="max">Максимальная граница диапазона (не включительно).</param>
+    /// <returns>Возвращает число, если оно входит в заданный диапазон.</returns>
+    public static bool AssertValueInRange(double value, double min, double max)
+    {
+        if ((value < min) || (value > max))
         {
-            try
-            {
-                if ((min < value) && (max > value))
-                    return true;
-
-                return false;
-            }
-            catch
-            {
-                throw new ArgumentException("Число не входит в диапазон");
-            }
+            throw new ArgumentException("Число не входит в заданный диапазон.");
         }
+        return (min < value) && (max > value);
     }
 }

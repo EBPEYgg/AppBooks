@@ -1,20 +1,35 @@
-﻿namespace Programming.Model.Classes
+﻿internal class SongPlayer
 {
-    internal class SongPlayer
-    {
-        private string? nameMusicGroup { get; set; }
-        private string? nameSong { get; set; }
-        private int songTimeSeconds
-        {
-            get { return songTimeSeconds; }
-            set { if (Validator.AssertOnPositiveValue(songTimeSeconds)) songTimeSeconds = value; }
-        }
+    private int _songTimeSeconds;
 
-        public SongPlayer(string? nameMusicGroup, string? nameSong, int songTimeSeconds)
-        {
-            this.nameMusicGroup = nameMusicGroup;
-            this.nameSong = nameSong;
-            this.songTimeSeconds = songTimeSeconds;
+    public string? NameMusicGroup { get; set; }
+
+    public string? NameSong { get; set; }
+
+    public int SongTimeSeconds
+    {
+        get 
+        { 
+            return _songTimeSeconds; 
         }
+        set 
+        {
+            if (Validator.AssertOnPositiveValue(value))
+            {
+                _songTimeSeconds = value;
+            }
+        }
+    }
+
+    public SongPlayer()
+    {
+
+    }
+
+    public SongPlayer(string? nameMusicGroup, string? nameSong, int songTimeSeconds)
+    {
+        this.NameMusicGroup = nameMusicGroup;
+        this.NameSong = nameSong;
+        this.SongTimeSeconds = songTimeSeconds;
     }
 }

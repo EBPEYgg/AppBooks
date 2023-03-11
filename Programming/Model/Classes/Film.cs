@@ -1,32 +1,82 @@
-﻿namespace Programming.Model.Classes
-{
-    internal class Film
-    {
-        private string? nameFilm { get; set; }
-        private int timeFilm
-        {
-            get { return timeFilm; }
-            set { if (Validator.AssertOnPositiveValue(timeFilm)) timeFilm = value; }
-        }
-        private int yearFilm
-        {
-            get { return yearFilm; }
-            set { if (Validator.AssertValueInRange(yearFilm, 1900, 2024)) yearFilm = value; }
-        }
-        private string? genreFilm { get; set; }
-        private double ratingFilm
-        {
-            get { return ratingFilm; }
-            set { if (Validator.AssertOnPositiveValue(ratingFilm) && ratingFilm <= 10) ratingFilm = value; }
-        }
+﻿/// <summary>
+/// Класс фильма.
+/// </summary>
 
-        public Film(string? nameFilm, int timeFilm, int yearFilm, string? genreFilm, double ratingFilm)
-        {
-            this.nameFilm = nameFilm;
-            this.timeFilm = timeFilm;
-            this.yearFilm = yearFilm;
-            this.genreFilm = genreFilm;
-            this.ratingFilm = ratingFilm;
+internal class Film
+{
+    private int _time;
+    private int _year;
+    private double _rating;
+
+    public string? Name { get; set; }
+
+    public int Time
+    {
+        get 
+        { 
+            return _time; 
         }
+        set
+        {
+            if (Validator.AssertOnPositiveValue(value))
+            {
+                _time = value;
+            }
+        }
+    }
+
+    public int Year
+    {
+        get 
+        { 
+            return _year; 
+        }
+        set
+        {
+            if (!Validator.AssertValueInRange(value, 1900, 2024))
+            {
+                throw new ArgumentException("Неверный год.");
+            }
+            if (Validator.AssertValueInRange(value, 1900, 2024))
+            {
+                _year = value;
+            }
+        }
+    }
+
+    public string? Genre { get; set; }
+
+    public double Rating
+    {
+        get 
+        { 
+            return _rating; 
+        }
+        set
+        {
+            if (value > 10)
+            {
+                throw new ArgumentException("Некорректный рейтинг.");
+            }
+
+            if (Validator.AssertOnPositiveValue(value))
+            {
+                _rating = value;
+            }
+        }
+    }
+
+    public Film()
+    {
+
+    }
+
+    public Film(string? name, int time, int year, string? genre, double rating)
+    {
+        this.Name = name;
+        this.Time = time;
+        this.Year = year;
+        this.Genre = genre;
+        this.Rating = rating;
     }
 }
