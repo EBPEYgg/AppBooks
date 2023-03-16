@@ -81,10 +81,11 @@ internal class Rectangle
 
     }
 
-    public Rectangle(double length, double width, string? color)
+    public Rectangle(double length, double width, string? color, Point2D center)
     {
         this.Length = length;
         this.Width = width;
         this.Color = color;
+        this.Center = center;
     }
 }

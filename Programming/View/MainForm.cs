@@ -11,8 +11,6 @@ namespace Programming
         private Film[] _films = new Film[8];
         private Film _currentFilm = new Film();
         private Point2D point2D = new Point2D();
-        private ContactPhone phone = new ContactPhone();
-        private ContactPhone _currentContactPhone = new ContactPhone();
 
         /// <summary>
         /// Поиск прямоугольника с максимальной шириной в списке прямоугольников.
@@ -58,7 +56,7 @@ namespace Programming
         /// Выбор случайного элемента из массива строк.
         /// </summary>
         /// <param name="array">Массив строк.</param>
-        /// <returns>Один элемент-строка.</returns>
+        /// <returns>Один элемент типа string.</returns>
         public string PickRandomAmongStringArray(string[] array)
         {
             Random random = new Random();
@@ -76,7 +74,9 @@ namespace Programming
             string[] colors = { "Black", "White", "Yellow", "Green", "Blue" };
             string[] nameFilms = { "Episode I – The Phantom Menace", "Episode II – Attack of the Clones", "Episode III – Revenge of the Sith", "Episode IV – A New Hope", "Episode V – The Empire Strikes Back", "Episode VI – Return of the Jedi" };
             string[] genreFilms = { "Science fiction", "Fantasy", "Action Movie", "Adventures" };
-            string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };          
+            string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
+            double[] PointX = new double[5];
+            double[] PointY = new double[5];
             EnumsListBox.DataSource = enums;    // заполнение первого листбокса
             EnumsListBox.SelectedIndex = 0;
 
@@ -85,8 +85,13 @@ namespace Programming
 
             for (int i = 0; i < 5; i++)
             {
+                var Length = random.Next(1, 10);
+                var Width = random.Next(1, 10);
                 var CurrentColors = PickRandomAmongStringArray(colors);
-                _rectangles[i] = new Rectangle(random.Next(1, 10), random.Next(1, 10), CurrentColors);
+                point2D = new Point2D(Convert.ToDouble(Length)/2, Convert.ToDouble(Width)/2);
+                _rectangles[i] = new Rectangle(Length, Width, CurrentColors, point2D);
+                PointX[i] = _rectangles[i].Center.X;
+                PointY[i] = _rectangles[i].Center.Y;
                 RectanglesListBox.Items.Add($"Rectangle {i}");
             }
 
@@ -94,7 +99,10 @@ namespace Programming
             {
                 var CurrentNameFilm = PickRandomAmongStringArray(colors);
                 var CurrentGenreFilm = PickRandomAmongStringArray(genreFilms);
-                _films[j] = new Film(CurrentNameFilm, random.Next(121, 152), random.Next(1977, 2006), CurrentGenreFilm, random.Next(1, 11));
+                var Time = random.Next(121, 152);
+                var Year = random.Next(1977, 2006);
+                var Rating = random.Next(1, 11);
+                _films[j] = new Film(CurrentNameFilm, Time, Year, CurrentGenreFilm, Rating);
                 FilmsListBox.Items.Add($"{nameFilms[j]}");
             }
         }
@@ -165,23 +173,25 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color!.ToString();
+            PointXTextBox.Text = _currentRectangle.Center.X.ToString();
+            PointYTextBox.Text = _currentRectangle.Center.Y.ToString();
 
-            try
-            {
-                var pointX = Convert.ToDouble(LengthTextBox.Text)/2;
-                var pointY = Convert.ToDouble(WidthTextBox.Text)/2;
-                Point2D point2D = new Point2D(pointX, pointY);
-                PointXTextBox.Text = point2D.X.ToString();
-                PointYTextBox.Text = point2D.Y.ToString();
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    var pointX = Convert.ToDouble(LengthTextBox.Text)/2;
+            //    var pointY = Convert.ToDouble(WidthTextBox.Text)/2;
+            //    Point2D point2D = new Point2D(pointX, pointY);
+            //    PointXTextBox.Text = point2D.X.ToString();
+            //    PointYTextBox.Text = point2D.Y.ToString();
+            //}
+            //catch (ArgumentException ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //catch (FormatException ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)

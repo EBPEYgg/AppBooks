@@ -42,9 +42,9 @@ internal class Point2D
 
     }
 
-    public Point2D(double _x, double _y)
+    public Point2D(double x, double y)
     {
-        X = _x;
-        Y = _y;
+        this.X = x;
+        this.Y = y;
     }
 }
