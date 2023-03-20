@@ -6,7 +6,7 @@ internal class Rectangle
 {
     private double _length;
     private double _width;
-    private static int _allRectanglesCount;
+    private static int _allRingsCount;
     private int _id = 0;
 
     /// <summary>
@@ -50,27 +50,36 @@ internal class Rectangle
     /// </summary>
     public string? Color { get; set; }
 
+    /// <summary>
+    /// Центр прямоугольника.
+    /// </summary>
     public Point2D? Center { get; set; }
 
-    public int AllRectanglesCount 
+    /// <summary>
+    /// Счетчик прямоугольников.
+    /// </summary>
+    public static int AllRingsCount
     { 
         get 
         { 
-            return _allRectanglesCount; 
+            return _allRingsCount; 
         }
         set 
-        { 
-            _allRectanglesCount = value; 
+        {
+            _allRingsCount = value; 
         }
     }
 
+    /// <summary>
+    /// ID прямоугольника.
+    /// </summary>
     public int Id 
     { 
         get 
         { 
             return _id; 
         }
-        set
+        private set
         {
             _id = value + 1;
         }
@@ -87,5 +96,6 @@ internal class Rectangle
         this.Width = width;
         this.Color = color;
         this.Center = center;
+
     }
 }

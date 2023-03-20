@@ -1,12 +1,22 @@
-﻿internal class ContactPhone
+﻿/// <summary>
+/// Класс, описывающий контакт в телефоне.
+/// </summary>
+
+internal class ContactPhone
 {
     private string? _name;
     private string? _surname;
     private int _number;
     private string? propertyError;
 
+    /// <summary>
+    /// ID контакта.
+    /// </summary>
     public int Id { get; set; }
 
+    /// <summary>
+    /// Имя контакта.
+    /// </summary>
     public string? Name
     {
         get 
@@ -31,6 +41,9 @@
         }
     }
 
+    /// <summary>
+    /// Фамилия контакта.
+    /// </summary>
     public string? Surname
     {
         get 
@@ -55,6 +68,9 @@
         }
     }
 
+    /// <summary>
+    /// Номер телефона контакта.
+    /// </summary>
     public int Number
     {
         get 
@@ -70,6 +86,11 @@
         }
     }
 
+    /// <summary>
+    /// Метод, который проверяет, содержит ли строка только латиницу.
+    /// </summary>
+    /// <param name="name">Строка, которую надо проверить.</param>
+    /// <returns>True or false.</returns>
     private bool AssertStringContainsOnlyEnglishLetters(string? name)
     {
         int flag = 0;

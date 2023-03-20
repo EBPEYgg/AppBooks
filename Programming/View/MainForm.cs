@@ -6,7 +6,8 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
-        private Rectangle[] _rectangles = new Rectangle[5];
+        const int N = 5;
+        private Rectangle[] _rectangles = new Rectangle[N];
         private Rectangle _currentRectangle = new Rectangle();
         private Film[] _films = new Film[8];
         private Film _currentFilm = new Film();
@@ -60,9 +61,9 @@ namespace Programming
         public string PickRandomAmongStringArray(string[] array)
         {
             Random random = new Random();
-            int randIndex = random.Next(array.Length);
-            var randomtemp = array[randIndex];
-            return randomtemp;
+            int randomIndex = random.Next(array.Length);
+            var randomArrayElement = array[randomIndex];
+            return randomArrayElement;
         }
 
         public MainForm()
@@ -83,7 +84,7 @@ namespace Programming
             SeasonComboBox.DataSource = Enum.GetValues(typeof(Season));     // заполнение SeasonComboBox
             SeasonComboBox.SelectedIndex = 0;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < N; i++)
             {
                 var Length = random.Next(1, 10);
                 var Width = random.Next(1, 10);
@@ -175,23 +176,6 @@ namespace Programming
             ColorTextBox.Text = _currentRectangle.Color!.ToString();
             PointXTextBox.Text = _currentRectangle.Center.X.ToString();
             PointYTextBox.Text = _currentRectangle.Center.Y.ToString();
-
-            //try
-            //{
-            //    var pointX = Convert.ToDouble(LengthTextBox.Text)/2;
-            //    var pointY = Convert.ToDouble(WidthTextBox.Text)/2;
-            //    Point2D point2D = new Point2D(pointX, pointY);
-            //    PointXTextBox.Text = point2D.X.ToString();
-            //    PointYTextBox.Text = point2D.Y.ToString();
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //catch (FormatException ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
@@ -414,5 +398,10 @@ namespace Programming
             FilmWithMaxRatingLabel.Visible = true;
         }
 
+        private void CanvasPanel_Paint(object sender, PaintEventArgs e)
+        {
+            //CanvasPanel.Controls.Add(panel);
+            //panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+        }
     }
 }

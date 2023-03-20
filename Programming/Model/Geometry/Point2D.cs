@@ -6,6 +6,9 @@ internal class Point2D
     private double _x;
     private double _y;
 
+    /// <summary>
+    /// Координата X.
+    /// </summary>
     public double X
     {
         get { return _x; }
@@ -21,6 +24,10 @@ internal class Point2D
             }
         }
     }
+
+    /// <summary>
+    /// Координата Y.
+    /// </summary>
     public double Y
     {
         get { return _y; }

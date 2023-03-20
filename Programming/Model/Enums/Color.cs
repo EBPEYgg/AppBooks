@@ -10,6 +10,9 @@ namespace Programming.Model.Enums
     {
         Black,
         White,
-        Yellow
+        Yellow,
+        Green,
+        Blue,
+        Red
     }
 }
