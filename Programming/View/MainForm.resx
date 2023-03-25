@@ -58,6 +58,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="PanelDeleteRectangleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFSSURBVGhD7Zc5TsRQFAQdsXMHRM55SDgFawABS4w4ASk5AolNIBYRcgMCSLkEVA9u6WsCbOyR
+        /UfzSiqN7cDutjz/2UUQBEEQBEEwWaziKS4M9tqzhpu/m91wgt/4gm1LbKDO9T7Y64gpvEBd+BUXsQm6
+        6zrHF67oQJe0LbGFvYU303iJ/y2xjb2HN7N4h3VL7GA24Y1K3GNViX3MLryZw79KHGC24Y1KPOBwiUPM
+        PrzRXNB8UGD9HpfbYxHezOMjKvjYhTd76AK3qLkxNnhIfeBNua2hp7mRPX49+MRl1J0/L49d4Qxmiyes
+        w5u0xDVqbmSHJ+xweJOW0GOVVYmq8CYtoVVqVN8TrfDrQVV4k5Z4wl5LeMLWDW/SEs/YS4kjbBLepCU0
+        seu+io+EddSFtc4v6UBD0u8JLbGdsYtv2Ca8UYkz1P8hCIIgCIIgmCyK4gf2uGYWfo/JKgAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <data name="PanelAddRectangleButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAB1SURBVGhD7dQxCoAwEETR3NrW0jvZei/dBbdbCIRNhsB/
+        MJAiSH5jAwAAudP2/vPzdghQI0CNADUC1AhQI6DSMbDbFgF+zu70ViYesnplso+vWJlrYI8tHuLn7E5v
+        UvyF1AhQI0CNADUC1AhQ2z4AAIDJWvsAq12qcShZcl0AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAYGAAAAEAIAColAAAFgAAACgAAABgAAAAwAAAAAEAIAAAAAAAAJAAABMLAAATCwAAAAAAAAAA

@@ -587,20 +587,24 @@
             // 
             // PanelDeleteRectangleButton
             // 
+            this.PanelDeleteRectangleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PanelDeleteRectangleButton.ForeColor = System.Drawing.Color.Transparent;
+            this.PanelDeleteRectangleButton.Image = ((System.Drawing.Image)(resources.GetObject("PanelDeleteRectangleButton.Image")));
             this.PanelDeleteRectangleButton.Location = new System.Drawing.Point(176, 239);
             this.PanelDeleteRectangleButton.Name = "PanelDeleteRectangleButton";
-            this.PanelDeleteRectangleButton.Size = new System.Drawing.Size(140, 29);
+            this.PanelDeleteRectangleButton.Size = new System.Drawing.Size(140, 40);
             this.PanelDeleteRectangleButton.TabIndex = 15;
-            this.PanelDeleteRectangleButton.Text = "Удалить";
             this.PanelDeleteRectangleButton.UseVisualStyleBackColor = true;
             // 
             // PanelAddRectangleButton
             // 
+            this.PanelAddRectangleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PanelAddRectangleButton.ForeColor = System.Drawing.Color.Transparent;
+            this.PanelAddRectangleButton.Image = ((System.Drawing.Image)(resources.GetObject("PanelAddRectangleButton.Image")));
             this.PanelAddRectangleButton.Location = new System.Drawing.Point(15, 239);
             this.PanelAddRectangleButton.Name = "PanelAddRectangleButton";
-            this.PanelAddRectangleButton.Size = new System.Drawing.Size(155, 29);
+            this.PanelAddRectangleButton.Size = new System.Drawing.Size(155, 40);
             this.PanelAddRectangleButton.TabIndex = 14;
-            this.PanelAddRectangleButton.Text = "Добавить";
             this.PanelAddRectangleButton.UseVisualStyleBackColor = true;
             // 
             // CanvasPanel
