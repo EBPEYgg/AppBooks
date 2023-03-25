@@ -75,6 +75,8 @@
             this.WidthLabel = new System.Windows.Forms.Label();
             this.LengthLabel = new System.Windows.Forms.Label();
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
+            this.PanelDeleteRectangleButton = new System.Windows.Forms.Button();
+            this.PanelAddRectangleButton = new System.Windows.Forms.Button();
             this.CanvasPanel = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -90,8 +92,6 @@
             this.RectanglesLabel = new System.Windows.Forms.Label();
             this.PanelRectanglesListBox = new System.Windows.Forms.ListBox();
             this.EnumerationsGroupBox = new System.Windows.Forms.GroupBox();
-            this.PanelAddRectangleButton = new System.Windows.Forms.Button();
-            this.PanelDeleteRectangleButton = new System.Windows.Forms.Button();
             this.AppTabControl.SuspendLayout();
             this.EnumsPage.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
@@ -585,6 +585,24 @@
             this.RectanglesTabPage.Text = "Rectangles";
             this.RectanglesTabPage.UseVisualStyleBackColor = true;
             // 
+            // PanelDeleteRectangleButton
+            // 
+            this.PanelDeleteRectangleButton.Location = new System.Drawing.Point(176, 239);
+            this.PanelDeleteRectangleButton.Name = "PanelDeleteRectangleButton";
+            this.PanelDeleteRectangleButton.Size = new System.Drawing.Size(140, 29);
+            this.PanelDeleteRectangleButton.TabIndex = 15;
+            this.PanelDeleteRectangleButton.Text = "Удалить";
+            this.PanelDeleteRectangleButton.UseVisualStyleBackColor = true;
+            // 
+            // PanelAddRectangleButton
+            // 
+            this.PanelAddRectangleButton.Location = new System.Drawing.Point(15, 239);
+            this.PanelAddRectangleButton.Name = "PanelAddRectangleButton";
+            this.PanelAddRectangleButton.Size = new System.Drawing.Size(155, 29);
+            this.PanelAddRectangleButton.TabIndex = 14;
+            this.PanelAddRectangleButton.Text = "Добавить";
+            this.PanelAddRectangleButton.UseVisualStyleBackColor = true;
+            // 
             // CanvasPanel
             // 
             this.CanvasPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -712,24 +730,6 @@
             this.EnumerationsGroupBox.TabIndex = 1;
             this.EnumerationsGroupBox.TabStop = false;
             this.EnumerationsGroupBox.Text = "Enumerations";
-            // 
-            // PanelAddRectangleButton
-            // 
-            this.PanelAddRectangleButton.Location = new System.Drawing.Point(15, 239);
-            this.PanelAddRectangleButton.Name = "PanelAddRectangleButton";
-            this.PanelAddRectangleButton.Size = new System.Drawing.Size(155, 29);
-            this.PanelAddRectangleButton.TabIndex = 14;
-            this.PanelAddRectangleButton.Text = "Добавить";
-            this.PanelAddRectangleButton.UseVisualStyleBackColor = true;
-            // 
-            // PanelDeleteRectangleButton
-            // 
-            this.PanelDeleteRectangleButton.Location = new System.Drawing.Point(176, 239);
-            this.PanelDeleteRectangleButton.Name = "PanelDeleteRectangleButton";
-            this.PanelDeleteRectangleButton.Size = new System.Drawing.Size(140, 29);
-            this.PanelDeleteRectangleButton.TabIndex = 15;
-            this.PanelDeleteRectangleButton.Text = "Удалить";
-            this.PanelDeleteRectangleButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

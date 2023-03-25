@@ -3,9 +3,17 @@
 /// </summary>
 internal class Ring
 {
-
+    /// <summary>
+    /// Внутренний радиус
+    /// </summary>
     private double _internalRadius;
+    /// <summary>
+    /// Внешний радиус.
+    /// </summary>
     private double _externalRadius;
+    /// <summary>
+    /// Центр координат.
+    /// </summary>
     private Point2D? Point2D;
 
     /// <summary>
@@ -64,15 +72,22 @@ internal class Ring
         }
     }
 
+    /// <summary>
+    /// Пустой конструктор кольца.
+    /// </summary>
     public Ring()
     {
 
     }
 
-    public Ring(double internalRadius, double externalRadius, double area)
+    /// <summary>
+    /// Конструктор кольца.
+    /// </summary>
+    /// <param name="internalRadius">Внутренний радиус.</param>
+    /// <param name="externalRadius">Внешний радиус.</param>
+    public Ring(double internalRadius, double externalRadius)
     {
         this.InternalRadius = internalRadius;
         this.ExternalRadius = externalRadius;
-        this.Area = area;
     }
 }

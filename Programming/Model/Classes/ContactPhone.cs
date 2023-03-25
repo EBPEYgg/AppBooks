@@ -1,13 +1,20 @@
 ﻿/// <summary>
 /// Класс, описывающий контакт в телефоне.
 /// </summary>
-
 internal class ContactPhone
 {
+    /// <summary>
+    /// Имя контакта.
+    /// </summary>
     private string? _name;
+    /// <summary>
+    /// Фамилия контакта.
+    /// </summary>
     private string? _surname;
+    /// <summary>
+    /// Номер контакта.
+    /// </summary>
     private int _number;
-    private string? propertyError;
 
     /// <summary>
     /// ID контакта.
@@ -19,18 +26,14 @@ internal class ContactPhone
     /// </summary>
     public string? Name
     {
-        get 
-        { 
-            return _name;
-        }
+        get => _name;
         set 
         {
             try
             {
-                propertyError = nameof(Name);
                 if (!AssertStringContainsOnlyEnglishLetters(value))
                 {
-                    throw new ArgumentException($"Допустима только латиница в свойстве {propertyError}");
+                    throw new ArgumentException($"Допустима только латиница в имени");
                 }
                 _name = value;
             }
@@ -54,11 +57,11 @@ internal class ContactPhone
         {
             try
             {
-                propertyError = nameof(Surname);
                 if (!AssertStringContainsOnlyEnglishLetters(value))
                 {
-                    throw new ArgumentException($"Допустима только латиница в свойстве {propertyError}");
+                    throw new ArgumentException($"Допустима только латиница в фамилии");
                 }
+
                 _surname = value;
             }
             catch (ArgumentException ex)
@@ -93,26 +96,34 @@ internal class ContactPhone
     /// <returns>True or false.</returns>
     private bool AssertStringContainsOnlyEnglishLetters(string? name)
     {
-        int flag = 0;
-        for (int i = 0; i < name?.Length; i++)
+        bool flag = true;
+        foreach (char c in name)
         {
-            if (!((name[i] >= 'a') && (name[i] <= 'z')) || ((name[i] >= 'A') && (name[i] <= 'Z')))
+            if (!((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')))
             {
-                flag += 1;
+                flag = false;
+                break;
             }
         }
-        if (flag > 0)
-        {
-            return false;
-        }
-        return true;
+
+        return flag;
     }
 
+    /// <summary>
+    /// Пустой конструктор класса.
+    /// </summary>
     public ContactPhone()
     {
 
     }
 
+    /// <summary>
+    /// Конструктор класса.
+    /// </summary>
+    /// <param name="id">ID контакта</param>
+    /// <param name="name">Имя контакта</param>
+    /// <param name="surname">Фамилия контакта</param>
+    /// <param name="number">Номер контакта</param>
     public ContactPhone(int id, string? name, string? surname, int number)
     {
         this.Id = id;

@@ -14,6 +14,7 @@ static internal class Validator
         {
             throw new ArgumentException("Число не является положительным.");
         }
+
         return number > 0;
     }
 
@@ -27,6 +28,7 @@ static internal class Validator
         {
             throw new ArgumentException("Число не является положительным.");
         }
+
         return number > 0;
     }
 
@@ -43,6 +45,7 @@ static internal class Validator
         {
             throw new ArgumentException("Число не входит в заданный диапазон.");
         }
+
         return (min < value) && (max > value);
     }
 
@@ -59,6 +62,7 @@ static internal class Validator
         {
             throw new ArgumentException("Число не входит в заданный диапазон.");
         }
+
         return (min < value) && (max > value);
     }
 }

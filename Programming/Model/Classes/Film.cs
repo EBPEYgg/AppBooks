@@ -33,10 +33,6 @@ internal class Film
         }
         set
         {
-            if (!Validator.AssertValueInRange(value, 1900, 2024))
-            {
-                throw new ArgumentException("Неверный год.");
-            }
             if (Validator.AssertValueInRange(value, 1900, 2024))
             {
                 _year = value;
@@ -54,12 +50,7 @@ internal class Film
         }
         set
         {
-            if (value > 10)
-            {
-                throw new ArgumentException("Некорректный рейтинг.");
-            }
-
-            if (Validator.AssertOnPositiveValue(value))
+            if (Validator.AssertValueInRange(value, 0, 10.1))
             {
                 _rating = value;
             }

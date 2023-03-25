@@ -3,7 +3,13 @@
 /// </summary>
 internal class Point2D
 {
+    /// <summary>
+    /// Координата X.
+    /// </summary>
     private double _x;
+    /// <summary>
+    /// Координата Y.
+    /// </summary>
     private double _y;
 
     /// <summary>
@@ -44,11 +50,19 @@ internal class Point2D
         }
     }
 
+    /// <summary>
+    /// Пустой конструктор класса центра координат.
+    /// </summary>
     public Point2D()
     {
 
     }
 
+    /// <summary>
+    /// Конструктор класса центра координат.
+    /// </summary>
+    /// <param name="x">Координата X.</param>
+    /// <param name="y">Координата Y.</param>
     public Point2D(double x, double y)
     {
         this.X = x;

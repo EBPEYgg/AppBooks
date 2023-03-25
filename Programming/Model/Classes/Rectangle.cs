@@ -4,10 +4,22 @@
 
 internal class Rectangle
 {
+    /// <summary>
+    /// Длина прямоугольника.
+    /// </summary>
     private double _length;
+    /// <summary>
+    /// Ширина прямоугольника.
+    /// </summary>
     private double _width;
-    private static int _allRingsCount;
-    private int _id = 0;
+    /// <summary>
+    /// Счетчик прямоугольников.
+    /// </summary>
+    private static int _allRectanglesCount = 0;
+    /// <summary>
+    /// ID прямоугольника.
+    /// </summary>
+    private int _id;
 
     /// <summary>
     /// Длина прямоугольника.
@@ -58,15 +70,15 @@ internal class Rectangle
     /// <summary>
     /// Счетчик прямоугольников.
     /// </summary>
-    public static int AllRingsCount
+    public static int AllRectanglesCount
     { 
         get 
         { 
-            return _allRingsCount; 
+            return _allRectanglesCount;
         }
-        set 
+        private set
         {
-            _allRingsCount = value; 
+            _allRectanglesCount = value; 
         }
     }
 
@@ -77,25 +89,36 @@ internal class Rectangle
     { 
         get 
         { 
-            return _id; 
+            return _id;
         }
         private set
         {
-            _id = value + 1;
+            _id = value;
         }
     }
 
+    /// <summary>
+    /// Пустой конструктор класса прямоугольников.
+    /// </summary>
     public Rectangle()
     {
 
     }
 
+    /// <summary>
+    /// Конструктор класса прямоугольников.
+    /// </summary>
+    /// <param name="length">Длина прямоугольника.</param>
+    /// <param name="width">Ширина прямоугольника.</param>
+    /// <param name="color">Цвет прямоугольника.</param>
+    /// <param name="center">Координаты центра прямоугольника.</param>
     public Rectangle(double length, double width, string? color, Point2D center)
     {
         this.Length = length;
         this.Width = width;
         this.Color = color;
         this.Center = center;
-
+        _allRectanglesCount++;
+        Id = _allRectanglesCount;
     }
 }
