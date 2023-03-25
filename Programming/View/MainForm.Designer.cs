@@ -605,6 +605,10 @@
             // 
             // CanvasPanel
             // 
+            this.CanvasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CanvasPanel.AutoSize = true;
             this.CanvasPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CanvasPanel.Location = new System.Drawing.Point(355, 6);
             this.CanvasPanel.Name = "CanvasPanel";
@@ -721,8 +725,10 @@
             // 
             // EnumerationsGroupBox
             // 
-            this.EnumerationsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.EnumerationsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.EnumerationsGroupBox.AutoSize = true;
             this.EnumerationsGroupBox.Controls.Add(this.AppTabControl);
             this.EnumerationsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.EnumerationsGroupBox.Name = "EnumerationsGroupBox";
@@ -756,6 +762,7 @@
             this.RectanglesTabPage.PerformLayout();
             this.EnumerationsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
