@@ -620,7 +620,6 @@
             this.CanvasPanel.Name = "CanvasPanel";
             this.CanvasPanel.Size = new System.Drawing.Size(425, 498);
             this.CanvasPanel.TabIndex = 13;
-            this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             // 
             // label5
             // 

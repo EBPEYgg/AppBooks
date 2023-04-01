@@ -7,7 +7,7 @@ static internal class Validator
     /// <summary>
     /// Проверяет число на положительность.
     /// </summary>
-    /// <returns>Возвращает число, если оно > 0.</returns>
+    /// <returns>Возвращает true or false, если оно > 0.</returns>
     public static bool AssertOnPositiveValue(int number)
     {
         if (number < 0)
@@ -21,7 +21,7 @@ static internal class Validator
     /// <summary>
     /// Проверяет число на положительность.
     /// </summary>
-    /// <returns>Возвращает число, если оно > 0.</returns>
+    /// <returns>Возвращает true or false, если оно > 0.</returns>
     public static bool AssertOnPositiveValue(double number)
     {
         if (number < 0)
@@ -38,7 +38,7 @@ static internal class Validator
     /// <param name="value">Число, которое нужно проверить.</param>
     /// <param name="min">Минимальная граница диапазона (не включительно).</param>
     /// <param name="max">Максимальная граница диапазона (не включительно).</param>
-    /// <returns>Возвращает число, если оно входит в заданный диапазон.</returns>
+    /// <returns>Возвращает true or false, если оно входит в заданный диапазон.</returns>
     public static bool AssertValueInRange(int value, int min, int max)
     {
         if ((value < min) || (value > max))
@@ -55,7 +55,7 @@ static internal class Validator
     /// <param name="value">Число, которое нужно проверить.</param>
     /// <param name="min">Минимальная граница диапазона (не включительно).</param>
     /// <param name="max">Максимальная граница диапазона (не включительно).</param>
-    /// <returns>Возвращает число, если оно входит в заданный диапазон.</returns>
+    /// <returns>Возвращает true or false, если оно входит в заданный диапазон.</returns>
     public static bool AssertValueInRange(double value, double min, double max)
     {
         if ((value < min) || (value > max))

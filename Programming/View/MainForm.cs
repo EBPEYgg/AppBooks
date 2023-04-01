@@ -14,6 +14,7 @@ namespace Programming
         private Point2D point2D = new Point2D();
         private List<Rectangle> _rectanglesList = new List<Rectangle>();
         private Rectangle _currentRectangleInList = new Rectangle();
+        private List<Panel> _rectanglePanels = new List<Panel>();
 
         /// <summary>
         /// Поиск прямоугольника с максимальной шириной в списке прямоугольников.
@@ -402,18 +403,15 @@ namespace Programming
             FilmWithMaxRatingLabel.Visible = true;
         }
 
-        private void CanvasPanel_Paint(object sender, PaintEventArgs e)
-        {
-            //CanvasPanel.Controls.Add(panel);
-            //panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
-        }
-
         private void PanelAddRectangleButton_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            var Length = random.Next(1, 10);
-            var Width = random.Next(1, 10);
-            point2D = new Point2D(Convert.ToDouble(Length) / 2, Convert.ToDouble(Width) / 2);
+            var Length = random.Next(20, 100);
+            var Width = random.Next(20, 100);
+            var PointX = random.Next(20, 360);
+            var PointY = random.Next(20, 400);
+
+            point2D = new Point2D(PointX, PointY);
             _currentRectangleInList = new Rectangle(Length, Width, point2D);
             _rectanglesList.Add(_currentRectangleInList);
             PanelRectanglesListBox.Items.Add(
@@ -423,6 +421,18 @@ namespace Programming
                 $"W= {_currentRectangleInList.Length}; " +
                 $"H= {_currentRectangleInList.Width})"
                 );
+
+            Panel currentPanelRectangle = new Panel();
+            int intLength = Convert.ToInt32(_currentRectangleInList.Length);
+            int intWidth = Convert.ToInt32(_currentRectangleInList.Width);
+            currentPanelRectangle.Location = new Point(PointX, PointY);
+            currentPanelRectangle.Size = new Size(intLength, intWidth);
+            currentPanelRectangle.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            currentPanelRectangle.BorderStyle = BorderStyle.FixedSingle;
+            CanvasPanel.Controls.Add(currentPanelRectangle);
+            _rectanglePanels.Add(currentPanelRectangle);
+
+            FindCollision();
         }
 
         private void PanelDeleteRectangleButton_Click(object sender, EventArgs e)
@@ -431,11 +441,13 @@ namespace Programming
             _currentRectangleInList = _rectanglesList[indexPanelRectangle];
             PanelRectanglesListBox.Items.RemoveAt(indexPanelRectangle);
             _rectanglesList.Remove(_currentRectangleInList);
+            CanvasPanel.Controls.RemoveAt(indexPanelRectangle);
+            _rectanglePanels.RemoveAt(indexPanelRectangle);
         }
 
         private void PanelRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PanelTextBoxClear();
+            ClearRectangleInfo();
             if (PanelRectanglesListBox.SelectedIndex != -1)
             {
                 int indexPanelRectangle = PanelRectanglesListBox.SelectedIndex;
@@ -452,7 +464,7 @@ namespace Programming
             }
         }
 
-        private void PanelTextBoxClear()
+        private void ClearRectangleInfo()
         {
             PanelIdTextBox.Clear();
             PanelXTextBox.Clear();
@@ -463,10 +475,41 @@ namespace Programming
 
         private void PanelWidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void PanelLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FindCollision()
+        {
+            if (_rectanglesList.Count > 1)
+            {
+                for (int i = 0; i < _rectanglesList.Count; i++)
+                {
+                    _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+                }
+
+                for (int i = 0; i < _rectanglesList.Count; i++)
+                {
+                    for (int j = 0; j < _rectanglesList.Count; j++)
+                    {
+                        if (_rectanglePanels[i] != _rectanglePanels[j])
+                        {
+                            if (CollisionManager.IsCollision(_rectanglesList[i], _rectanglesList[j]))
+                            {
+                                _rectanglePanels[i].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                                _rectanglePanels[j].BackColor = System.Drawing.Color.FromArgb(127, 255, 127, 127);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void UpdateRectangleInfo(Rectangle rectangle)
         {
 
         }
