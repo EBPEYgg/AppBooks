@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Programming1_100x100.ico" />
+    <Content Include="Resources\Programming1_100x100.ico" />
   </ItemGroup>
 
   <ItemGroup>

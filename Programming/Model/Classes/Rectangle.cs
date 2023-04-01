@@ -110,6 +110,21 @@ internal class Rectangle
     /// </summary>
     /// <param name="length">Длина прямоугольника.</param>
     /// <param name="width">Ширина прямоугольника.</param>
+    /// <param name="center">Координаты центра прямоугольника.</param>
+    public Rectangle(double length, double width, Point2D center)
+    {
+        this.Length = length;
+        this.Width = width;
+        this.Center = center;
+        _allRectanglesCount++;
+        Id = _allRectanglesCount;
+    }
+
+    /// <summary>
+    /// Конструктор класса прямоугольников.
+    /// </summary>
+    /// <param name="length">Длина прямоугольника.</param>
+    /// <param name="width">Ширина прямоугольника.</param>
     /// <param name="color">Цвет прямоугольника.</param>
     /// <param name="center">Координаты центра прямоугольника.</param>
     public Rectangle(double length, double width, string? color, Point2D center)

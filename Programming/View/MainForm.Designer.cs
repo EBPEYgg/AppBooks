@@ -595,6 +595,7 @@
             this.PanelDeleteRectangleButton.Size = new System.Drawing.Size(140, 40);
             this.PanelDeleteRectangleButton.TabIndex = 15;
             this.PanelDeleteRectangleButton.UseVisualStyleBackColor = true;
+            this.PanelDeleteRectangleButton.Click += new System.EventHandler(this.PanelDeleteRectangleButton_Click);
             // 
             // PanelAddRectangleButton
             // 
@@ -606,6 +607,7 @@
             this.PanelAddRectangleButton.Size = new System.Drawing.Size(155, 40);
             this.PanelAddRectangleButton.TabIndex = 14;
             this.PanelAddRectangleButton.UseVisualStyleBackColor = true;
+            this.PanelAddRectangleButton.Click += new System.EventHandler(this.PanelAddRectangleButton_Click);
             // 
             // CanvasPanel
             // 
@@ -671,6 +673,7 @@
             this.PanelLengthTextBox.Name = "PanelLengthTextBox";
             this.PanelLengthTextBox.Size = new System.Drawing.Size(125, 27);
             this.PanelLengthTextBox.TabIndex = 7;
+            this.PanelLengthTextBox.TextChanged += new System.EventHandler(this.PanelLengthTextBox_TextChanged);
             // 
             // PanelWidthTextBox
             // 
@@ -678,6 +681,7 @@
             this.PanelWidthTextBox.Name = "PanelWidthTextBox";
             this.PanelWidthTextBox.Size = new System.Drawing.Size(125, 27);
             this.PanelWidthTextBox.TabIndex = 6;
+            this.PanelWidthTextBox.TextChanged += new System.EventHandler(this.PanelWidthTextBox_TextChanged);
             // 
             // PanelYTextBox
             // 
@@ -695,6 +699,7 @@
             // 
             // PanelIdTextBox
             // 
+            this.PanelIdTextBox.Enabled = false;
             this.PanelIdTextBox.Location = new System.Drawing.Point(128, 338);
             this.PanelIdTextBox.Name = "PanelIdTextBox";
             this.PanelIdTextBox.Size = new System.Drawing.Size(125, 27);
@@ -726,6 +731,7 @@
             this.PanelRectanglesListBox.Name = "PanelRectanglesListBox";
             this.PanelRectanglesListBox.Size = new System.Drawing.Size(301, 204);
             this.PanelRectanglesListBox.TabIndex = 0;
+            this.PanelRectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.PanelRectanglesListBox_SelectedIndexChanged);
             // 
             // EnumerationsGroupBox
             // 

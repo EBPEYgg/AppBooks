@@ -12,6 +12,8 @@ namespace Programming
         private Film[] _films = new Film[8];
         private Film _currentFilm = new Film();
         private Point2D point2D = new Point2D();
+        private List<Rectangle> _rectanglesList = new List<Rectangle>();
+        private Rectangle _currentRectangleInList = new Rectangle();
 
         /// <summary>
         /// Поиск прямоугольника с максимальной шириной в списке прямоугольников.
@@ -78,6 +80,7 @@ namespace Programming
             string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
             double[] PointX = new double[5];
             double[] PointY = new double[5];
+
             EnumsListBox.DataSource = enums;    // заполнение первого листбокса
             EnumsListBox.SelectedIndex = 0;
 
@@ -89,7 +92,7 @@ namespace Programming
                 var Length = random.Next(1, 10);
                 var Width = random.Next(1, 10);
                 var CurrentColors = PickRandomAmongStringArray(colors);
-                point2D = new Point2D(Convert.ToDouble(Length)/2, Convert.ToDouble(Width)/2);
+                point2D = new Point2D(Convert.ToDouble(Length) / 2, Convert.ToDouble(Width) / 2);
                 _rectangles[i] = new Rectangle(Length, Width, CurrentColors, point2D);
                 PointX[i] = _rectangles[i].Center.X;
                 PointY[i] = _rectangles[i].Center.Y;
@@ -127,7 +130,7 @@ namespace Programming
             Weekday text;
             if (Enum.TryParse(ParseTextBox.Text, out text) && text >= 0)
             {
-                ResultParsingLabel.Text = $"Это день недели ({text} = {(int) text})";
+                ResultParsingLabel.Text = $"Это день недели ({text} = {(int)text})";
             }
             else
             {
@@ -296,7 +299,7 @@ namespace Programming
 
                 if (timeFilm <= 300)
                 {
-                    
+
                     _currentFilm.Time = timeFilm;
                     TimeTextBox.BackColor = System.Drawing.Color.White;
                 }
@@ -403,6 +406,69 @@ namespace Programming
         {
             //CanvasPanel.Controls.Add(panel);
             //panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+        }
+
+        private void PanelAddRectangleButton_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            var Length = random.Next(1, 10);
+            var Width = random.Next(1, 10);
+            point2D = new Point2D(Convert.ToDouble(Length) / 2, Convert.ToDouble(Width) / 2);
+            _currentRectangleInList = new Rectangle(Length, Width, point2D);
+            _rectanglesList.Add(_currentRectangleInList);
+            PanelRectanglesListBox.Items.Add(
+                $"{_currentRectangleInList.Id}: " +
+                $"(X= {_currentRectangleInList.Center.X}; " +
+                $"Y = {_currentRectangleInList.Center.Y}; " +
+                $"W= {_currentRectangleInList.Length}; " +
+                $"H= {_currentRectangleInList.Width})"
+                );
+        }
+
+        private void PanelDeleteRectangleButton_Click(object sender, EventArgs e)
+        {
+            int indexPanelRectangle = PanelRectanglesListBox.SelectedIndex;
+            _currentRectangleInList = _rectanglesList[indexPanelRectangle];
+            PanelRectanglesListBox.Items.RemoveAt(indexPanelRectangle);
+            _rectanglesList.Remove(_currentRectangleInList);
+        }
+
+        private void PanelRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PanelTextBoxClear();
+            if (PanelRectanglesListBox.SelectedIndex != -1)
+            {
+                int indexPanelRectangle = PanelRectanglesListBox.SelectedIndex;
+                _currentRectangleInList = _rectanglesList[indexPanelRectangle];
+                PanelIdTextBox.Text = _currentRectangleInList.Id.ToString();
+                PanelXTextBox.Text = _currentRectangleInList.Center.X.ToString();
+                PanelYTextBox.Text = _currentRectangleInList.Center.Y.ToString();
+                PanelWidthTextBox.Text = _currentRectangleInList.Width.ToString();
+                PanelLengthTextBox.Text = _currentRectangleInList.Length.ToString();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void PanelTextBoxClear()
+        {
+            PanelIdTextBox.Clear();
+            PanelXTextBox.Clear();
+            PanelYTextBox.Clear();
+            PanelWidthTextBox.Clear();
+            PanelLengthTextBox.Clear();
+        }
+
+        private void PanelWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void PanelLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
