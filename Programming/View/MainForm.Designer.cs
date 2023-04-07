@@ -688,6 +688,7 @@
             this.PanelYTextBox.Name = "PanelYTextBox";
             this.PanelYTextBox.Size = new System.Drawing.Size(125, 27);
             this.PanelYTextBox.TabIndex = 5;
+            this.PanelYTextBox.TextChanged += new System.EventHandler(this.PanelYTextBox_TextChanged);
             // 
             // PanelXTextBox
             // 
@@ -695,6 +696,7 @@
             this.PanelXTextBox.Name = "PanelXTextBox";
             this.PanelXTextBox.Size = new System.Drawing.Size(125, 27);
             this.PanelXTextBox.TabIndex = 4;
+            this.PanelXTextBox.TextChanged += new System.EventHandler(this.PanelXTextBox_TextChanged);
             // 
             // PanelIdTextBox
             // 

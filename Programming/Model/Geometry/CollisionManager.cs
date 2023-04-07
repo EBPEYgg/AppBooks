@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Класс, выполняющий проверку о пересечении/столкновении геометрических фигур.
+/// Класс, описывающий проверку о пересечении/столкновении геометрических фигур.
 /// </summary>
 internal class CollisionManager
 {
@@ -11,10 +11,19 @@ internal class CollisionManager
     /// <returns>Возвращает true or false.</returns>
     public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
     {
-        var dX = Math.Abs(rectangle1.Center.X - rectangle2.Center.X);
-        var dY = Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y);
-        return dX < (Math.Abs(rectangle1.Width - rectangle2.Width))
-            && dY < (Math.Abs(rectangle1.Length - rectangle2.Length));
+        // Находим расстояние между центрами прямоугольников по осям X и Y
+        double distanceX = Math.Abs((rectangle1.Center.X + rectangle1.Width / 2) - (rectangle2.Center.X + rectangle2.Width / 2));
+        double distanceY = Math.Abs((rectangle1.Center.Y + rectangle1.Length / 2) - (rectangle2.Center.Y + rectangle2.Length / 2));
+
+        // Высчитываем минимальное расстояние по осям X и Y для пересечения прямоугольников
+        double minDistanceX = (rectangle1.Width / 2) + (rectangle2.Width / 2);
+        double minDistanceY = (rectangle1.Length / 2) + (rectangle2.Length / 2);
+
+        // Проверяем столкновение по осям X и Y
+        bool collisionX = (distanceX < minDistanceX);
+        bool collisionY = (distanceY < minDistanceY);
+        
+        return (collisionX && collisionY);
     }
 
     /// <summary>

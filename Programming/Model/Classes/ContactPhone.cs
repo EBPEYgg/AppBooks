@@ -17,7 +17,7 @@ internal class ContactPhone
     private int _number;
 
     /// <summary>
-    /// ID контакта.
+    /// Уникальный идентификатор контакта.
     /// </summary>
     public int Id { get; set; }
 

@@ -1,15 +1,29 @@
 ﻿/// <summary>
-/// Класс фильма.
+/// Класс, описывающий фильм.
 /// </summary>
-
 internal class Film
 {
+    /// <summary>
+    /// Длительность фильма.
+    /// </summary>
     private int _time;
+    /// <summary>
+    /// Год выпуска фильма.
+    /// </summary>
     private int _year;
+    /// <summary>
+    /// Рейтинг фильма.
+    /// </summary>
     private double _rating;
 
+    /// <summary>
+    /// Название фильма.
+    /// </summary>
     public string? Name { get; set; }
 
+    /// <summary>
+    /// Длительность фильма.
+    /// </summary>
     public int Time
     {
         get 
@@ -25,6 +39,9 @@ internal class Film
         }
     }
 
+    /// <summary>
+    /// Год выпуска фильма.
+    /// </summary>
     public int Year
     {
         get 
@@ -40,8 +57,14 @@ internal class Film
         }
     }
 
+    /// <summary>
+    /// Жанр фильма.
+    /// </summary>
     public string? Genre { get; set; }
 
+    /// <summary>
+    /// Рейтинг фильма.
+    /// </summary>
     public double Rating
     {
         get 
@@ -57,11 +80,22 @@ internal class Film
         }
     }
 
+    /// <summary>
+    /// Пустой конструктор фильма.
+    /// </summary>
     public Film()
     {
 
     }
 
+    /// <summary>
+    /// Конструктор фильма.
+    /// </summary>
+    /// <param name="name">Название фильма.</param>
+    /// <param name="time">Длительность фильма.</param>
+    /// <param name="year">Год выпуска фильма.</param>
+    /// <param name="genre">Жанр фильма.</param>
+    /// <param name="rating">Рейтинг фильма.</param>
     public Film(string? name, int time, int year, string? genre, double rating)
     {
         this.Name = name;

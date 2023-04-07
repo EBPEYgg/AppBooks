@@ -112,6 +112,7 @@ namespace Programming
             }
         }
 
+        // Enums page
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValuesListBox.Items.Clear();
@@ -170,7 +171,7 @@ namespace Programming
             ValueIntTextBox.Text = value.ToString();
         }
 
-        //RectanglesGroupBox
+        // Classes page
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int indexRectangle = RectanglesListBox.SelectedIndex;
@@ -277,7 +278,6 @@ namespace Programming
             RectangleWithMaxWidthLabel.Visible = true;
         }
 
-        //FilmsGroupBox
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int indexFilm = FilmsListBox.SelectedIndex;
@@ -403,13 +403,15 @@ namespace Programming
             FilmWithMaxRatingLabel.Visible = true;
         }
 
+        // Rectangle panel page
+
         private void PanelAddRectangleButton_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            var Length = random.Next(20, 100);
-            var Width = random.Next(20, 100);
-            var PointX = random.Next(20, 360);
-            var PointY = random.Next(20, 400);
+            int Length = random.Next(20, 100);
+            int Width = random.Next(20, 100);
+            int PointX = random.Next(20, CanvasPanel.Width - 100);
+            int PointY = random.Next(20, CanvasPanel.Height - 100);
 
             point2D = new Point2D(PointX, PointY);
             _currentRectangleInList = new Rectangle(Length, Width, point2D);
@@ -418,20 +420,17 @@ namespace Programming
                 $"{_currentRectangleInList.Id}: " +
                 $"(X= {_currentRectangleInList.Center.X}; " +
                 $"Y = {_currentRectangleInList.Center.Y}; " +
-                $"W= {_currentRectangleInList.Length}; " +
-                $"H= {_currentRectangleInList.Width})"
+                $"W= {_currentRectangleInList.Width}; " +
+                $"H= {_currentRectangleInList.Length})"
                 );
 
             Panel currentPanelRectangle = new Panel();
-            int intLength = Convert.ToInt32(_currentRectangleInList.Length);
-            int intWidth = Convert.ToInt32(_currentRectangleInList.Width);
             currentPanelRectangle.Location = new Point(PointX, PointY);
-            currentPanelRectangle.Size = new Size(intLength, intWidth);
+            currentPanelRectangle.Size = new Size(Width, Length);
             currentPanelRectangle.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
             currentPanelRectangle.BorderStyle = BorderStyle.FixedSingle;
             CanvasPanel.Controls.Add(currentPanelRectangle);
             _rectanglePanels.Add(currentPanelRectangle);
-
             FindCollision();
         }
 
@@ -443,6 +442,8 @@ namespace Programming
             _rectanglesList.Remove(_currentRectangleInList);
             CanvasPanel.Controls.RemoveAt(indexPanelRectangle);
             _rectanglePanels.RemoveAt(indexPanelRectangle);
+            // TODO: обнуление ID-шника при удалении прямоугольника
+            FindCollision();
         }
 
         private void PanelRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -475,17 +476,136 @@ namespace Programming
 
         private void PanelWidthTextBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (PanelRectanglesListBox.SelectedIndex != -1)
+                {
+                    if (!int.TryParse(PanelWidthTextBox.Text, out var temp))
+                    {
+                        PanelWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                        return;
+                    }
 
+                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
+                    var widthRectangle = Convert.ToInt32(PanelWidthTextBox.Text);
+                    _currentRectangleInList.Width = widthRectangle;
+                    _rectanglePanels[indexPanel].Width = widthRectangle; // изменение ширины прямоугольника
+                    PanelWidthTextBox.BackColor = System.Drawing.Color.White;
+                    FindCollision();
+                }
+            }
+            catch (FormatException)
+            {
+                PanelWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Введите число.");
+            }
+            catch (OverflowException)
+            {
+                PanelWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Некорректное значение.");
+            }
         }
 
         private void PanelLengthTextBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (PanelRectanglesListBox.SelectedIndex != -1)
+                {
+                    if (!int.TryParse(PanelLengthTextBox.Text, out var temp))
+                    {
+                        PanelLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                        return;
+                    }
 
+                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
+                    var lengthRectangle = Convert.ToInt32(PanelLengthTextBox.Text);
+                    _currentRectangleInList.Length = lengthRectangle;
+                    _rectanglePanels[indexPanel].Height = lengthRectangle; // изменение высоты прямоугольника
+                    PanelLengthTextBox.BackColor = System.Drawing.Color.White;
+                    FindCollision();
+                }
+            }
+            catch (FormatException)
+            {
+                PanelLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Введите число.");
+            }
+            catch (OverflowException)
+            {
+                PanelLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Некорректное значение.");
+            }
+        }
+
+        private void PanelXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PanelRectanglesListBox.SelectedIndex != -1)
+                {
+                    if (!int.TryParse(PanelXTextBox.Text, out var temp))
+                    {
+                        PanelXTextBox.BackColor = System.Drawing.Color.LightPink;
+                        return;
+                    }
+
+                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
+                    var PointXRectangle = Convert.ToInt32(PanelXTextBox.Text);
+                    _currentRectangleInList.Center.X = PointXRectangle;
+                    var temporary = _rectanglePanels[indexPanel].Location.Y;
+                    _rectanglePanels[indexPanel].Location = new Point(PointXRectangle, _rectanglePanels[indexPanel].Location.Y);
+                    PanelXTextBox.BackColor = System.Drawing.Color.White;
+                    FindCollision();
+                }
+            }
+            catch (FormatException)
+            {
+                PanelXTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Введите число.");
+            }
+            catch (OverflowException)
+            {
+                PanelXTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Некорректное значение.");
+            }
+        }
+
+        private void PanelYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PanelRectanglesListBox.SelectedIndex != -1)
+                {
+                    if (!int.TryParse(PanelYTextBox.Text, out var temp))
+                    {
+                        PanelYTextBox.BackColor = System.Drawing.Color.LightPink;
+                        return;
+                    }
+
+                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
+                    var PointYRectangle = Convert.ToInt32(PanelYTextBox.Text);
+                    _currentRectangleInList.Center.Y = PointYRectangle;
+                    _rectanglePanels[indexPanel].Location = new Point(_rectanglePanels[indexPanel].Location.X, PointYRectangle);
+                    PanelYTextBox.BackColor = System.Drawing.Color.White;
+                    FindCollision();
+                }
+            }
+            catch (FormatException)
+            {
+                PanelYTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Введите число.");
+            }
+            catch (OverflowException)
+            {
+                PanelYTextBox.BackColor = System.Drawing.Color.LightPink;
+                MessageBox.Show("Некорректное значение.");
+            }
         }
 
         private void FindCollision()
         {
-            if (_rectanglesList.Count > 1)
+            if (_rectanglesList.Count > 0)
             {
                 for (int i = 0; i < _rectanglesList.Count; i++)
                 {
@@ -511,7 +631,25 @@ namespace Programming
 
         private void UpdateRectangleInfo(Rectangle rectangle)
         {
+            try
+            {
+                var intIndex = PanelRectanglesListBox.SelectedIndex;
+                _currentRectangleInList = _rectanglesList[intIndex];
+                PanelRectanglesListBox.Items.RemoveAt(intIndex);
 
+                var tempString =
+                    $"{_currentRectangleInList.Id}: " +
+                    $"(X= {_currentRectangleInList.Center.X}; " +
+                    $"Y = {_currentRectangleInList.Center.Y}; " +
+                    $"W= {_currentRectangleInList.Width}; " +
+                    $"H= {_currentRectangleInList.Length})";
+
+                PanelRectanglesListBox.Items.Insert(intIndex, tempString);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

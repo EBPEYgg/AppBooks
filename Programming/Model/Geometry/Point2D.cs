@@ -18,7 +18,7 @@ internal class Point2D
     public double X
     {
         get { return _x; }
-        private set
+        set
         {
             if (!Validator.AssertOnPositiveValue(value))
             {
@@ -37,7 +37,7 @@ internal class Point2D
     public double Y
     {
         get { return _y; }
-        private set
+        set
         {
             if (!Validator.AssertOnPositiveValue(value))
             {

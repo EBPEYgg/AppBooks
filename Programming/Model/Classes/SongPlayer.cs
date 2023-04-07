@@ -1,35 +1,59 @@
-﻿internal class SongPlayer
+﻿/// <summary>
+/// Класс, описывающий песню в плеере.
+/// </summary>
+internal class SongPlayer
 {
-    private int _songTimeSeconds;
+    /// <summary>
+    /// Длительность песни в секундах.
+    /// </summary>
+    private int _songTime;
 
+    /// <summary>
+    /// Название музыкальной группы/исполнителя.
+    /// </summary>
     public string? NameMusicGroup { get; set; }
 
-    public string? NameSong { get; set; }
+    /// <summary>
+    /// Название песни.
+    /// </summary>
+    public string? Name { get; set; }
 
-    public int SongTimeSeconds
+    /// <summary>
+    /// Длительность песни в секундах. Должна быть положительной.
+    /// </summary>
+    public int SongTime
     {
         get 
         { 
-            return _songTimeSeconds; 
+            return _songTime; 
         }
         set 
         {
             if (Validator.AssertOnPositiveValue(value))
             {
-                _songTimeSeconds = value;
+                _songTime = value;
             }
         }
     }
 
+    /// <summary>
+    /// Пустой конструктор класса.
+    /// </summary>
     public SongPlayer()
     {
 
     }
 
-    public SongPlayer(string? nameMusicGroup, string? nameSong, int songTimeSeconds)
+    /// <summary>
+    /// Конструктор класса.
+    /// </summary>
+    /// <param name="nameMusicGroup">Название музыкальной группы/исполнителя.</param>
+    /// <param name="name">Название песни.</param>
+    /// <param name="songTime">Длительность песни в секундах.</param>
+    public SongPlayer(string? nameMusicGroup, string? name, int songTime)
     {
         this.NameMusicGroup = nameMusicGroup;
-        this.NameSong = nameSong;
-        this.SongTimeSeconds = songTimeSeconds;
+        this.Name = name;
+        this.SongTime = songTime;
     }
 }

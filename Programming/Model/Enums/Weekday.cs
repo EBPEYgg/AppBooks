@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Programming.Model.Enums
+﻿namespace Programming.Model.Enums
 {
+    /// <summary>
+    /// Перечисление, описывающее день недели.
+    /// </summary>
     public enum Weekday
     {
         Monday,

@@ -1,7 +1,6 @@
 ﻿/// <summary>
 /// Класс прямоугольника.
 /// </summary>
-
 internal class Rectangle
 {
     /// <summary>
@@ -17,7 +16,7 @@ internal class Rectangle
     /// </summary>
     private static int _allRectanglesCount = 0;
     /// <summary>
-    /// ID прямоугольника.
+    /// Уникальный идентификатор прямоугольника.
     /// </summary>
     private int _id;
 
