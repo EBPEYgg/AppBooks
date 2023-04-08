@@ -1,13 +1,10 @@
-﻿namespace Programming.Model.Enums
+﻿/// <summary>
+/// Перечисление, описывающее форму обучения.
+/// </summary>
+public enum EducationForm
 {
-    /// <summary>
-    /// Перечисление, описывающее форму обучения.
-    /// </summary>
-    public enum EducationForm
-    {
-        FullTime,
-        PartTime,
-        Evening,
-        Distance
-    }
+    FullTime,
+    PartTime,
+    Evening,
+    Distance
 }

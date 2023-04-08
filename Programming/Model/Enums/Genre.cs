@@ -1,15 +1,12 @@
-﻿namespace Programming.Model.Enums
+﻿/// <summary>
+/// Перечисление, описывающее жанр художественного произведения.
+/// </summary>
+public enum Genre
 {
-    /// <summary>
-    /// Перечисление, описывающее жанр художественного произведения.
-    /// </summary>
-    public enum Genre
-    {
-        Comedy,
-        Drama,
-        Thriller,
-        ActionMovie,
-        Horror,
-        Blockbuster
-    }
+    Comedy,
+    Drama,
+    Thriller,
+    ActionMovie,
+    Horror,
+    Blockbuster
 }

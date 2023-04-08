@@ -1,16 +1,13 @@
-﻿namespace Programming.Model.Enums
+﻿/// <summary>
+/// Перечисление, описывающее день недели.
+/// </summary>
+public enum Weekday
 {
-    /// <summary>
-    /// Перечисление, описывающее день недели.
-    /// </summary>
-    public enum Weekday
-    {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
-    }
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
 }
