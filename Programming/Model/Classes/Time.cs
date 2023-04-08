@@ -17,7 +17,7 @@ internal class Time
     private int _seconds;
 
     /// <summary>
-    /// Часы. Должны быть в диапазоне от 0 до 23.
+    /// Возвращает и задает часы. Должны быть в диапазоне от 0 до 23.
     /// </summary>
     public int Hours
     {
@@ -35,7 +35,7 @@ internal class Time
     }
 
     /// <summary>
-    /// Минуты. Должны быть в диапазоне от 0 до 59.
+    /// Возвращает и задает минуты. Должны быть в диапазоне от 0 до 59.
     /// </summary>
     public int Minutes
     {
@@ -53,7 +53,7 @@ internal class Time
     }
 
     /// <summary>
-    /// Секунды. Должны быть в диапазоне от 0 до 59.
+    /// Возвращает и задает секунды. Должны быть в диапазоне от 0 до 59.
     /// </summary>
     public int Seconds
     {
@@ -71,7 +71,7 @@ internal class Time
     }
 
     /// <summary>
-    /// Пустой конструктор класса.
+    /// Создает пустой экземпляр класса <see cref="Time"/>.
     /// </summary>
     public Time()
     {
@@ -79,19 +79,19 @@ internal class Time
     }
 
     /// <summary>
-    /// Конструктор класса.
+    /// Создаёт экземпляр класса <see cref="Time"/>.
     /// </summary>
-    /// <param name="seconds">Секунды.</param>
+    /// <param name="seconds">Секунды. Должны быть в диапазоне от 0 до 59.</param>
     public Time(int seconds)
     {
         this.Seconds = seconds;
     }
 
     /// <summary>
-    /// Конструктор класса.
+    /// Создаёт экземпляр класса <see cref="Time"/>.
     /// </summary>
-    /// <param name="seconds">Секунды.</param>
-    /// <param name="minutes">Минуты.</param>
+    /// <param name="seconds">Секунды. Должны быть в диапазоне от 0 до 59.</param>
+    /// <param name="minutes">Минуты. Должны быть в диапазоне от 0 до 59.</param>
     public Time(int seconds, int minutes)
     {
         this.Seconds = seconds;
@@ -99,11 +99,11 @@ internal class Time
     }
 
     /// <summary>
-    /// Конструктор класса.
+    /// Создаёт экземпляр класса <see cref="Time"/>.
     /// </summary>
-    /// <param name="seconds">Секунды.</param>
-    /// <param name="minutes">Минуты.</param>
-    /// <param name="hours">Часы.</param>
+    /// <param name="seconds">Секунды. Должны быть в диапазоне от 0 до 59.</param>
+    /// <param name="minutes">Минуты. Должны быть в диапазоне от 0 до 59.</param>
+    /// <param name="hours">Часы. Должны быть в диапазоне от 0 до 23.</param>
     public Time(int seconds, int minutes, int hours)
     {
         this.Seconds = seconds;

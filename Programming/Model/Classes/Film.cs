@@ -4,25 +4,25 @@
 internal class Film
 {
     /// <summary>
-    /// Длительность фильма.
+    /// Длительность в минутах.
     /// </summary>
     private int _time;
     /// <summary>
-    /// Год выпуска фильма.
+    /// Год выпуска.
     /// </summary>
     private int _year;
     /// <summary>
-    /// Рейтинг фильма.
+    /// Рейтинг.
     /// </summary>
     private double _rating;
 
     /// <summary>
-    /// Название фильма.
+    /// Возвращает и задает название фильма.
     /// </summary>
     public string? Name { get; set; }
 
     /// <summary>
-    /// Длительность фильма.
+    /// Возвращает и задает длительность фильма. Должна быть больше нуля.
     /// </summary>
     public int Time
     {
@@ -40,7 +40,7 @@ internal class Film
     }
 
     /// <summary>
-    /// Год выпуска фильма.
+    /// Возвращает и заает год выпуска фильма. Должен находиться в диапазоне от 1900 до 2023.
     /// </summary>
     public int Year
     {
@@ -58,12 +58,12 @@ internal class Film
     }
 
     /// <summary>
-    /// Жанр фильма.
+    /// Возвращает и задает жанр фильма.
     /// </summary>
     public string? Genre { get; set; }
 
     /// <summary>
-    /// Рейтинг фильма.
+    /// Возвращает и задает рейтинг фильма. Должен находиться в диапазоне от 0 до 10.
     /// </summary>
     public double Rating
     {
@@ -81,7 +81,7 @@ internal class Film
     }
 
     /// <summary>
-    /// Пустой конструктор фильма.
+    /// Создает пустой экземпляр класса <see cref="Film"/>.
     /// </summary>
     public Film()
     {
@@ -89,13 +89,13 @@ internal class Film
     }
 
     /// <summary>
-    /// Конструктор фильма.
+    /// Создаёт экземпляр класса <see cref="Film"/>.
     /// </summary>
-    /// <param name="name">Название фильма.</param>
-    /// <param name="time">Длительность фильма.</param>
-    /// <param name="year">Год выпуска фильма.</param>
-    /// <param name="genre">Жанр фильма.</param>
-    /// <param name="rating">Рейтинг фильма.</param>
+    /// <param name="name">Название.</param>
+    /// <param name="time">Длительность. Должна быть больше нуля.</param>
+    /// <param name="year">Год выпуска. Должен находиться в диапазоне от 1900 до 2023.</param>
+    /// <param name="genre">Жанр.</param>
+    /// <param name="rating">Рейтинг. Должен находиться в диапазоне от 0 до 10.</param>
     public Film(string? name, int time, int year, string? genre, double rating)
     {
         this.Name = name;

@@ -17,7 +17,7 @@ internal class Ring
     private Point2D? Point2D;
 
     /// <summary>
-    /// Внутренний радиус кольца.
+    /// Задает и возвращает внутренний радиус кольца. Должен быть больше нуля.
     /// </summary>
     public double InternalRadius
     {
@@ -36,7 +36,7 @@ internal class Ring
     }
 
     /// <summary>
-    /// Внешний радиус кольца.
+    /// Задает и возвращает внешний радиус кольца. Должен быть больше нуля.
     /// </summary>
     public double ExternalRadius
     {
@@ -55,7 +55,7 @@ internal class Ring
     }
 
     /// <summary>
-    /// Площадь кольца.
+    /// Возвращает площадь кольца.
     /// </summary>
     public double Area
     {
@@ -73,7 +73,7 @@ internal class Ring
     }
 
     /// <summary>
-    /// Пустой конструктор кольца.
+    /// Создает пустой экземпляр класса <see cref="Ring"/>.
     /// </summary>
     public Ring()
     {
@@ -81,10 +81,10 @@ internal class Ring
     }
 
     /// <summary>
-    /// Конструктор кольца.
+    /// Создаёт экземпляр класса <see cref="Ring"/>.
     /// </summary>
-    /// <param name="internalRadius">Внутренний радиус.</param>
-    /// <param name="externalRadius">Внешний радиус.</param>
+    /// <param name="internalRadius">Внутренний радиус. Должен быть больше нуля.</param>
+    /// <param name="externalRadius">Внешний радиус. Должен быть больше нуля.</param>
     public Ring(double internalRadius, double externalRadius)
     {
         this.InternalRadius = internalRadius;

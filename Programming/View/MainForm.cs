@@ -653,3 +653,4 @@ namespace Programming
         }
     }
 }
+// TODO: отредактировать XML-комментарии (как в Rectangle.cs)

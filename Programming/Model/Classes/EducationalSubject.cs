@@ -13,12 +13,12 @@ internal class EducationalSubject
     private int _mark;
 
     /// <summary>
-    /// Название учебной дисциплины.
+    /// Возвращает и задает название учебной дисциплины.
     /// </summary>
     public string? Name { get; set; }
 
     /// <summary>
-    /// Кол-во часов, отведенных на изучение дисциплины.
+    /// Возвращает и задает количествово часов, отведенных на изучение дисциплины. Должно быть больше нуля.
     /// </summary>
     public int LearnHoursTime
     {
@@ -36,7 +36,7 @@ internal class EducationalSubject
     }
 
     /// <summary>
-    /// Оценка за дисциплину.
+    /// Возвращает и задает оценку за дисциплину. Должна находиться в диапазоне от 1 до 5.
     /// </summary>
     public int Mark
     {
@@ -54,7 +54,7 @@ internal class EducationalSubject
     }
 
     /// <summary>
-    /// Пустой конструктор класса учебной дисциплины.
+    /// Создает пустой экземпляр класса <see cref="EducationalSubject"/>.
     /// </summary>
     public EducationalSubject()
     {
@@ -62,11 +62,11 @@ internal class EducationalSubject
     }
 
     /// <summary>
-    /// Конструктор класса учебной дисциплины.
+    /// Создаёт экземпляр класса <see cref="EducationalSubject"/>.
     /// </summary>
     /// <param name="name">Название учебной дисциплины.</param>
-    /// <param name="learnHoursTime">Кол-во часов, отведенных на изучение дисциплины.</param>
-    /// <param name="mark">Оценка за дисциплину.</param>
+    /// <param name="learnHoursTime">Количество часов, отведенных на изучение дисциплины. Должно быть больше нуля.</param>
+    /// <param name="mark">Оценка за дисциплину. Должна находиться в диапазоне от 1 до 5.</param>
     public EducationalSubject(string? name, int learnHoursTime, int mark)
     {
         this.Name = name;

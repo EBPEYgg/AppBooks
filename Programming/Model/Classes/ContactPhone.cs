@@ -22,7 +22,7 @@ internal class ContactPhone
     public int Id { get; set; }
 
     /// <summary>
-    /// Имя контакта.
+    /// Возвращает и задает имя контакта. Должно состоять только из латиницы.
     /// </summary>
     public string? Name
     {
@@ -45,7 +45,7 @@ internal class ContactPhone
     }
 
     /// <summary>
-    /// Фамилия контакта.
+    /// Возвращает и задает фамилию контакта. Должно состоять только из латиницы.
     /// </summary>
     public string? Surname
     {
@@ -72,7 +72,7 @@ internal class ContactPhone
     }
 
     /// <summary>
-    /// Номер телефона контакта.
+    /// Возвращает и задает номер телефона контакта. Должен состоять из 11 символов.
     /// </summary>
     public int Number
     {
@@ -110,7 +110,7 @@ internal class ContactPhone
     }
 
     /// <summary>
-    /// Пустой конструктор класса.
+    /// Создает пустой экземпляр класса <see cref="ContactPhone"/>.
     /// </summary>
     public ContactPhone()
     {
@@ -118,12 +118,12 @@ internal class ContactPhone
     }
 
     /// <summary>
-    /// Конструктор класса.
+    /// Создаёт экземпляр класса <see cref="ContactPhone"/>.
     /// </summary>
-    /// <param name="id">ID контакта</param>
-    /// <param name="name">Имя контакта</param>
-    /// <param name="surname">Фамилия контакта</param>
-    /// <param name="number">Номер контакта</param>
+    /// <param name="id">Уникальный идентификатор контакта.</param>
+    /// <param name="name">Имя контакта. Должно состоять только из латиницы.</param>
+    /// <param name="surname">Фамилия контакта. Должно состоять только из латиницы.</param>
+    /// <param name="number">Номер контакта. Должен состоять из 11 символов.</param>
     public ContactPhone(int id, string? name, string? surname, int number)
     {
         this.Id = id;

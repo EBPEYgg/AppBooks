@@ -13,7 +13,7 @@ internal class Point2D
     private double _y;
 
     /// <summary>
-    /// Координата X.
+    /// Задает и возвращает координату X. Должна быть больше нуля.
     /// </summary>
     public double X
     {
@@ -24,15 +24,12 @@ internal class Point2D
             {
                 throw new ArgumentException("Ошибка в задании X координаты.");
             }
-            if (Validator.AssertOnPositiveValue(value))
-            {
-                _x = value;
-            }
+            _x = value;
         }
     }
 
     /// <summary>
-    /// Координата Y.
+    /// Задает и возвращает координату Y. Должна быть больше нуля.
     /// </summary>
     public double Y
     {
@@ -43,15 +40,12 @@ internal class Point2D
             {
                 throw new ArgumentException("Ошибка в задании Y координаты.");
             }
-            if (Validator.AssertOnPositiveValue(value))
-            {
-                _y = value;
-            }
+            _y = value;
         }
     }
 
     /// <summary>
-    /// Пустой конструктор класса центра координат.
+    /// Создаёт пустой экземпляр класса <see cref="Point2D"/>.
     /// </summary>
     public Point2D()
     {
@@ -59,10 +53,10 @@ internal class Point2D
     }
 
     /// <summary>
-    /// Конструктор класса центра координат.
+    /// Создаёт экземпляр класса <see cref="Point2D"/>.
     /// </summary>
-    /// <param name="x">Координата X.</param>
-    /// <param name="y">Координата Y.</param>
+    /// <param name="x">Координата X. Должна быть больше нуля.</param>
+    /// <param name="y">Координата Y. Должна быть больше нуля.</param>
     public Point2D(double x, double y)
     {
         this.X = x;

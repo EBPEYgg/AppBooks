@@ -9,17 +9,17 @@ internal class SongPlayer
     private int _songTime;
 
     /// <summary>
-    /// Название музыкальной группы/исполнителя.
+    /// Возвращает и задает название музыкальной группы/исполнителя.
     /// </summary>
     public string? NameMusicGroup { get; set; }
 
     /// <summary>
-    /// Название песни.
+    /// Возвращает и задает название песни.
     /// </summary>
     public string? Name { get; set; }
 
     /// <summary>
-    /// Длительность песни в секундах. Должна быть положительной.
+    /// Возвращает и задает длительность песни в секундах. Должна быть больше нуля.
     /// </summary>
     public int SongTime
     {
@@ -37,7 +37,7 @@ internal class SongPlayer
     }
 
     /// <summary>
-    /// Пустой конструктор класса.
+    /// Создает пустой экземпляр класса <see cref="SongPlayer"/>.
     /// </summary>
     public SongPlayer()
     {
@@ -45,11 +45,11 @@ internal class SongPlayer
     }
 
     /// <summary>
-    /// Конструктор класса.
+    /// Создаёт экземпляр класса <see cref="SongPlayer"/>.
     /// </summary>
     /// <param name="nameMusicGroup">Название музыкальной группы/исполнителя.</param>
     /// <param name="name">Название песни.</param>
-    /// <param name="songTime">Длительность песни в секундах.</param>
+    /// <param name="songTime">Длительность песни в секундах. Должна быть больше нуля.</param>
     public SongPlayer(string? nameMusicGroup, string? name, int songTime)
     {
         this.NameMusicGroup = nameMusicGroup;

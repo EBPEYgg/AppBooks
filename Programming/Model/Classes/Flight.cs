@@ -9,17 +9,17 @@ internal class Flight
     private int _flightTimeMinute;
 
     /// <summary>
-    /// Пункт вылета.
+    /// Возвращает и задает пункт вылета.
     /// </summary>
     public string? DeparturePoint { get; set; }
 
     /// <summary>
-    /// Пункт назначения.
+    /// Возвращает и задает пункт назначения.
     /// </summary>
     public string? Destination { get; set; }
 
     /// <summary>
-    /// Время полета в минутах.
+    /// Возвращает и задает время полета в минутах. Должно быть больше нуля.
     /// </summary>
     public int FlightTimeMinute
     {
@@ -37,7 +37,7 @@ internal class Flight
     }
 
     /// <summary>
-    /// Пустой конструктор класса.
+    /// Создает пустой экземпляр класса <see cref="Flight"/>.
     /// </summary>
     public Flight()
     {
@@ -45,11 +45,11 @@ internal class Flight
     }
 
     /// <summary>
-    /// Конструктор класса.
+    /// Создаёт экземпляр класса <see cref="Flight"/>.
     /// </summary>
     /// <param name="departurePoint">Пункт вылета.</param>
     /// <param name="destination">Пункт назначения.</param>
-    /// <param name="flightTimeMinute">Время полета в минутах.</param>
+    /// <param name="flightTimeMinute">Время полета в минутах. Должно быть больше нуля.</param>
     public Flight(string? departurePoint, string? destination, int flightTimeMinute)
     {
         this.DeparturePoint = departurePoint;

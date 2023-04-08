@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Класс прямоугольника.
+/// Класс, описывающий прямоугольник.
 /// </summary>
 internal class Rectangle
 {
@@ -21,7 +21,7 @@ internal class Rectangle
     private int _id;
 
     /// <summary>
-    /// Длина прямоугольника.
+    /// Возвращает и задает длину прямоугольника. Должна быть больше нуля.
     /// </summary>
     public double Length
     {
@@ -39,7 +39,7 @@ internal class Rectangle
     }
 
     /// <summary>
-    /// Ширина прямоугольника.
+    /// Возвращает и задает ширина прямоугольника. Должна быть больше нуля.
     /// </summary>
     public double Width
     {
@@ -57,17 +57,17 @@ internal class Rectangle
     }
 
     /// <summary>
-    /// Цвет прямоугольника.
+    /// Возвращает и задает цвет прямоугольника.
     /// </summary>
     public string? Color { get; set; }
 
     /// <summary>
-    /// Центр прямоугольника.
+    /// Возвращает и задает центр прямоугольника.
     /// </summary>
     public Point2D? Center { get; set; }
 
     /// <summary>
-    /// Счетчик прямоугольников.
+    /// Возвращает счетчик прямоугольников.
     /// </summary>
     public static int AllRectanglesCount
     { 
@@ -82,7 +82,7 @@ internal class Rectangle
     }
 
     /// <summary>
-    /// ID прямоугольника.
+    /// Возвращает уникальный идентификатор прямоугольника.
     /// </summary>
     public int Id 
     { 
@@ -97,7 +97,7 @@ internal class Rectangle
     }
 
     /// <summary>
-    /// Пустой конструктор класса прямоугольников.
+    /// Создает пустой экземпляр класса <see cref="Rectangle"/>.
     /// </summary>
     public Rectangle()
     {
@@ -105,10 +105,10 @@ internal class Rectangle
     }
 
     /// <summary>
-    /// Конструктор класса прямоугольников.
+    /// Создаёт экземпляр класса <see cref="Rectangle"/>.
     /// </summary>
-    /// <param name="length">Длина прямоугольника.</param>
-    /// <param name="width">Ширина прямоугольника.</param>
+    /// <param name="length">Длина. Должна быть больше нуля.</param>
+    /// <param name="width">Ширина. Должна быть больше нуля.</param>
     /// <param name="center">Координаты центра прямоугольника.</param>
     public Rectangle(double length, double width, Point2D center)
     {
@@ -120,10 +120,10 @@ internal class Rectangle
     }
 
     /// <summary>
-    /// Конструктор класса прямоугольников.
+    /// Создаёт экземпляр класса <see cref="Rectangle"/>.
     /// </summary>
-    /// <param name="length">Длина прямоугольника.</param>
-    /// <param name="width">Ширина прямоугольника.</param>
+    /// <param name="length">Длина. Должна быть больше нуля.</param>
+    /// <param name="width">Ширина. Должна быть больше нуля.</param>
     /// <param name="color">Цвет прямоугольника.</param>
     /// <param name="center">Координаты центра прямоугольника.</param>
     public Rectangle(double length, double width, string? color, Point2D center)
