@@ -11,10 +11,11 @@ namespace Programming
         private Rectangle _currentRectangle = new Rectangle();
         private Film[] _films = new Film[8];
         private Film _currentFilm = new Film();
-        private Point2D point2D = new Point2D();
+        private Point2D _point2D = new Point2D();
         private List<Rectangle> _rectanglesList = new List<Rectangle>();
         private Rectangle _currentRectangleInList = new Rectangle();
         private List<Panel> _rectanglePanels = new List<Panel>();
+        private int _selectedIndex = -1;
 
         /// <summary>
         /// Поиск прямоугольника с максимальной шириной в списке прямоугольников.
@@ -93,8 +94,8 @@ namespace Programming
                 var Length = random.Next(1, 10);
                 var Width = random.Next(1, 10);
                 var CurrentColors = PickRandomAmongStringArray(colors);
-                point2D = new Point2D(Convert.ToDouble(Length) / 2, Convert.ToDouble(Width) / 2);
-                _rectangles[i] = new Rectangle(Length, Width, CurrentColors, point2D);
+                _point2D = new Point2D(Convert.ToDouble(Length) / 2, Convert.ToDouble(Width) / 2);
+                _rectangles[i] = new Rectangle(Length, Width, CurrentColors, _point2D);
                 PointX[i] = _rectangles[i].Center.X;
                 PointY[i] = _rectangles[i].Center.Y;
                 RectanglesListBox.Items.Add($"Rectangle {i}");
@@ -188,7 +189,7 @@ namespace Programming
         {
             try
             {
-                if (LengthTextBox.Text == "")
+                if (!int.TryParse(LengthTextBox.Text, out var temp))
                 {
                     LengthTextBox.BackColor = System.Drawing.Color.LightPink;
                     return;
@@ -213,7 +214,7 @@ namespace Programming
         {
             try
             {
-                if (WidthTextBox.Text == "")
+                if (!int.TryParse(WidthTextBox.Text, out var temp))
                 {
                     WidthTextBox.BackColor = System.Drawing.Color.LightPink;
                     return;
@@ -408,13 +409,14 @@ namespace Programming
         private void PanelAddRectangleButton_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            int Length = random.Next(20, 100);
-            int Width = random.Next(20, 100);
-            int PointX = random.Next(20, CanvasPanel.Width - 100);
-            int PointY = random.Next(20, CanvasPanel.Height - 100);
 
-            point2D = new Point2D(PointX, PointY);
-            _currentRectangleInList = new Rectangle(Length, Width, point2D);
+            int length = random.Next(20, 100);
+            int width = random.Next(20, 100);
+            int pointX = random.Next(20, CanvasPanel.Width - 100);
+            int pointY = random.Next(20, CanvasPanel.Height - 100);
+
+            _point2D = new Point2D(pointX, pointY);
+            _currentRectangleInList = new Rectangle(length, width, _point2D);
             _rectanglesList.Add(_currentRectangleInList);
             PanelRectanglesListBox.Items.Add(
                 $"{_currentRectangleInList.Id}: " +
@@ -425,8 +427,8 @@ namespace Programming
                 );
 
             Panel currentPanelRectangle = new Panel();
-            currentPanelRectangle.Location = new Point(PointX, PointY);
-            currentPanelRectangle.Size = new Size(Width, Length);
+            currentPanelRectangle.Location = new Point(pointX, pointY);
+            currentPanelRectangle.Size = new Size(width, length);
             currentPanelRectangle.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
             currentPanelRectangle.BorderStyle = BorderStyle.FixedSingle;
             CanvasPanel.Controls.Add(currentPanelRectangle);
@@ -442,38 +444,25 @@ namespace Programming
             _rectanglesList.Remove(_currentRectangleInList);
             CanvasPanel.Controls.RemoveAt(indexPanelRectangle);
             _rectanglePanels.RemoveAt(indexPanelRectangle);
-            // TODO: обнуление ID-шника при удалении прямоугольника
             FindCollision();
         }
 
         private void PanelRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClearRectangleInfo();
-            if (PanelRectanglesListBox.SelectedIndex != -1)
+            if (PanelRectanglesListBox.SelectedIndex != -1 &&
+                _selectedIndex != PanelRectanglesListBox.SelectedIndex)
             {
-                int indexPanelRectangle = PanelRectanglesListBox.SelectedIndex;
-                _currentRectangleInList = _rectanglesList[indexPanelRectangle];
+                ClearRectangleInfo();
+                _selectedIndex = PanelRectanglesListBox.SelectedIndex;
+                _currentRectangleInList = _rectanglesList[_selectedIndex];
                 PanelIdTextBox.Text = _currentRectangleInList.Id.ToString();
                 PanelXTextBox.Text = _currentRectangleInList.Center.X.ToString();
                 PanelYTextBox.Text = _currentRectangleInList.Center.Y.ToString();
                 PanelWidthTextBox.Text = _currentRectangleInList.Width.ToString();
                 PanelLengthTextBox.Text = _currentRectangleInList.Length.ToString();
             }
-            else
-            {
-                return;
-            }
         }
-
-        private void ClearRectangleInfo()
-        {
-            PanelIdTextBox.Clear();
-            PanelXTextBox.Clear();
-            PanelYTextBox.Clear();
-            PanelWidthTextBox.Clear();
-            PanelLengthTextBox.Clear();
-        }
-
+        
         private void PanelWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -486,12 +475,13 @@ namespace Programming
                         return;
                     }
 
-                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
                     var widthRectangle = Convert.ToInt32(PanelWidthTextBox.Text);
                     _currentRectangleInList.Width = widthRectangle;
-                    _rectanglePanels[indexPanel].Width = widthRectangle; // изменение ширины прямоугольника
+                    // изменение ширины прямоугольника
+                    _rectanglePanels[_selectedIndex].Width = widthRectangle;
                     PanelWidthTextBox.BackColor = System.Drawing.Color.White;
                     FindCollision();
+                    UpdateRectangleInfo(_currentRectangleInList);
                 }
             }
             catch (FormatException)
@@ -518,12 +508,13 @@ namespace Programming
                         return;
                     }
 
-                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
                     var lengthRectangle = Convert.ToInt32(PanelLengthTextBox.Text);
                     _currentRectangleInList.Length = lengthRectangle;
-                    _rectanglePanels[indexPanel].Height = lengthRectangle; // изменение высоты прямоугольника
+                    // изменение высоты прямоугольника
+                    _rectanglePanels[_selectedIndex].Height = lengthRectangle;
                     PanelLengthTextBox.BackColor = System.Drawing.Color.White;
                     FindCollision();
+                    UpdateRectangleInfo(_currentRectangleInList);
                 }
             }
             catch (FormatException)
@@ -550,13 +541,12 @@ namespace Programming
                         return;
                     }
 
-                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
-                    var PointXRectangle = Convert.ToInt32(PanelXTextBox.Text);
-                    _currentRectangleInList.Center.X = PointXRectangle;
-                    var temporary = _rectanglePanels[indexPanel].Location.Y;
-                    _rectanglePanels[indexPanel].Location = new Point(PointXRectangle, _rectanglePanels[indexPanel].Location.Y);
+                    var pointXRectangle = Convert.ToInt32(PanelXTextBox.Text);
+                    _currentRectangleInList.Center.X = pointXRectangle;
+                    _rectanglePanels[_selectedIndex].Location = new Point(pointXRectangle, _rectanglePanels[_selectedIndex].Location.Y);
                     PanelXTextBox.BackColor = System.Drawing.Color.White;
                     FindCollision();
+                    UpdateRectangleInfo(_currentRectangleInList);
                 }
             }
             catch (FormatException)
@@ -583,12 +573,12 @@ namespace Programming
                         return;
                     }
 
-                    var indexPanel = PanelRectanglesListBox.SelectedIndex;
-                    var PointYRectangle = Convert.ToInt32(PanelYTextBox.Text);
-                    _currentRectangleInList.Center.Y = PointYRectangle;
-                    _rectanglePanels[indexPanel].Location = new Point(_rectanglePanels[indexPanel].Location.X, PointYRectangle);
+                    var pointYRectangle = Convert.ToInt32(PanelYTextBox.Text);
+                    _currentRectangleInList.Center.Y = pointYRectangle;
+                    _rectanglePanels[_selectedIndex].Location = new Point(_rectanglePanels[_selectedIndex].Location.X, pointYRectangle);
                     PanelYTextBox.BackColor = System.Drawing.Color.White;
                     FindCollision();
+                    UpdateRectangleInfo(_currentRectangleInList);
                 }
             }
             catch (FormatException)
@@ -629,28 +619,25 @@ namespace Programming
             }
         }
 
+        private void ClearRectangleInfo()
+        {
+            PanelIdTextBox.Clear();
+            PanelXTextBox.Clear();
+            PanelYTextBox.Clear();
+            PanelWidthTextBox.Clear();
+            PanelLengthTextBox.Clear();
+        }
+
         private void UpdateRectangleInfo(Rectangle rectangle)
         {
-            try
-            {
-                var intIndex = PanelRectanglesListBox.SelectedIndex;
-                _currentRectangleInList = _rectanglesList[intIndex];
-                PanelRectanglesListBox.Items.RemoveAt(intIndex);
+            PanelRectanglesListBox.Items[_selectedIndex] =
+                $"{_currentRectangleInList.Id}: " +
+                $"(X= {_currentRectangleInList.Center.X}; " +
+                $"Y = {_currentRectangleInList.Center.Y}; " +
+                $"W= {_currentRectangleInList.Width}; " +
+                $"H= {_currentRectangleInList.Length})";
+            PanelRectanglesListBox.SelectedIndex = _selectedIndex;
 
-                var tempString =
-                    $"{_currentRectangleInList.Id}: " +
-                    $"(X= {_currentRectangleInList.Center.X}; " +
-                    $"Y = {_currentRectangleInList.Center.Y}; " +
-                    $"W= {_currentRectangleInList.Width}; " +
-                    $"H= {_currentRectangleInList.Length})";
-
-                PanelRectanglesListBox.Items.Insert(intIndex, tempString);
-            }
-            catch
-            {
-
-            }
         }
     }
 }
-// TODO: отредактировать XML-комментарии (как в Rectangle.cs)
