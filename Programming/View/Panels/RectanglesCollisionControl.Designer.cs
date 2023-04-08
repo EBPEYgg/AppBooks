@@ -49,7 +49,6 @@
             // 
             // DeleteRectangleButton
             // 
-            this.DeleteRectangleButton.BackColor = System.Drawing.SystemColors.Control;
             this.DeleteRectangleButton.FlatAppearance.BorderSize = 0;
             this.DeleteRectangleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteRectangleButton.ForeColor = System.Drawing.Color.Transparent;
