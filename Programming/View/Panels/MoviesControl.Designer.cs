@@ -56,6 +56,7 @@
             this.FilmsGroupBox.Controls.Add(this.YearTextBox);
             this.FilmsGroupBox.Controls.Add(this.TimeTextBox);
             this.FilmsGroupBox.Controls.Add(this.FilmsListBox);
+            this.FilmsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FilmsGroupBox.Location = new System.Drawing.Point(0, 0);
             this.FilmsGroupBox.Name = "FilmsGroupBox";
             this.FilmsGroupBox.Size = new System.Drawing.Size(384, 350);

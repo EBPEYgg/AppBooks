@@ -36,12 +36,12 @@
             // 
             // SeasonHandleGroupBox
             // 
-            this.SeasonHandleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SeasonHandleGroupBox.Controls.Add(this.SeasonComboBox);
             this.SeasonHandleGroupBox.Controls.Add(this.GoButton);
-            this.SeasonHandleGroupBox.Location = new System.Drawing.Point(6, 0);
+            this.SeasonHandleGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SeasonHandleGroupBox.Location = new System.Drawing.Point(0, 0);
             this.SeasonHandleGroupBox.Name = "SeasonHandleGroupBox";
-            this.SeasonHandleGroupBox.Size = new System.Drawing.Size(384, 110);
+            this.SeasonHandleGroupBox.Size = new System.Drawing.Size(390, 110);
             this.SeasonHandleGroupBox.TabIndex = 11;
             this.SeasonHandleGroupBox.TabStop = false;
             this.SeasonHandleGroupBox.Text = "Season handle";

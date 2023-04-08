@@ -66,6 +66,7 @@
             this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.WidthLabel);
             this.RectanglesGroupBox.Controls.Add(this.LengthLabel);
+            this.RectanglesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RectanglesGroupBox.Location = new System.Drawing.Point(0, 0);
             this.RectanglesGroupBox.Name = "RectanglesGroupBox";
             this.RectanglesGroupBox.Size = new System.Drawing.Size(384, 350);

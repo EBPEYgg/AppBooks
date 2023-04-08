@@ -40,6 +40,7 @@
             this.WeekdayParsingGroupBox.Controls.Add(this.ParseTextBox);
             this.WeekdayParsingGroupBox.Controls.Add(this.ParseButton);
             this.WeekdayParsingGroupBox.Controls.Add(this.ResultParsingLabel);
+            this.WeekdayParsingGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WeekdayParsingGroupBox.Location = new System.Drawing.Point(0, 0);
             this.WeekdayParsingGroupBox.Name = "WeekdayParsingGroupBox";
             this.WeekdayParsingGroupBox.Size = new System.Drawing.Size(384, 110);

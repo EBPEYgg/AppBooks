@@ -102,6 +102,7 @@
             this.EnumsGroupBox.Controls.Add(this.ChooseValueLabel);
             this.EnumsGroupBox.Controls.Add(this.ValuesListBox);
             this.EnumsGroupBox.Controls.Add(this.ValueIntTextBox);
+            this.EnumsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EnumsGroupBox.Location = new System.Drawing.Point(0, 0);
             this.EnumsGroupBox.Name = "EnumsGroupBox";
             this.EnumsGroupBox.Size = new System.Drawing.Size(786, 510);
