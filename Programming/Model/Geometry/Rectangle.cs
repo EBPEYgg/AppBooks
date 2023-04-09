@@ -4,9 +4,9 @@
 internal class Rectangle
 {
     /// <summary>
-    /// Длина прямоугольника.
+    /// Высота прямоугольника.
     /// </summary>
-    private double _length;
+    private double _height;
     /// <summary>
     /// Ширина прямоугольника.
     /// </summary>
@@ -21,19 +21,19 @@ internal class Rectangle
     private int _id;
 
     /// <summary>
-    /// Возвращает и задает длину прямоугольника. Должна быть больше нуля.
+    /// Возвращает и задает высоту прямоугольника. Должна быть больше нуля.
     /// </summary>
-    public double Length
+    public double Height
     {
         get 
         { 
-            return _length; 
+            return _height; 
         }
         set
         {
             if (Validator.AssertOnPositiveValue(value))
             {
-                _length = value;
+                _height = value;
             }
         }
     }
@@ -107,12 +107,12 @@ internal class Rectangle
     /// <summary>
     /// Создаёт экземпляр класса <see cref="Rectangle"/>.
     /// </summary>
-    /// <param name="length">Длина. Должна быть больше нуля.</param>
+    /// <param name="height">Высота. Должна быть больше нуля.</param>
     /// <param name="width">Ширина. Должна быть больше нуля.</param>
     /// <param name="center">Координаты центра прямоугольника.</param>
-    public Rectangle(double length, double width, Point2D center)
+    public Rectangle(double height, double width, Point2D center)
     {
-        this.Length = length;
+        this.Height = height;
         this.Width = width;
         this.Center = center;
         _allRectanglesCount++;
@@ -122,13 +122,13 @@ internal class Rectangle
     /// <summary>
     /// Создаёт экземпляр класса <see cref="Rectangle"/>.
     /// </summary>
-    /// <param name="length">Длина. Должна быть больше нуля.</param>
+    /// <param name="height">Высота. Должна быть больше нуля.</param>
     /// <param name="width">Ширина. Должна быть больше нуля.</param>
     /// <param name="color">Цвет прямоугольника.</param>
     /// <param name="center">Координаты центра прямоугольника.</param>
-    public Rectangle(double length, double width, string? color, Point2D center)
+    public Rectangle(double height, double width, string? color, Point2D center)
     {
-        this.Length = length;
+        this.Height = height;
         this.Width = width;
         this.Color = color;
         this.Center = center;

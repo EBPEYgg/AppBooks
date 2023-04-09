@@ -13,11 +13,11 @@ internal class CollisionManager
     {
         // Находим расстояние между центрами прямоугольников по осям X и Y
         double distanceX = Math.Abs((rectangle1.Center.X + rectangle1.Width / 2) - (rectangle2.Center.X + rectangle2.Width / 2));
-        double distanceY = Math.Abs((rectangle1.Center.Y + rectangle1.Length / 2) - (rectangle2.Center.Y + rectangle2.Length / 2));
+        double distanceY = Math.Abs((rectangle1.Center.Y + rectangle1.Height / 2) - (rectangle2.Center.Y + rectangle2.Height / 2));
 
         // Высчитываем минимальное расстояние по осям X и Y для пересечения прямоугольников
         double minDistanceX = (rectangle1.Width / 2) + (rectangle2.Width / 2);
-        double minDistanceY = (rectangle1.Length / 2) + (rectangle2.Length / 2);
+        double minDistanceY = (rectangle1.Height / 2) + (rectangle2.Height / 2);
 
         // Проверяем столкновение по осям X и Y
         bool collisionX = (distanceX < minDistanceX);

@@ -14,7 +14,7 @@
         /// </summary>
         private List<Rectangle> _rectanglesList = new List<Rectangle>();
         /// <summary>
-        /// Список с параметрами текущего выбранного прямоугольника.
+        /// Список с данными текущего выбранного прямоугольника.
         /// </summary>
         private Rectangle _currentRectangleInList = new Rectangle();
         /// <summary>
@@ -22,7 +22,7 @@
         /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
         /// <summary>
-        /// TODO: селектед индех
+        /// Индекс в RectanglesListBox для <see cref="UpdateRectangleInfo(Rectangle)"/>.
         /// </summary>
         private int _selectedIndex = -1;
 
@@ -35,25 +35,25 @@
         {
             Random random = new Random();
 
-            int length = random.Next(20, 100);
+            int height = random.Next(20, 100);
             int width = random.Next(20, 100);
             int pointX = random.Next(20, CanvasPanel.Width - 100);
             int pointY = random.Next(20, CanvasPanel.Height - 100);
 
             _point2D = new Point2D(pointX, pointY);
-            _currentRectangleInList = new Rectangle(length, width, _point2D);
+            _currentRectangleInList = new Rectangle(height, width, _point2D);
             _rectanglesList.Add(_currentRectangleInList);
             RectanglesListBox.Items.Add(
                 $"{_currentRectangleInList.Id}: " +
                 $"(X= {_currentRectangleInList.Center.X}; " +
                 $"Y = {_currentRectangleInList.Center.Y}; " +
                 $"W= {_currentRectangleInList.Width}; " +
-                $"H= {_currentRectangleInList.Length})"
+                $"H= {_currentRectangleInList.Height})"
                 );
 
             Panel currentPanelRectangle = new Panel();
             currentPanelRectangle.Location = new Point(pointX, pointY);
-            currentPanelRectangle.Size = new Size(width, length);
+            currentPanelRectangle.Size = new Size(width, height);
             currentPanelRectangle.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
             currentPanelRectangle.BorderStyle = BorderStyle.FixedSingle;
             CanvasPanel.Controls.Add(currentPanelRectangle);
@@ -84,7 +84,7 @@
                 PointXTextBox.Text = _currentRectangleInList.Center.X.ToString();
                 PointYTextBox.Text = _currentRectangleInList.Center.Y.ToString();
                 WidthTextBox.Text = _currentRectangleInList.Width.ToString();
-                LengthTextBox.Text = _currentRectangleInList.Length.ToString();
+                HeightTextBox.Text = _currentRectangleInList.Height.ToString();
             }
         }
 
@@ -121,35 +121,35 @@
             }
         }
 
-        private void PanelLengthTextBox_TextChanged(object sender, EventArgs e)
+        private void PanelHeightTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 if (RectanglesListBox.SelectedIndex != -1)
                 {
-                    if (!int.TryParse(LengthTextBox.Text, out var temp))
+                    if (!int.TryParse(HeightTextBox.Text, out var temp))
                     {
-                        LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                        HeightTextBox.BackColor = System.Drawing.Color.LightPink;
                         return;
                     }
 
-                    var lengthRectangle = Convert.ToInt32(LengthTextBox.Text);
-                    _currentRectangleInList.Length = lengthRectangle;
+                    var heightRectangle = Convert.ToInt32(HeightTextBox.Text);
+                    _currentRectangleInList.Height = heightRectangle;
                     // изменение высоты прямоугольника
-                    _rectanglePanels[_selectedIndex].Height = lengthRectangle;
-                    LengthTextBox.BackColor = System.Drawing.Color.White;
+                    _rectanglePanels[_selectedIndex].Height = heightRectangle;
+                    HeightTextBox.BackColor = System.Drawing.Color.White;
                     FindCollision();
                     UpdateRectangleInfo(_currentRectangleInList);
                 }
             }
             catch (FormatException)
             {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                HeightTextBox.BackColor = System.Drawing.Color.LightPink;
                 MessageBox.Show("Введите число.");
             }
             catch (OverflowException)
             {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                HeightTextBox.BackColor = System.Drawing.Color.LightPink;
                 MessageBox.Show("Некорректное значение.");
             }
         }
@@ -250,7 +250,7 @@
             PointXTextBox.Clear();
             PointYTextBox.Clear();
             WidthTextBox.Clear();
-            LengthTextBox.Clear();
+            HeightTextBox.Clear();
         }
 
         private void UpdateRectangleInfo(Rectangle rectangle)
@@ -260,9 +260,8 @@
                 $"(X= {_currentRectangleInList.Center.X}; " +
                 $"Y = {_currentRectangleInList.Center.Y}; " +
                 $"W= {_currentRectangleInList.Width}; " +
-                $"H= {_currentRectangleInList.Length})";
+                $"H= {_currentRectangleInList.Height})";
             RectanglesListBox.SelectedIndex = _selectedIndex;
-
         }
     }
 }

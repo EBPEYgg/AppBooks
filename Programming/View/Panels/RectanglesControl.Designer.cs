@@ -184,10 +184,10 @@
             this.WidthTextBox.TabIndex = 4;
             this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
-            // LengthTextBox
+            // HeightTextBox
             // 
             this.LengthTextBox.Location = new System.Drawing.Point(223, 111);
-            this.LengthTextBox.Name = "LengthTextBox";
+            this.LengthTextBox.Name = "HeightTextBox";
             this.LengthTextBox.Size = new System.Drawing.Size(125, 27);
             this.LengthTextBox.TabIndex = 3;
             this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
@@ -217,7 +217,7 @@
             this.LengthLabel.Name = "LengthLabel";
             this.LengthLabel.Size = new System.Drawing.Size(57, 20);
             this.LengthLabel.TabIndex = 0;
-            this.LengthLabel.Text = "Length:";
+            this.LengthLabel.Text = "Height:";
             // 
             // RectanglesControl
             // 

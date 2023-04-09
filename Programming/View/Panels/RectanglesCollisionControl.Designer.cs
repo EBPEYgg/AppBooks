@@ -37,7 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.LengthTextBox = new System.Windows.Forms.TextBox();
+            this.HeightTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.PointYTextBox = new System.Windows.Forms.TextBox();
             this.PointXTextBox = new System.Windows.Forms.TextBox();
@@ -92,7 +92,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 20);
             this.label5.TabIndex = 28;
-            this.label5.Text = "Length:";
+            this.label5.Text = "Height:";
             // 
             // label4
             // 
@@ -130,13 +130,13 @@
             this.label1.TabIndex = 24;
             this.label1.Text = "ID:";
             // 
-            // LengthTextBox
+            // HeightTextBox
             // 
-            this.LengthTextBox.Location = new System.Drawing.Point(124, 470);
-            this.LengthTextBox.Name = "LengthTextBox";
-            this.LengthTextBox.Size = new System.Drawing.Size(125, 27);
-            this.LengthTextBox.TabIndex = 23;
-            this.LengthTextBox.TextChanged += new System.EventHandler(this.PanelLengthTextBox_TextChanged);
+            this.HeightTextBox.Location = new System.Drawing.Point(124, 470);
+            this.HeightTextBox.Name = "HeightTextBox";
+            this.HeightTextBox.Size = new System.Drawing.Size(125, 27);
+            this.HeightTextBox.TabIndex = 23;
+            this.HeightTextBox.TextChanged += new System.EventHandler(this.PanelHeightTextBox_TextChanged);
             // 
             // WidthTextBox
             // 
@@ -210,7 +210,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.LengthTextBox);
+            this.Controls.Add(this.HeightTextBox);
             this.Controls.Add(this.WidthTextBox);
             this.Controls.Add(this.PointYTextBox);
             this.Controls.Add(this.PointXTextBox);
@@ -235,7 +235,7 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox LengthTextBox;
+        private TextBox HeightTextBox;
         private TextBox WidthTextBox;
         private TextBox PointYTextBox;
         private TextBox PointXTextBox;

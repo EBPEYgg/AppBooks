@@ -14,7 +14,7 @@
         /// </summary>
         private Rectangle[] _rectangles = new Rectangle[N];
         /// <summary>
-        /// Текущий выбранный прямоугольник.
+        /// Массив с данными текущего выбранного прямоугольника.
         /// </summary>
         private Rectangle _currentRectangle = new Rectangle();
         /// <summary>
@@ -70,7 +70,7 @@
         {
             int indexRectangle = RectanglesListBox.SelectedIndex;
             _currentRectangle = _rectangles[indexRectangle];
-            LengthTextBox.Text = _currentRectangle.Length.ToString();
+            LengthTextBox.Text = _currentRectangle.Height.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color!.ToString();
             PointXTextBox.Text = _currentRectangle.Center.X.ToString();
@@ -88,7 +88,7 @@
                     return;
                 }
                 var lengthRectangle = Convert.ToDouble(LengthTextBox.Text);
-                _currentRectangle.Length = lengthRectangle;
+                _currentRectangle.Height = lengthRectangle;
                 LengthTextBox.BackColor = System.Drawing.Color.White;
             }
             catch (FormatException)
