@@ -25,7 +25,8 @@ internal class Book
     private string? _genre;
 
     /// <summary>
-    /// Возвращает и задает название книги. Должно быть написано на латинице.
+    /// Возвращает и задает название книги. Должно быть написано на латинице 
+    /// и иметь длину в диапазоне от 0 до 50 символов (не включительно).
     /// </summary>
     public string Name
     {
@@ -39,7 +40,10 @@ internal class Book
                     throw new ArgumentException($"Допустима только латиница в названии книги.");
                 }
 
-                _name = value;
+                if (Validator.AssertValueInRange(value.Length, 0, 50))
+                {
+                    _name = value;
+                }
             }
             catch (ArgumentException ex)
             {
@@ -49,14 +53,15 @@ internal class Book
     }
 
     /// <summary>
-    /// Возвращает и задает год выпуска книги. Должен быть больше нуля.
+    /// Возвращает и задает год выпуска книги. 
+    /// Должен находиться в диапазоне от 0 до 2024 (не включительно).
     /// </summary>
     public int Year
     {
         get => _year;
         set 
         {
-            if (Validator.AssertOnPositiveValue(value))
+            if (Validator.AssertValueInRange(value, 0, 2024))
             {
                 _year = value;
             }
@@ -137,8 +142,9 @@ internal class Book
     /// <summary>
     /// Создаёт экземпляр класса <see cref="Book"/>.
     /// </summary>
-    /// <param name="name">Название.</param>
-    /// <param name="year">Год выхода. Должен быть больше нуля.</param>
+    /// <param name="name">Название. Должно быть написано на латинице 
+    /// и иметь длину в диапазоне от 0 до 50 символов (не включительно).</param>
+    /// <param name="year">Год выхода. Должен находиться в диапазоне от 0 до 2024 (не включительно).</param>
     /// <param name="author">Автор.</param>
     /// <param name="page">Количество страниц. Должно быть больше нуля.</param>
     /// <param name="genre">Жанр. Должен быть написан на латинице.</param>

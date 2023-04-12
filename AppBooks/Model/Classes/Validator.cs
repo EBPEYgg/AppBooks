@@ -75,7 +75,7 @@ static internal class Validator
         bool flag = true;
         foreach (char c in value)
         {
-            if (!((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')))
+            if (!(((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) || (c == ' ')))
             {
                 flag = false;
                 break;
