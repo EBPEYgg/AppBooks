@@ -71,7 +71,7 @@
             this.SaveBookButton.Location = new System.Drawing.Point(154, 460);
             this.SaveBookButton.Name = "SaveBookButton";
             this.SaveBookButton.Size = new System.Drawing.Size(48, 48);
-            this.SaveBookButton.TabIndex = 3;
+            this.SaveBookButton.TabIndex = 2;
             this.SaveBookButton.UseVisualStyleBackColor = true;
             this.SaveBookButton.Click += new System.EventHandler(this.SaveBookButton_Click);
             // 
@@ -83,7 +83,7 @@
             this.DeleteBookButton.Location = new System.Drawing.Point(289, 460);
             this.DeleteBookButton.Name = "DeleteBookButton";
             this.DeleteBookButton.Size = new System.Drawing.Size(48, 48);
-            this.DeleteBookButton.TabIndex = 2;
+            this.DeleteBookButton.TabIndex = 3;
             this.DeleteBookButton.UseVisualStyleBackColor = true;
             this.DeleteBookButton.Click += new System.EventHandler(this.DeleteBookButton_Click);
             // 

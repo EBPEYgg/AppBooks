@@ -215,6 +215,7 @@ namespace AppBooks.View.Panels
                         _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
                         break;
                 }
+                UpdateBooksInfo(_currentBook);
             }
         }
 
@@ -255,8 +256,7 @@ namespace AppBooks.View.Panels
                 YearTextBox.Text = _currentBook.Year.ToString();
                 AuthorTextBox.Text = _currentBook.Author.ToString();
                 PageTextBox.Text = _currentBook.Page.ToString();
-                // TODO: dont work GenreComboBox.
-                //GenreComboBox.SelectedItem = _currentBook.Genre;
+                GenreComboBox.Text = _currentBook.Genre;
             }
         }
 
@@ -320,11 +320,14 @@ namespace AppBooks.View.Panels
         // TODO: не работает корректно с сортировкой BooksListBox.
         private void UpdateBooksInfo(Book book)
         {
-            BooksListBox.Items[_selectedIndex] = 
-                $"{_currentBook.Name} " +
-                $"/ {_currentBook.Author} " +
-                $"/ {_currentBook.Genre} ";
-            BooksListBox.SelectedIndex = _selectedIndex;
+            if (_selectedIndex != -1)
+            {
+                BooksListBox.Items[_selectedIndex] =
+                    $"{_currentBook.Name} " +
+                    $"/ {_currentBook.Author} " +
+                    $"/ {_currentBook.Genre} ";
+                BooksListBox.SelectedIndex = _selectedIndex;
+            }
         }
     }
 }
