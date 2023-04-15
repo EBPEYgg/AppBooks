@@ -156,4 +156,11 @@ internal class Book
         this.Page = page;
         this.Genre = genre;
     }
+
+    public override string ToString()
+    {
+        return $"{Name} / " +
+                $"{Author} /" +
+                $" {Genre} ";
+    }
 }

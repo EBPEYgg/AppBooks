@@ -9,48 +9,17 @@
         /// Фиксированное количество создаваемых фильмов на вкладке Classes.
         /// </summary>
         const int M = 8;
+
         /// <summary>
         /// Инициализация массива с фильмами размерерностью M.
         /// </summary>
         private Film[] _films = new Film[M];
+
         /// <summary>
         /// Массив с данными текущего выбранного фильма.
         /// </summary>
         private Film _currentFilm = new Film();
-
-        /// <summary>
-        /// Поиск фильма с максимальным рейтингом в списке фильмов.
-        /// </summary>
-        /// <returns>Индекс фильма с максимальным рейтингом.</returns>
-        private int FindFilmWithMaxRating()
-        {
-            double maxRatingFilm = -1;
-            int IndexFilmWithMaxRating = 0;
-            for (int i = 0; i < FilmsListBox.Items.Count; i++)
-            {
-                var currentRatingFilm = _films[i].Rating;
-                if (currentRatingFilm > maxRatingFilm)
-                {
-                    maxRatingFilm = currentRatingFilm;
-                    IndexFilmWithMaxRating = i;
-                }
-            }
-            return IndexFilmWithMaxRating;
-        }
-
-        /// <summary>
-        /// Выбор случайного элемента из массива строк.
-        /// </summary>
-        /// <param name="array">Массив строк.</param>
-        /// <returns>Один элемент типа string.</returns>
-        public string PickRandomAmongStringArray(string[] array)
-        {
-            Random random = new Random();
-            int randomIndex = random.Next(array.Length);
-            var randomArrayElement = array[randomIndex];
-            return randomArrayElement;
-        }
-
+        
         public MoviesControl()
         {
             InitializeComponent();
@@ -76,6 +45,39 @@
                 _films[j] = new Film(CurrentNameFilm, Time, Year, CurrentGenreFilm, Rating);
                 FilmsListBox.Items.Add($"{nameFilms[j]}");
             }
+        }
+
+        /// <summary>
+        /// Выбор случайного элемента из массива строк.
+        /// </summary>
+        /// <param name="array">Массив строк.</param>
+        /// <returns>Один элемент типа string.</returns>
+        public string PickRandomAmongStringArray(string[] array)
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(array.Length);
+            var randomArrayElement = array[randomIndex];
+            return randomArrayElement;
+        }
+
+        /// <summary>
+        /// Поиск фильма с максимальным рейтингом в списке фильмов.
+        /// </summary>
+        /// <returns>Индекс фильма с максимальным рейтингом.</returns>
+        private int FindFilmWithMaxRating()
+        {
+            double maxRatingFilm = -1;
+            int IndexFilmWithMaxRating = 0;
+            for (int i = 0; i < FilmsListBox.Items.Count; i++)
+            {
+                var currentRatingFilm = _films[i].Rating;
+                if (currentRatingFilm > maxRatingFilm)
+                {
+                    maxRatingFilm = currentRatingFilm;
+                    IndexFilmWithMaxRating = i;
+                }
+            }
+            return IndexFilmWithMaxRating;
         }
 
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)

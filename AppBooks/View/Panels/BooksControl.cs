@@ -235,6 +235,7 @@ namespace AppBooks.View.Panels
                 $"{_currentBook.Name} / " +
                 $"{_currentBook.Author} /" +
                 $" {_currentBook.Genre} ");
+            BooksListBox.DataSource = _booksList;
         }
 
         private void DeleteBookButton_Click(object sender, EventArgs e)

@@ -7,10 +7,12 @@ internal class ContactPhone
     /// Имя контакта.
     /// </summary>
     private string? _name;
+
     /// <summary>
     /// Фамилия контакта.
     /// </summary>
     private string? _surname;
+
     /// <summary>
     /// Номер контакта.
     /// </summary>

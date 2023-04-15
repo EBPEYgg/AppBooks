@@ -9,39 +9,21 @@
         /// Фиксированное количество создаваемых прямоугольников на вкладке Classes.
         /// </summary>
         const int N = 5;
+
         /// <summary>
         /// Инициализация массива с прямоугольниками размерностью N.
         /// </summary>
         private Rectangle[] _rectangles = new Rectangle[N];
+
         /// <summary>
         /// Массив с данными текущего выбранного прямоугольника.
         /// </summary>
         private Rectangle _currentRectangle = new Rectangle();
+
         /// <summary>
         /// Инициализация Point2D, хранящее центр координат.
         /// </summary>
         private Point2D _point2D = new Point2D();
-
-        /// <summary>
-        /// Метод, который выполняет поиск прямоугольника с максимальной шириной 
-        /// в списке прямоугольников.
-        /// </summary>
-        /// <returns>Индекс прямоугольника с максимальной шириной.</returns>
-        private int FindRectangleWithMaxWidth()
-        {
-            double maxWidthRectangle = -1;
-            int IndexRectangleWithMaxWidth = 0;
-            for (int i = 0; i < RectanglesListBox.Items.Count; i++)
-            {
-                var currentWidthRectangle = _rectangles[i].Width;
-                if (currentWidthRectangle > maxWidthRectangle)
-                {
-                    maxWidthRectangle = currentWidthRectangle;
-                    IndexRectangleWithMaxWidth = i;
-                }
-            }
-            return IndexRectangleWithMaxWidth;
-        }
 
         public RectanglesControl()
         {
@@ -64,6 +46,27 @@
                 PointY[i] = _rectangles[i].Center.Y;
                 RectanglesListBox.Items.Add($"Rectangle {i}");
             }
+        }
+
+        /// <summary>
+        /// Метод, который выполняет поиск прямоугольника с максимальной шириной 
+        /// в списке прямоугольников.
+        /// </summary>
+        /// <returns>Индекс прямоугольника с максимальной шириной.</returns>
+        private int FindRectangleWithMaxWidth()
+        {
+            double maxWidthRectangle = -1;
+            int IndexRectangleWithMaxWidth = 0;
+            for (int i = 0; i < RectanglesListBox.Items.Count; i++)
+            {
+                var currentWidthRectangle = _rectangles[i].Width;
+                if (currentWidthRectangle > maxWidthRectangle)
+                {
+                    maxWidthRectangle = currentWidthRectangle;
+                    IndexRectangleWithMaxWidth = i;
+                }
+            }
+            return IndexRectangleWithMaxWidth;
         }
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)

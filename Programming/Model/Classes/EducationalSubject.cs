@@ -7,6 +7,7 @@ internal class EducationalSubject
     /// Кол-во часов, отведенных на изучение дисциплины.
     /// </summary>
     private int _learnHoursTime;
+
     /// <summary>
     /// Оценка за дисциплину.
     /// </summary>

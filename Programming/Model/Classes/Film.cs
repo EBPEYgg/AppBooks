@@ -7,10 +7,12 @@ internal class Film
     /// Длительность в минутах.
     /// </summary>
     private int _time;
+
     /// <summary>
     /// Год выпуска.
     /// </summary>
     private int _year;
+
     /// <summary>
     /// Рейтинг.
     /// </summary>
