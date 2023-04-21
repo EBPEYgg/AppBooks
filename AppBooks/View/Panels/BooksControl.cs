@@ -11,11 +11,11 @@ namespace AppBooks.View.Panels
     public partial class BooksControl : UserControl
     {
         /// <summary>
-        /// TODO: XML.
+        /// Список с данными о книгах.
         /// </summary>
         private List<Book> _booksList = new List<Book>();
         /// <summary>
-        /// TODO: XML.
+        /// Список с данными текущей выбранной книги.
         /// </summary>
         private Book _currentBook = new Book();
         /// <summary>
@@ -57,7 +57,7 @@ namespace AppBooks.View.Panels
         public BooksControl()
         {
             InitializeComponent();
-            //LoadBooksInfo();
+            LoadBooksInfo();
 
             // заполнение GenreComboBox
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
@@ -235,7 +235,7 @@ namespace AppBooks.View.Panels
                 $"{_currentBook.Name} / " +
                 $"{_currentBook.Author} /" +
                 $" {_currentBook.Genre} ");
-            BooksListBox.DataSource = _booksList;
+            //BooksListBox.DataSource = _booksList;
         }
 
         private void DeleteBookButton_Click(object sender, EventArgs e)
@@ -268,41 +268,37 @@ namespace AppBooks.View.Panels
             {
                 for (int i = 0; i < BooksListBox.Items.Count; i++)
                 {
-                    var book = BooksListBox.Items[i];
+                    var book = $"{BooksListBox.Items[i]} / {_booksList[i].Page} / {_booksList[i].Year}";
                     writer.WriteLine(book);
                 }
             }
         }
 
-        // TODO: доделать LoadBooksInfo.
+        // при запуске программы считывает *.txt построчно
+        // и вставляет данные в BooksListBox и список _booksList
         private void LoadBooksInfo()
         {
-            // при запуске программы считывает *.txt построчно
-            // и вставляет данные в BooksListBox и список _booksList
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt)|*.txt";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            openFileDialog.RestoreDirectory = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                var filePath = openFileDialog.FileName;
+                var filePath = @"D:\Учеба\1 курс\2 семестр\Programming\AppBooks\Resources\Books.txt";
                 StreamReader reader = new StreamReader(filePath);
                 string? line = reader.ReadLine();
                 while (line != null)
                 {
                     string[] words = line.Split('/');
-                    foreach (var item in words)
+                    for (int i = 0; i < words.Length; i++)
                     {
-                        item.TrimEnd();
+                        words[i] = words[i].Trim();
                     }
                     _currentBook.Name = words[0];
                     _currentBook.Author = words[1];
                     _currentBook.Genre = words[2];
+                    _currentBook.Page = Convert.ToInt32(words[3]);
+                    _currentBook.Year = Convert.ToInt32(words[4]);
+                    _booksList.Add(_currentBook);
                     BooksListBox.Items.Add(
                         $"{_currentBook.Name} / " +
                         $"{_currentBook.Author} /" +
                         $" {_currentBook.Genre}");
-                    _booksList.Add(_currentBook);
                     line = reader.ReadLine();
                 }
                 reader.Close();

@@ -108,7 +108,6 @@
             this.BooksListBox.Location = new System.Drawing.Point(6, 25);
             this.BooksListBox.Name = "BooksListBox";
             this.BooksListBox.Size = new System.Drawing.Size(340, 424);
-            this.BooksListBox.Sorted = true;
             this.BooksListBox.TabIndex = 0;
             this.BooksListBox.SelectedIndexChanged += new System.EventHandler(this.BooksListBox_SelectedIndexChanged);
             // 
