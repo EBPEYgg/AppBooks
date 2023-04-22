@@ -37,7 +37,7 @@ namespace AppBooks.View.Panels
                 "Fyodor Dostoevsky",
                 "Ivan Turgenev" };
         /// <summary>
-        /// TODO: XML.
+        /// Индекс в BooksListBox для <see cref="UpdateBooksInfo(Book)"/>.
         /// </summary>
         private int _selectedIndex = -1;
 
@@ -68,10 +68,11 @@ namespace AppBooks.View.Panels
         {
             try
             {
+                NameTextBox.BackColor = Color.LightPink;
                 var flag = false;
                 foreach (var item in NameTextBox.Text)
                 {
-                    if (!char.IsNumber(item))
+                    if (!char.IsNumber(item) && Validator.AssertStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
                     {
                         flag = true;
                     }
@@ -84,16 +85,10 @@ namespace AppBooks.View.Panels
                     UpdateBooksInfo(_currentBook);
                 }
 
-                if (NameTextBox.Text == "")
-                {
-                    NameTextBox.BackColor = Color.LightPink;
-                    return;
-                }
-
                 if (flag == false)
                 {
                     NameTextBox.BackColor = Color.LightPink;
-                    throw new ArgumentException("Некорректный цвет.");
+                    throw new ArgumentException("Некорректное название книги.");
                 }
             }
             catch (ArgumentException ex)
@@ -106,6 +101,7 @@ namespace AppBooks.View.Panels
         {
             try
             {
+                YearTextBox.BackColor = Color.LightPink;
                 if (!int.TryParse(YearTextBox.Text, out var number))
                 {
                     YearTextBox.BackColor = Color.LightPink;
@@ -125,16 +121,22 @@ namespace AppBooks.View.Panels
                 YearTextBox.BackColor = Color.LightPink;
                 MessageBox.Show("Некорректное значение.", "Ошибка ввода");
             }
+            catch (ArgumentException ex)
+            {
+                YearTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка ввода");
+            }
         }
 
         private void AuthorTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
+                AuthorTextBox.BackColor = Color.LightPink;
                 var flag = false;
                 foreach (var item in AuthorTextBox.Text)
                 {
-                    if (!char.IsNumber(item))
+                    if (!char.IsNumber(item) && Validator.AssertStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
                     {
                         flag = true;
                     }
@@ -147,16 +149,10 @@ namespace AppBooks.View.Panels
                     UpdateBooksInfo(_currentBook);
                 }
 
-                if (AuthorTextBox.Text == "")
-                {
-                    AuthorTextBox.BackColor = Color.LightPink;
-                    return;
-                }
-
                 if (flag == false)
                 {
                     AuthorTextBox.BackColor = Color.LightPink;
-                    throw new ArgumentException("Некорректный цвет.");
+                    throw new ArgumentException("Некорректное имя автора.");
                 }
             }
             catch (ArgumentException ex)
@@ -169,7 +165,8 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                if (!int.TryParse(PageTextBox.Text, out var temp))
+                if (!int.TryParse(PageTextBox.Text, out var temp) || 
+                    !Validator.AssertOnPositiveValue(int.Parse(PageTextBox.Text)))
                 {
                     PageTextBox.BackColor = Color.LightPink;
                     return;
@@ -188,12 +185,23 @@ namespace AppBooks.View.Panels
                 PageTextBox.BackColor = Color.LightPink;
                 MessageBox.Show("Некорректное значение.", "Ошибка ввода");
             }
+            catch (ArgumentException ex)
+            {
+                PageTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка ввода");
+            }
         }
 
         private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (GenreComboBox.SelectedIndex != -1)
             {
+                if (_currentBook.Genre != null)
+                {
+                    Enum.Parse(typeof(Genre), _currentBook.Genre);
+                    return;
+                }
+
                 switch (Enum.Parse(typeof(Genre), GenreComboBox.Text))
                 {
                     case Genre.Drama:

@@ -61,7 +61,7 @@ internal class Book
         get => _year;
         set 
         {
-            if (Validator.AssertValueInRange(value, 0, 2024))
+            if (Validator.AssertValueInRange(value, 1, 2024))
             {
                 _year = value;
             }
