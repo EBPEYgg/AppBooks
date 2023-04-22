@@ -157,6 +157,10 @@ internal class Book
         this.Genre = genre;
     }
 
+    /// <summary>
+    /// Переопределение метода ToString() для класса <see cref="Book"/>.
+    /// </summary>
+    /// <returns>Строка: "Название книги / Имя автора / Жанр ".</returns>
     public override string ToString()
     {
         return $"{Name} / " +

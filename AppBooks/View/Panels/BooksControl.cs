@@ -82,18 +82,16 @@ namespace AppBooks.View.Panels
                 {
                     _currentBook.Name = NameTextBox.Text;
                     NameTextBox.BackColor = Color.White;
-                    UpdateBooksInfo(_currentBook);
                 }
 
                 if (flag == false)
                 {
-                    NameTextBox.BackColor = Color.LightPink;
                     throw new ArgumentException("Некорректное название книги.");
                 }
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
-                MessageBox.Show(ex.Message, "Ошибка ввода");
+                NameTextBox.BackColor = Color.LightPink;
             }
         }
 
@@ -109,7 +107,6 @@ namespace AppBooks.View.Panels
                 }
                 _currentBook.Year = Convert.ToInt32(YearTextBox.Text);
                 YearTextBox.BackColor = Color.White;
-                UpdateBooksInfo(_currentBook);
             }
             catch (FormatException)
             {
@@ -146,18 +143,16 @@ namespace AppBooks.View.Panels
                 {
                     _currentBook.Author = AuthorTextBox.Text;
                     AuthorTextBox.BackColor = Color.White;
-                    UpdateBooksInfo(_currentBook);
                 }
 
                 if (flag == false)
                 {
-                    AuthorTextBox.BackColor = Color.LightPink;
                     throw new ArgumentException("Некорректное имя автора.");
                 }
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException)
             {
-                MessageBox.Show(ex.Message, "Ошибка ввода");
+                AuthorTextBox.BackColor = Color.LightPink;
             }
         }
 
@@ -165,7 +160,7 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                if (!int.TryParse(PageTextBox.Text, out var temp) || 
+                if (!int.TryParse(PageTextBox.Text, out var temp) ||
                     !Validator.AssertOnPositiveValue(int.Parse(PageTextBox.Text)))
                 {
                     PageTextBox.BackColor = Color.LightPink;
@@ -173,7 +168,6 @@ namespace AppBooks.View.Panels
                 }
                 _currentBook.Page = Convert.ToInt32(PageTextBox.Text);
                 PageTextBox.BackColor = Color.White;
-                UpdateBooksInfo(_currentBook);
             }
             catch (FormatException)
             {
@@ -223,7 +217,6 @@ namespace AppBooks.View.Panels
                         _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
                         break;
                 }
-                UpdateBooksInfo(_currentBook);
             }
         }
 
@@ -239,11 +232,7 @@ namespace AppBooks.View.Panels
 
             _currentBook = new Book(currentName, currentYear, currentAuthors, currentPage, currentGenre);
             _booksList.Add(_currentBook);
-            BooksListBox.Items.Add(
-                $"{_currentBook.Name} / " +
-                $"{_currentBook.Author} /" +
-                $" {_currentBook.Genre} ");
-            //BooksListBox.DataSource = _booksList;
+            Sort();
         }
 
         private void DeleteBookButton_Click(object sender, EventArgs e)
@@ -322,17 +311,10 @@ namespace AppBooks.View.Panels
             GenreComboBox.SelectedIndex = -1;
         }
 
-        // TODO: не работает корректно с сортировкой BooksListBox.
-        private void UpdateBooksInfo(Book book)
+        private void Sort()
         {
-            if (_selectedIndex != -1)
-            {
-                BooksListBox.Items[_selectedIndex] =
-                    $"{_currentBook.Name} " +
-                    $"/ {_currentBook.Author} " +
-                    $"/ {_currentBook.Genre} ";
-                BooksListBox.SelectedIndex = _selectedIndex;
-            }
+            _booksList = _booksList.OrderBy(book => book.ToString()).ToList();
+            BooksListBox.DataSource = _booksList;
         }
     }
 }
