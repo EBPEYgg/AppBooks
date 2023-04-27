@@ -67,10 +67,7 @@ namespace AppBooks.View.Panels
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
             GenreComboBox.SelectedIndex = -1;
 
-            if (_booksList.Count == 0)
-            {
-                BooksListBox.SelectedIndex = -1;
-            }
+            BooksListBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -225,35 +222,10 @@ namespace AppBooks.View.Panels
 
         private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (GenreComboBox.SelectedIndex != -1)
+            if (GenreComboBox.SelectedIndex != -1 && _currentBook.Genre != null)
             {
-                if (_currentBook.Genre != null)
-                {
-                    Enum.Parse(typeof(Genre), _currentBook.Genre);
-                    return;
-                }
-
-                switch (Enum.Parse(typeof(Genre), GenreComboBox.Text))
-                {
-                    case Genre.Drama:
-                        _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
-                        break;
-                    case Genre.Thriller:
-                        _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
-                        break;
-                    case Genre.Horror:
-                        _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
-                        break;
-                    case Genre.Adventures:
-                        _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
-                        break;
-                    case Genre.Fiction:
-                        _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
-                        break;
-                    case Genre.Fantasy:
-                        _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
-                        break;
-                }
+                Enum.Parse(typeof(Genre), _currentBook.Genre);
+                _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
             }
 
             Sort();
