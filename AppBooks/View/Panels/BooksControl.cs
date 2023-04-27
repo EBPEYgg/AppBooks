@@ -11,6 +11,26 @@ namespace AppBooks.View.Panels
     public partial class BooksControl : UserControl
     {
         /// <summary>
+        /// Минимальный год выпуска книги.
+        /// </summary>
+        const int minYear = 0;
+        /// <summary>
+        /// Максимальный год выпуска книги.
+        /// </summary>
+        const int maxYear = 2024;
+        /// <summary>
+        /// Минимальное кол-во страниц в книге.
+        /// </summary>
+        const int minPage = 1;
+        /// <summary>
+        /// Максимальное кол-во страниц в книге.
+        /// </summary>
+        const int maxPage = 10000;
+        /// <summary>
+        /// Заголовок для окна возникшей ошибки при вводе неверного значения в TextBox.
+        /// </summary>
+        const string inputError = "Ошибка ввода";
+        /// <summary>
         /// Список с данными о книгах.
         /// </summary>
         private List<Book> _booksList = new List<Book>();
@@ -36,10 +56,22 @@ namespace AppBooks.View.Panels
                 "Leo Tolstoy",
                 "Fyodor Dostoevsky",
                 "Ivan Turgenev" };
-        /// <summary>
-        /// Индекс в BooksListBox для <see cref="UpdateBooksInfo(Book)"/>.
-        /// </summary>
-        private int _selectedIndex = -1;
+
+        // TODO: конструктор
+        public BooksControl()
+        {
+            InitializeComponent();
+            LoadBooksInfo();
+
+            // заполнение GenreComboBox
+            GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
+            GenreComboBox.SelectedIndex = -1;
+
+            if (_booksList.Count == 0)
+            {
+                BooksListBox.SelectedIndex = -1;
+            }
+        }
 
         /// <summary>
         /// Выбор случайного элемента из массива строк.
@@ -54,44 +86,39 @@ namespace AppBooks.View.Panels
             return randomArrayElement;
         }
 
-        public BooksControl()
-        {
-            InitializeComponent();
-            LoadBooksInfo();
-
-            // заполнение GenreComboBox
-            GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
-            GenreComboBox.SelectedIndex = -1;
-        }
-
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                NameTextBox.BackColor = Color.LightPink;
-                var flag = false;
-                foreach (var item in NameTextBox.Text)
+                if (NameTextBox.Text != "")
                 {
-                    if (!char.IsNumber(item) && Validator.AssertStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
+                    var flag = false;
+                    foreach (var item in NameTextBox.Text)
                     {
-                        flag = true;
+                        // TODO: длина строки
+                        if (!char.IsNumber(item) &&
+                            Validator.CheckStringContainsOnlyEnglishLetters(NameTextBox.Text))
+                        {
+                            flag = true;
+                        }
+                    }
+
+                    if (flag == true)
+                    {
+                        _currentBook.Name = NameTextBox.Text;
+                        NameTextBox.BackColor = Color.White;
+                    }
+
+                    if (flag == false)
+                    {
+                        throw new ArgumentException("Некорректное название книги.");
                     }
                 }
-
-                if (flag == true)
-                {
-                    _currentBook.Name = NameTextBox.Text;
-                    NameTextBox.BackColor = Color.White;
-                }
-
-                if (flag == false)
-                {
-                    throw new ArgumentException("Некорректное название книги.");
-                }
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
                 NameTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, inputError);
             }
         }
 
@@ -105,23 +132,24 @@ namespace AppBooks.View.Panels
                     YearTextBox.BackColor = Color.LightPink;
                     return;
                 }
+
                 _currentBook.Year = Convert.ToInt32(YearTextBox.Text);
                 YearTextBox.BackColor = Color.White;
             }
             catch (FormatException)
             {
                 YearTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Введите корректное число.", "Ошибка ввода");
+                MessageBox.Show("Введите корректное число.", inputError);
             }
             catch (OverflowException)
             {
                 YearTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Некорректное значение.", "Ошибка ввода");
+                MessageBox.Show("Некорректное значение.", inputError);
             }
             catch (ArgumentException ex)
             {
                 YearTextBox.BackColor = Color.LightPink;
-                MessageBox.Show(ex.Message, "Ошибка ввода");
+                MessageBox.Show(ex.Message, inputError);
             }
         }
 
@@ -129,30 +157,35 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                AuthorTextBox.BackColor = Color.LightPink;
-                var flag = false;
-                foreach (var item in AuthorTextBox.Text)
+                if (AuthorTextBox.Text != "")
                 {
-                    if (!char.IsNumber(item) && Validator.AssertStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
+                    var flag = false;
+                    foreach (var item in AuthorTextBox.Text)
                     {
-                        flag = true;
+                        // TODO: длина строки
+                        if (!char.IsNumber(item) &&
+                            Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
+                        {
+                            flag = true;
+                        }
+                    }
+
+                    if (flag == true)
+                    {
+                        _currentBook.Author = AuthorTextBox.Text;
+                        AuthorTextBox.BackColor = Color.White;
+                    }
+
+                    if (flag == false)
+                    {
+                        throw new ArgumentException("Некорректное имя автора.");
                     }
                 }
-
-                if (flag == true)
-                {
-                    _currentBook.Author = AuthorTextBox.Text;
-                    AuthorTextBox.BackColor = Color.White;
-                }
-
-                if (flag == false)
-                {
-                    throw new ArgumentException("Некорректное имя автора.");
-                }
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
                 AuthorTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, inputError);
             }
         }
 
@@ -160,8 +193,8 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                if (!int.TryParse(PageTextBox.Text, out var temp) ||
-                    !Validator.AssertOnPositiveValue(int.Parse(PageTextBox.Text)))
+                PageTextBox.BackColor = Color.LightPink;
+                if (!int.TryParse(PageTextBox.Text, out var temp))
                 {
                     PageTextBox.BackColor = Color.LightPink;
                     return;
@@ -172,17 +205,17 @@ namespace AppBooks.View.Panels
             catch (FormatException)
             {
                 PageTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Введите корректное число.", "Ошибка ввода");
+                MessageBox.Show("Введите корректное число.", inputError);
             }
             catch (OverflowException)
             {
                 PageTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Некорректное значение.", "Ошибка ввода");
+                MessageBox.Show("Некорректное значение.", inputError);
             }
             catch (ArgumentException ex)
             {
                 PageTextBox.BackColor = Color.LightPink;
-                MessageBox.Show(ex.Message, "Ошибка ввода");
+                MessageBox.Show(ex.Message, inputError);
             }
         }
 
@@ -223,14 +256,20 @@ namespace AppBooks.View.Panels
         private void AddBookButton_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-
             string currentName = PickRandomAmongStringArray(name);
-            int currentYear = random.Next(0, 2024);
+            // TODO: в константы
+            int currentYear = random.Next(minYear, maxYear);
             string currentAuthors = PickRandomAmongStringArray(authors);
-            int currentPage = random.Next(50, 501);
+            int currentPage = random.Next(minPage, maxPage);
             string? currentGenre = Enum.ToObject(typeof(Genre), random.Next(0, 5)).ToString();
 
-            _currentBook = new Book(currentName, currentYear, currentAuthors, currentPage, currentGenre);
+            _currentBook = new Book(
+                currentName, 
+                currentYear, 
+                currentAuthors, 
+                currentPage, 
+                currentGenre
+                );
             _booksList.Add(_currentBook);
             Sort();
         }
@@ -244,12 +283,10 @@ namespace AppBooks.View.Panels
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (BooksListBox.SelectedIndex != -1 &&
-                _selectedIndex != BooksListBox.SelectedIndex)
+            ClearBooksInfo();
+            if (BooksListBox.SelectedIndex != -1)
             {
-                ClearBooksInfo();
-                _selectedIndex = BooksListBox.SelectedIndex;
-                _currentBook = _booksList[_selectedIndex];
+                _currentBook = _booksList[BooksListBox.SelectedIndex];
                 NameTextBox.Text = _currentBook.Name.ToString();
                 YearTextBox.Text = _currentBook.Year.ToString();
                 AuthorTextBox.Text = _currentBook.Author.ToString();
@@ -260,6 +297,7 @@ namespace AppBooks.View.Panels
 
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
+            // TODO: пути
             var filePath = @"D:\Учеба\1 курс\2 семестр\Programming\AppBooks\Resources\Books.txt";
             using (StreamWriter writer = new StreamWriter(filePath, false))
             {
@@ -271,37 +309,40 @@ namespace AppBooks.View.Panels
             }
         }
 
-        // при запуске программы считывает *.txt построчно
-        // и вставляет данные в BooksListBox и список _booksList
+        // TODO: вынести в сам метод комментарии
         private void LoadBooksInfo()
         {
+            // при запуске программы считывает *.txt построчно
+            // и вставляет данные в BooksListBox и список _booksList
+            // TODO: пути Directory.GetCurrentDirectory
+            var filePath = @"D:\Учеба\1 курс\2 семестр\Programming\AppBooks\Resources\Books.txt";
+            StreamReader reader = new StreamReader(filePath);
+            string? line = reader.ReadLine();
+            while (line != null)
             {
-                var filePath = @"D:\Учеба\1 курс\2 семестр\Programming\AppBooks\Resources\Books.txt";
-                StreamReader reader = new StreamReader(filePath);
-                string? line = reader.ReadLine();
-                while (line != null)
+                string[] words = line.Split('/');
+                for (int i = 0; i < words.Length; i++)
                 {
-                    string[] words = line.Split('/');
-                    for (int i = 0; i < words.Length; i++)
-                    {
-                        words[i] = words[i].Trim();
-                    }
-                    _currentBook.Name = words[0];
-                    _currentBook.Author = words[1];
-                    _currentBook.Genre = words[2];
-                    _currentBook.Page = Convert.ToInt32(words[3]);
-                    _currentBook.Year = Convert.ToInt32(words[4]);
-                    _booksList.Add(_currentBook);
-                    BooksListBox.Items.Add(
-                        $"{_currentBook.Name} / " +
-                        $"{_currentBook.Author} /" +
-                        $" {_currentBook.Genre}");
-                    line = reader.ReadLine();
+                    words[i] = words[i].Trim();
                 }
-                reader.Close();
+                var _currentBook = new Book();
+                _currentBook.Name = words[0];
+                _currentBook.Author = words[1];
+                _currentBook.Genre = words[2];
+                _currentBook.Page = Convert.ToInt32(words[3]);
+                _currentBook.Year = Convert.ToInt32(words[4]);
+                _booksList.Add(_currentBook);
+                BooksListBox.Items.Add(_currentBook);
+                line = reader.ReadLine();
             }
+            reader.Close();
+            Sort();
         }
 
+        // TODO: xml
+        /// <summary>
+        /// Метод, который очищает текстовые поля и ComboBox.
+        /// </summary>
         private void ClearBooksInfo()
         {
             NameTextBox.Clear();
@@ -311,6 +352,10 @@ namespace AppBooks.View.Panels
             GenreComboBox.SelectedIndex = -1;
         }
 
+        // TODO: xml
+        /// <summary>
+        /// Метод, который сортирует _booksList и BooksListBox в алфавитном порядке.
+        /// </summary>
         private void Sort()
         {
             _booksList = _booksList.OrderBy(book => book.ToString()).ToList();

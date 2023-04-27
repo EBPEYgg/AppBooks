@@ -33,22 +33,13 @@ internal class Book
         get => _name;
         set
         {
-            try
+            if (!Validator.CheckStringContainsOnlyEnglishLetters(value))
             {
-                if (!Validator.AssertStringContainsOnlyEnglishLetters(value))
-                {
-                    throw new ArgumentException($"Допустима только латиница в названии книги.");
-                }
+                throw new ArgumentException($"Допустима только латиница в названии книги.");
+            }
 
-                if (Validator.AssertValueInRange(value.Length, 0, 50))
-                {
-                    _name = value;
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка ввода");
-            }
+            Validator.AssertValueInRange(value.Length, 0, 50);
+            _name = value;
         }
     }
 
@@ -61,10 +52,8 @@ internal class Book
         get => _year;
         set 
         {
-            if (Validator.AssertValueInRange(value, 1, 2024))
-            {
-                _year = value;
-            }
+            Validator.AssertValueInRange(value, 1, 2024);
+            _year = value;
         }
     }
 
@@ -76,19 +65,12 @@ internal class Book
         get => _author;
         set
         {
-            try
+            if (!Validator.CheckStringContainsOnlyEnglishLetters(value))
             {
-                if (!Validator.AssertStringContainsOnlyEnglishLetters(value))
-                {
-                    throw new ArgumentException($"Допустима только латиница в имени автора.");
-                }
+                throw new ArgumentException($"Допустима только латиница в имени автора.");
+            }
 
-                _author = value;
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка ввода");
-            }
+            _author = value;
         }
     }
 
@@ -100,10 +82,8 @@ internal class Book
         get => _page;
         set 
         {
-            if (Validator.AssertOnPositiveValue(value))
-            {
-                _page = value;
-            }
+            Validator.AssertOnPositiveValue(value);
+            _page = value;
         }
     }
 
@@ -115,19 +95,13 @@ internal class Book
         get => _genre;
         set
         {
-            try
+            // TODO: ловить исключение в Form
+            if (!Validator.CheckStringContainsOnlyEnglishLetters(value))
             {
-                if (!Validator.AssertStringContainsOnlyEnglishLetters(value))
-                {
-                    throw new ArgumentException($"Допустима только латиница в жанре книги.");
-                }
+                throw new ArgumentException($"Допустима только латиница в жанре книги.");
+            }
 
-                _genre = value;
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка ввода");
-            }
+            _genre = value;
         }
     }
 

@@ -45,8 +45,10 @@
             this.AuthorTextBox = new System.Windows.Forms.TextBox();
             this.YearTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.BooksControlTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.BooksGroupBox.SuspendLayout();
             this.SelectedBookGroupBox.SuspendLayout();
+            this.BooksControlTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // BooksGroupBox
@@ -55,15 +57,17 @@
             this.BooksGroupBox.Controls.Add(this.DeleteBookButton);
             this.BooksGroupBox.Controls.Add(this.AddBookButton);
             this.BooksGroupBox.Controls.Add(this.BooksListBox);
-            this.BooksGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.BooksGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BooksGroupBox.Location = new System.Drawing.Point(3, 3);
             this.BooksGroupBox.Name = "BooksGroupBox";
-            this.BooksGroupBox.Size = new System.Drawing.Size(352, 523);
+            this.BooksGroupBox.Size = new System.Drawing.Size(354, 517);
             this.BooksGroupBox.TabIndex = 0;
             this.BooksGroupBox.TabStop = false;
             this.BooksGroupBox.Text = "Books";
             // 
             // SaveBookButton
             // 
+            this.SaveBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.SaveBookButton.FlatAppearance.BorderSize = 0;
             this.SaveBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveBookButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -77,6 +81,7 @@
             // 
             // DeleteBookButton
             // 
+            this.DeleteBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.DeleteBookButton.FlatAppearance.BorderSize = 0;
             this.DeleteBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteBookButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteBookButton.Image")));
@@ -89,6 +94,7 @@
             // 
             // AddBookButton
             // 
+            this.AddBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.AddBookButton.BackColor = System.Drawing.Color.Transparent;
             this.AddBookButton.FlatAppearance.BorderSize = 0;
             this.AddBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -102,12 +108,15 @@
             // 
             // BooksListBox
             // 
+            this.BooksListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BooksListBox.FormattingEnabled = true;
             this.BooksListBox.HorizontalScrollbar = true;
             this.BooksListBox.ItemHeight = 20;
             this.BooksListBox.Location = new System.Drawing.Point(6, 25);
             this.BooksListBox.Name = "BooksListBox";
-            this.BooksListBox.Size = new System.Drawing.Size(340, 424);
+            this.BooksListBox.Size = new System.Drawing.Size(337, 424);
             this.BooksListBox.TabIndex = 0;
             this.BooksListBox.SelectedIndexChanged += new System.EventHandler(this.BooksListBox_SelectedIndexChanged);
             // 
@@ -123,9 +132,10 @@
             this.SelectedBookGroupBox.Controls.Add(this.AuthorTextBox);
             this.SelectedBookGroupBox.Controls.Add(this.YearTextBox);
             this.SelectedBookGroupBox.Controls.Add(this.NameTextBox);
-            this.SelectedBookGroupBox.Location = new System.Drawing.Point(358, 0);
+            this.SelectedBookGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SelectedBookGroupBox.Location = new System.Drawing.Point(363, 3);
             this.SelectedBookGroupBox.Name = "SelectedBookGroupBox";
-            this.SelectedBookGroupBox.Size = new System.Drawing.Size(349, 520);
+            this.SelectedBookGroupBox.Size = new System.Drawing.Size(354, 517);
             this.SelectedBookGroupBox.TabIndex = 1;
             this.SelectedBookGroupBox.TabStop = false;
             this.SelectedBookGroupBox.Text = "Selected Book";
@@ -177,6 +187,8 @@
             // 
             // GenreComboBox
             // 
+            this.GenreComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(155, 185);
             this.GenreComboBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
@@ -187,6 +199,8 @@
             // 
             // PageTextBox
             // 
+            this.PageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PageTextBox.Location = new System.Drawing.Point(155, 146);
             this.PageTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.PageTextBox.Name = "PageTextBox";
@@ -196,6 +210,8 @@
             // 
             // AuthorTextBox
             // 
+            this.AuthorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AuthorTextBox.Location = new System.Drawing.Point(155, 107);
             this.AuthorTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.AuthorTextBox.Name = "AuthorTextBox";
@@ -205,6 +221,8 @@
             // 
             // YearTextBox
             // 
+            this.YearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.YearTextBox.Location = new System.Drawing.Point(155, 68);
             this.YearTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.YearTextBox.Name = "YearTextBox";
@@ -214,6 +232,8 @@
             // 
             // NameTextBox
             // 
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(155, 29);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.NameTextBox.Name = "NameTextBox";
@@ -221,17 +241,32 @@
             this.NameTextBox.TabIndex = 0;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
+            // BooksControlTableLayoutPanel
+            // 
+            this.BooksControlTableLayoutPanel.ColumnCount = 2;
+            this.BooksControlTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.BooksControlTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.BooksControlTableLayoutPanel.Controls.Add(this.BooksGroupBox, 0, 0);
+            this.BooksControlTableLayoutPanel.Controls.Add(this.SelectedBookGroupBox, 1, 0);
+            this.BooksControlTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BooksControlTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.BooksControlTableLayoutPanel.Name = "BooksControlTableLayoutPanel";
+            this.BooksControlTableLayoutPanel.RowCount = 1;
+            this.BooksControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.BooksControlTableLayoutPanel.Size = new System.Drawing.Size(720, 523);
+            this.BooksControlTableLayoutPanel.TabIndex = 2;
+            // 
             // BooksControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.SelectedBookGroupBox);
-            this.Controls.Add(this.BooksGroupBox);
+            this.Controls.Add(this.BooksControlTableLayoutPanel);
             this.Name = "BooksControl";
-            this.Size = new System.Drawing.Size(714, 523);
+            this.Size = new System.Drawing.Size(720, 523);
             this.BooksGroupBox.ResumeLayout(false);
             this.SelectedBookGroupBox.ResumeLayout(false);
             this.SelectedBookGroupBox.PerformLayout();
+            this.BooksControlTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -254,5 +289,6 @@
         private TextBox AuthorTextBox;
         private TextBox YearTextBox;
         private TextBox NameTextBox;
+        private TableLayoutPanel BooksControlTableLayoutPanel;
     }
 }

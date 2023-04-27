@@ -1,34 +1,31 @@
 ﻿/// <summary>
 /// Класс, описывающий методы для проверки входящих значений.
 /// </summary>
+// TODO: bool -> void
 static internal class Validator
 {
     /// <summary>
     /// Метод, который проверяет число на положительность.
     /// </summary>
     /// <returns>Возвращает true or false.</returns>
-    public static bool AssertOnPositiveValue(int number)
+    public static void AssertOnPositiveValue(int number)
     {
-        if (number < 0)
+        if (number <= 0)
         {
             throw new ArgumentException("Число не является положительным.");
         }
-
-        return number > 0;
     }
 
     /// <summary>
     /// Метод, который проверяет число на положительность.
     /// </summary>
     /// <returns>Возвращает true or false.</returns>
-    public static bool AssertOnPositiveValue(double number)
+    public static void AssertOnPositiveValue(double number)
     {
-        if (number < 0)
+        if (number <= 0)
         {
             throw new ArgumentException("Число не является положительным.");
         }
-
-        return number > 0;
     }
 
     /// <summary>
@@ -38,14 +35,12 @@ static internal class Validator
     /// <param name="min">Минимальная граница диапазона (не включительно).</param>
     /// <param name="max">Максимальная граница диапазона (не включительно).</param>
     /// <returns>Возвращает true or false.</returns>
-    public static bool AssertValueInRange(int value, int min, int max)
+    public static void AssertValueInRange(int value, int min, int max)
     {
         if ((value < min) || (value > max))
         {
             throw new ArgumentException("Число не входит в заданный диапазон.");
         }
-
-        return (min < value) && (max > value);
     }
 
     /// <summary>
@@ -55,14 +50,12 @@ static internal class Validator
     /// <param name="min">Минимальная граница диапазона (не включительно).</param>
     /// <param name="max">Максимальная граница диапазона (не включительно).</param>
     /// <returns>Возвращает true or false.</returns>
-    public static bool AssertValueInRange(double value, double min, double max)
+    public static void AssertValueInRange(double value, double min, double max)
     {
         if ((value < min) || (value > max))
         {
             throw new ArgumentException("Число не входит в заданный диапазон.");
         }
-
-        return (min < value) && (max > value);
     }
 
     /// <summary>
@@ -70,7 +63,8 @@ static internal class Validator
     /// </summary>
     /// <param name="name">Строка.</param>
     /// <returns>True or false.</returns>
-    public static bool AssertStringContainsOnlyEnglishLetters(string? value)
+    // TODO: Check...()
+    public static bool CheckStringContainsOnlyEnglishLetters(string? value)
     {
         bool flag = true;
         foreach (char c in value)
