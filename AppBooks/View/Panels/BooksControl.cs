@@ -107,6 +107,7 @@ namespace AppBooks.View.Panels
                     {
                         _currentBook.Name = NameTextBox.Text;
                         NameTextBox.BackColor = Color.White;
+                        Sort();
                     }
 
                     if (flag == false)
@@ -135,6 +136,7 @@ namespace AppBooks.View.Panels
 
                 _currentBook.Year = Convert.ToInt32(YearTextBox.Text);
                 YearTextBox.BackColor = Color.White;
+                Sort();
             }
             catch (FormatException)
             {
@@ -174,6 +176,7 @@ namespace AppBooks.View.Panels
                     {
                         _currentBook.Author = AuthorTextBox.Text;
                         AuthorTextBox.BackColor = Color.White;
+                        Sort();
                     }
 
                     if (flag == false)
@@ -201,6 +204,7 @@ namespace AppBooks.View.Panels
                 }
                 _currentBook.Page = Convert.ToInt32(PageTextBox.Text);
                 PageTextBox.BackColor = Color.White;
+                Sort();
             }
             catch (FormatException)
             {
@@ -251,6 +255,8 @@ namespace AppBooks.View.Panels
                         break;
                 }
             }
+
+            Sort();
         }
 
         private void AddBookButton_Click(object sender, EventArgs e)
@@ -277,8 +283,8 @@ namespace AppBooks.View.Panels
         private void DeleteBookButton_Click(object sender, EventArgs e)
         {
             _currentBook = _booksList[BooksListBox.SelectedIndex];
-            BooksListBox.Items.RemoveAt(BooksListBox.SelectedIndex);
             _booksList.Remove(_currentBook);
+            Sort();
         }
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -298,7 +304,7 @@ namespace AppBooks.View.Panels
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
             // TODO: пути
-            var filePath = @"D:\Учеба\1 курс\2 семестр\Programming\AppBooks\Resources\Books.txt";
+            var filePath = Environment.CurrentDirectory + @"\Books.txt";
             using (StreamWriter writer = new StreamWriter(filePath, false))
             {
                 for (int i = 0; i < BooksListBox.Items.Count; i++)
@@ -310,12 +316,14 @@ namespace AppBooks.View.Panels
         }
 
         // TODO: вынести в сам метод комментарии
+        /// <summary>
+        /// Метод, который построчно считывает текстовый файл 
+        /// для заполнения <see cref="BooksListBox"/> и <see cref="_booksList"/>.
+        /// </summary>
         private void LoadBooksInfo()
         {
-            // при запуске программы считывает *.txt построчно
-            // и вставляет данные в BooksListBox и список _booksList
             // TODO: пути Directory.GetCurrentDirectory
-            var filePath = @"D:\Учеба\1 курс\2 семестр\Programming\AppBooks\Resources\Books.txt";
+            var filePath = Environment.CurrentDirectory + @"\Books.txt";
             StreamReader reader = new StreamReader(filePath);
             string? line = reader.ReadLine();
             while (line != null)
@@ -354,7 +362,8 @@ namespace AppBooks.View.Panels
 
         // TODO: xml
         /// <summary>
-        /// Метод, который сортирует _booksList и BooksListBox в алфавитном порядке.
+        /// Метод, который сортирует <see cref="_booksList"/> и <see cref="BooksListBox"/>
+        /// в алфавитном порядке.
         /// </summary>
         private void Sort()
         {
