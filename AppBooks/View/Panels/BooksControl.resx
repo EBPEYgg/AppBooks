@@ -58,6 +58,23 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="EditButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DQAACw0B7QfALAAAAq1JREFUaEPtmjmrE2EUhiMo2FoIohYW6nUp/AGiKGJlp427lQsWrgiK2lhp6dYo
+        yG0EK8FOrBTRSkQsXEHFHcQFl8Ld5w1z4Dg3M0nmnsnMwH3gIZnv5s73vh+TTDJJqyaswNv4Ea/gfGwM
+        2/EP/nV+wUVYe3z4J3gIvybbtS+xGS38M5yBYiF+Ro1/w6VYO7Zgp/BGrUv48E8xHd6oZQkfXh7FPGpV
+        Ih3ePIB51KLEVvSHzXByvxElfPjHOB3H4YlkzNRLaB6VlNiB6fBGkRKL0Z8n5mFp+PCP0Ic3OpU4jHn4
+        Epc1UAY70YefhlkUKaG/63Gf2lvB9BPe6KfETHyBeswdDURSJLzRSwkf/hcuwzB2YdHwRl6JWfgSNfYb
+        N2EYPvxDnIpFUYlT6EscQwuvld+IYexGm2i04Y10CVschd+AYWjlbZKih00WKnEObf+lr3xkeOGP+UYc
+        Np5Gh5+NjQ7/Ci186BO20eH34Fj4DAYW/gGOhXcMoQ+/HsPYhxb+Pk7BSObgG7TwazAMH/4eRoefi6WF
+        34sW/i026rDRE8jCm/sxivTKr8ZQLqF2/iG5jSzhw//E8PBClz00wXE8mdw3u13uyEOHzWvUfrTy6zCc
+        iaida5JtqPfiESUGEl4sQAuq6y5itCUGFl7opcxCTtZAQtESAw0vjqAme9fe+p9+S+gk5cOvxdK5jprw
+        WntrJL2WqCS80MprUn2IzqJbicrCT0BNqImf4yTMIqtEZeGFTjI+0C3sVuI0+v95n9wqfOh7m15YiT6M
+        LFKikvDiIPogZrrEeNShsgp1vfIC6ksGPfYHarwSzmM6vKl3jhfxLn5PxtJWGl7oRxadguWpH2XcxLO4
+        BCvFvq7ppFZdnwuuoi6rLMdOXxVVig4hnQdu4BnUBdtaBh1Jq/UPvtGkRwlUQygAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="SaveBookButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAbxJREFUaEPt

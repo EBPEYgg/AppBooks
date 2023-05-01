@@ -30,11 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooksControl));
             this.BooksGroupBox = new System.Windows.Forms.GroupBox();
+            this.EditButton = new System.Windows.Forms.Button();
             this.SaveBookButton = new System.Windows.Forms.Button();
             this.DeleteBookButton = new System.Windows.Forms.Button();
             this.AddBookButton = new System.Windows.Forms.Button();
             this.BooksListBox = new System.Windows.Forms.ListBox();
             this.SelectedBookGroupBox = new System.Windows.Forms.GroupBox();
+            this.ApplyButton = new System.Windows.Forms.Button();
             this.GenreLabel = new System.Windows.Forms.Label();
             this.PageLabel = new System.Windows.Forms.Label();
             this.AuthorLabel = new System.Windows.Forms.Label();
@@ -53,6 +55,7 @@
             // 
             // BooksGroupBox
             // 
+            this.BooksGroupBox.Controls.Add(this.EditButton);
             this.BooksGroupBox.Controls.Add(this.SaveBookButton);
             this.BooksGroupBox.Controls.Add(this.DeleteBookButton);
             this.BooksGroupBox.Controls.Add(this.AddBookButton);
@@ -65,6 +68,19 @@
             this.BooksGroupBox.TabStop = false;
             this.BooksGroupBox.Text = "Books";
             // 
+            // EditButton
+            // 
+            this.EditButton.FlatAppearance.BorderSize = 0;
+            this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
+            this.EditButton.Location = new System.Drawing.Point(195, 463);
+            this.EditButton.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(48, 48);
+            this.EditButton.TabIndex = 10;
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            // 
             // SaveBookButton
             // 
             this.SaveBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -72,7 +88,8 @@
             this.SaveBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveBookButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SaveBookButton.Image = ((System.Drawing.Image)(resources.GetObject("SaveBookButton.Image")));
-            this.SaveBookButton.Location = new System.Drawing.Point(154, 460);
+            this.SaveBookButton.Location = new System.Drawing.Point(107, 461);
+            this.SaveBookButton.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.SaveBookButton.Name = "SaveBookButton";
             this.SaveBookButton.Size = new System.Drawing.Size(48, 48);
             this.SaveBookButton.TabIndex = 2;
@@ -86,6 +103,7 @@
             this.DeleteBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteBookButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteBookButton.Image")));
             this.DeleteBookButton.Location = new System.Drawing.Point(289, 460);
+            this.DeleteBookButton.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.DeleteBookButton.Name = "DeleteBookButton";
             this.DeleteBookButton.Size = new System.Drawing.Size(48, 48);
             this.DeleteBookButton.TabIndex = 3;
@@ -94,12 +112,12 @@
             // 
             // AddBookButton
             // 
-            this.AddBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.AddBookButton.BackColor = System.Drawing.Color.Transparent;
             this.AddBookButton.FlatAppearance.BorderSize = 0;
             this.AddBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddBookButton.Image = ((System.Drawing.Image)(resources.GetObject("AddBookButton.Image")));
             this.AddBookButton.Location = new System.Drawing.Point(17, 459);
+            this.AddBookButton.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.AddBookButton.Name = "AddBookButton";
             this.AddBookButton.Size = new System.Drawing.Size(50, 50);
             this.AddBookButton.TabIndex = 1;
@@ -122,6 +140,7 @@
             // 
             // SelectedBookGroupBox
             // 
+            this.SelectedBookGroupBox.Controls.Add(this.ApplyButton);
             this.SelectedBookGroupBox.Controls.Add(this.GenreLabel);
             this.SelectedBookGroupBox.Controls.Add(this.PageLabel);
             this.SelectedBookGroupBox.Controls.Add(this.AuthorLabel);
@@ -139,6 +158,19 @@
             this.SelectedBookGroupBox.TabIndex = 1;
             this.SelectedBookGroupBox.TabStop = false;
             this.SelectedBookGroupBox.Text = "Selected Book";
+            // 
+            // ApplyButton
+            // 
+            this.ApplyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ApplyButton.Location = new System.Drawing.Point(155, 222);
+            this.ApplyButton.Name = "ApplyButton";
+            this.ApplyButton.Size = new System.Drawing.Size(154, 29);
+            this.ApplyButton.TabIndex = 10;
+            this.ApplyButton.Text = "Apply";
+            this.ApplyButton.UseVisualStyleBackColor = true;
+            this.ApplyButton.Visible = false;
+            this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
             // GenreLabel
             // 
@@ -189,6 +221,7 @@
             // 
             this.GenreComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GenreComboBox.Enabled = false;
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(155, 185);
             this.GenreComboBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
@@ -201,6 +234,7 @@
             // 
             this.PageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PageTextBox.Enabled = false;
             this.PageTextBox.Location = new System.Drawing.Point(155, 146);
             this.PageTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.PageTextBox.Name = "PageTextBox";
@@ -212,6 +246,7 @@
             // 
             this.AuthorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AuthorTextBox.Enabled = false;
             this.AuthorTextBox.Location = new System.Drawing.Point(155, 107);
             this.AuthorTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.AuthorTextBox.Name = "AuthorTextBox";
@@ -223,6 +258,7 @@
             // 
             this.YearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.YearTextBox.Enabled = false;
             this.YearTextBox.Location = new System.Drawing.Point(155, 68);
             this.YearTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.YearTextBox.Name = "YearTextBox";
@@ -234,6 +270,7 @@
             // 
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameTextBox.Enabled = false;
             this.NameTextBox.Location = new System.Drawing.Point(155, 29);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.NameTextBox.Name = "NameTextBox";
@@ -290,5 +327,7 @@
         private TextBox YearTextBox;
         private TextBox NameTextBox;
         private TableLayoutPanel BooksControlTableLayoutPanel;
+        private Button EditButton;
+        private Button ApplyButton;
     }
 }

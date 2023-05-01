@@ -66,6 +66,7 @@
             this.MinimumSize = new System.Drawing.Size(739, 579);
             this.Name = "MainForm";
             this.Text = "BookApp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.BookTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

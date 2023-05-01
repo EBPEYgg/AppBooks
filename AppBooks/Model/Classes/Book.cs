@@ -1,7 +1,9 @@
-﻿/// <summary>
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System;
+/// <summary>
 /// Класс, описывающий книгу.
 /// </summary>
-internal class Book
+internal class Book : ICloneable
 {
     /// <summary>
     /// Название книги.
@@ -95,12 +97,6 @@ internal class Book
         get => _genre;
         set
         {
-            // TODO: ловить исключение в Form
-            if (!Validator.CheckStringContainsOnlyEnglishLetters(value))
-            {
-                throw new ArgumentException($"Допустима только латиница в жанре книги.");
-            }
-
             _genre = value;
         }
     }
@@ -138,7 +134,12 @@ internal class Book
     public override string ToString()
     {
         return $"{Name} / " +
-                $"{Author} /" +
-                $" {Genre} ";
+            $"{Author} / " +
+            $"{Genre}";
+    }
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
     }
 }

@@ -2,6 +2,11 @@
 using System.IO;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Net.Http.Json;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace AppBooks.View.Panels
 {
@@ -31,6 +36,14 @@ namespace AppBooks.View.Panels
         /// </summary>
         const string inputError = "Ошибка ввода";
         /// <summary>
+        /// Количество элементов в перечислении <see cref="Genre"/>.
+        /// </summary>
+        int amountGenre = Enum.GetNames(typeof(Genre)).Length;
+        /// <summary>
+        /// Индекс выбранной книги перед сортировкой.
+        /// </summary>
+        int indexBeforeSort;
+        /// <summary>
         /// Список с данными о книгах.
         /// </summary>
         private List<Book> _booksList = new List<Book>();
@@ -56,18 +69,34 @@ namespace AppBooks.View.Panels
                 "Leo Tolstoy",
                 "Fyodor Dostoevsky",
                 "Ivan Turgenev" };
+        /// <summary>
+        /// Копия текущей выбранной книги.
+        /// </summary>
+        private Book _cloneCurrentBook = new();
+        /// <summary>
+        /// Флаг нажатия кнопки <see cref="AddBookButton"/>.
+        /// </summary>
+        private bool flagAddBookButton = false;
+        /// <summary>
+        /// Название файла для сохранения или загрузки данных.
+        /// </summary>
+        private string fileName = "Books.json";
+        /// <summary>
+        /// JSON строка с данными элемента.
+        /// </summary>
+        private string jsonString;
 
         // TODO: конструктор
         public BooksControl()
         {
             InitializeComponent();
             LoadBooksInfo();
+            ClearBooksInfo();
+            BooksListBox.SelectedIndex = -1;
 
             // заполнение GenreComboBox
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
             GenreComboBox.SelectedIndex = -1;
-
-            BooksListBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -93,24 +122,20 @@ namespace AppBooks.View.Panels
                     foreach (var item in NameTextBox.Text)
                     {
                         // TODO: длина строки
-                        if (!char.IsNumber(item) &&
-                            Validator.CheckStringContainsOnlyEnglishLetters(NameTextBox.Text))
+                        if (Validator.CheckStringContainsOnlyEnglishLetters(NameTextBox.Text))
                         {
                             flag = true;
                         }
                     }
 
-                    if (flag == true)
+                    if (flag)
                     {
-                        _currentBook.Name = NameTextBox.Text;
+                        _cloneCurrentBook.Name = NameTextBox.Text;
                         NameTextBox.BackColor = Color.White;
-                        Sort();
+                        return;
                     }
 
-                    if (flag == false)
-                    {
-                        throw new ArgumentException("Некорректное название книги.");
-                    }
+                    throw new ArgumentException("Некорректное название книги.");
                 }
             }
             catch (ArgumentException ex)
@@ -124,16 +149,17 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                YearTextBox.BackColor = Color.LightPink;
-                if (!int.TryParse(YearTextBox.Text, out var number))
+                if (YearTextBox.Text != "")
                 {
-                    YearTextBox.BackColor = Color.LightPink;
-                    return;
-                }
+                    if (!int.TryParse(YearTextBox.Text, out var number))
+                    {
+                        YearTextBox.BackColor = Color.LightPink;
+                        return;
+                    }
 
-                _currentBook.Year = Convert.ToInt32(YearTextBox.Text);
-                YearTextBox.BackColor = Color.White;
-                Sort();
+                    _cloneCurrentBook.Year = Convert.ToInt32(YearTextBox.Text);
+                    YearTextBox.BackColor = Color.White;
+                }
             }
             catch (FormatException)
             {
@@ -162,24 +188,19 @@ namespace AppBooks.View.Panels
                     foreach (var item in AuthorTextBox.Text)
                     {
                         // TODO: длина строки
-                        if (!char.IsNumber(item) &&
-                            Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
+                        if (Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
                         {
                             flag = true;
                         }
                     }
 
-                    if (flag == true)
+                    if (flag)
                     {
-                        _currentBook.Author = AuthorTextBox.Text;
+                        _cloneCurrentBook.Author = AuthorTextBox.Text;
                         AuthorTextBox.BackColor = Color.White;
-                        Sort();
+                        return;
                     }
-
-                    if (flag == false)
-                    {
-                        throw new ArgumentException("Некорректное имя автора.");
-                    }
+                    throw new ArgumentException("Некорректное имя автора.");
                 }
             }
             catch (ArgumentException ex)
@@ -193,15 +214,17 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                PageTextBox.BackColor = Color.LightPink;
-                if (!int.TryParse(PageTextBox.Text, out var temp))
+                if (PageTextBox.Text != "")
                 {
-                    PageTextBox.BackColor = Color.LightPink;
-                    return;
+                    if (!int.TryParse(PageTextBox.Text, out var number))
+                    {
+                        PageTextBox.BackColor = Color.LightPink;
+                        return;
+                    }
+
+                    _cloneCurrentBook.Page = Convert.ToInt32(PageTextBox.Text);
+                    PageTextBox.BackColor = Color.White;
                 }
-                _currentBook.Page = Convert.ToInt32(PageTextBox.Text);
-                PageTextBox.BackColor = Color.White;
-                Sort();
             }
             catch (FormatException)
             {
@@ -222,68 +245,100 @@ namespace AppBooks.View.Panels
 
         private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (GenreComboBox.SelectedIndex != -1 && _currentBook.Genre != null)
+            if (GenreComboBox.SelectedIndex != -1 && _cloneCurrentBook.Genre != null)
             {
-                Enum.Parse(typeof(Genre), _currentBook.Genre);
-                _currentBook.Genre = GenreComboBox.SelectedItem.ToString();
+                Enum.Parse(typeof(Genre), _cloneCurrentBook.Genre);
+                _cloneCurrentBook.Genre = GenreComboBox.SelectedItem.ToString();
             }
-
-            Sort();
         }
 
         private void AddBookButton_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            string currentName = PickRandomAmongStringArray(name);
-            // TODO: в константы
-            int currentYear = random.Next(minYear, maxYear);
-            string currentAuthors = PickRandomAmongStringArray(authors);
-            int currentPage = random.Next(minPage, maxPage);
-            string? currentGenre = Enum.ToObject(typeof(Genre), random.Next(0, 5)).ToString();
-
-            _currentBook = new Book(
-                currentName, 
-                currentYear, 
-                currentAuthors, 
-                currentPage, 
-                currentGenre
-                );
-            _booksList.Add(_currentBook);
-            Sort();
+            ClearBooksInfo();
+            BooksListBox.SelectedIndex = -1;
+            EnablesOrDisablesInputBox(true);
+            flagAddBookButton = true;
         }
 
         private void DeleteBookButton_Click(object sender, EventArgs e)
         {
             _currentBook = _booksList[BooksListBox.SelectedIndex];
             _booksList.Remove(_currentBook);
+            BooksListBox.SelectedIndex = -1;
             Sort();
+            ClearBooksInfo();
+            SaveBookButton_Click(sender, e);
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (BooksListBox.Items.Count == 0)
+            {
+                if (flagAddBookButton)
+                {
+                    EnablesOrDisablesInputBox(true);
+                }
+
+                return;
+            }
+
+            _cloneCurrentBook = (Book)_currentBook.Clone();
+            EnablesOrDisablesInputBox(true);
+        }
+
+        private void ApplyButton_Click(object sender, EventArgs e)
+        {
+            if (flagAddBookButton && 
+                NameTextBox.Text != "" && 
+                YearTextBox.Text != "" && 
+                AuthorTextBox.Text != "" && 
+                PageTextBox.Text != "" && 
+                GenreComboBox.Text != "")
+            {
+                _currentBook = new Book(
+                    NameTextBox.Text.ToString(), 
+                    Convert.ToInt32(YearTextBox.Text), 
+                    AuthorTextBox.Text.ToString(), 
+                    Convert.ToInt32(PageTextBox.Text), 
+                    GenreComboBox.Text.ToString()
+                    );
+                _booksList.Add(_currentBook);
+                Sort();
+                SaveBookButton_Click(sender, e);
+                EnablesOrDisablesInputBox(false);
+                flagAddBookButton = false;
+                return;
+            }
+
+            _currentBook = _cloneCurrentBook;
+            Sort();
+            SaveBookButton_Click(sender, e);
+            EnablesOrDisablesInputBox(false);
         }
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClearBooksInfo();
             if (BooksListBox.SelectedIndex != -1)
             {
+                EnablesOrDisablesInputBox(false);
                 _currentBook = _booksList[BooksListBox.SelectedIndex];
-                NameTextBox.Text = _currentBook.Name.ToString();
-                YearTextBox.Text = _currentBook.Year.ToString();
-                AuthorTextBox.Text = _currentBook.Author.ToString();
-                PageTextBox.Text = _currentBook.Page.ToString();
-                GenreComboBox.Text = _currentBook.Genre;
+                _cloneCurrentBook = (Book)_currentBook.Clone();
+                NameTextBox.Text = _cloneCurrentBook.Name.ToString();
+                YearTextBox.Text = _cloneCurrentBook.Year.ToString();
+                AuthorTextBox.Text = _cloneCurrentBook.Author.ToString();
+                PageTextBox.Text = _cloneCurrentBook.Page.ToString();
+                GenreComboBox.Text = _cloneCurrentBook.Genre;
             }
         }
 
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
             // TODO: пути
-            var filePath = Environment.CurrentDirectory + @"\Books.txt";
-            using (StreamWriter writer = new StreamWriter(filePath, false))
+            var filePath = Environment.CurrentDirectory + @"\Books.json";
+            if (BooksListBox.Items.Count != 0)
             {
-                for (int i = 0; i < BooksListBox.Items.Count; i++)
-                {
-                    var book = $"{BooksListBox.Items[i]} / {_booksList[i].Page} / {_booksList[i].Year}";
-                    writer.WriteLine(book);
-                }
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
+                File.WriteAllText(filePath, jsonString);
             }
         }
 
@@ -295,28 +350,13 @@ namespace AppBooks.View.Panels
         private void LoadBooksInfo()
         {
             // TODO: пути Directory.GetCurrentDirectory
-            var filePath = Environment.CurrentDirectory + @"\Books.txt";
-            StreamReader reader = new StreamReader(filePath);
-            string? line = reader.ReadLine();
-            while (line != null)
+            //var filePath = Environment.CurrentDirectory + @"\Books.json";
+            var filePath = Directory.GetCurrentDirectory + @"\Books.json";
+            if (File.Exists(fileName))
             {
-                string[] words = line.Split('/');
-                for (int i = 0; i < words.Length; i++)
-                {
-                    words[i] = words[i].Trim();
-                }
-                var _currentBook = new Book();
-                _currentBook.Name = words[0];
-                _currentBook.Author = words[1];
-                _currentBook.Genre = words[2];
-                _currentBook.Page = Convert.ToInt32(words[3]);
-                _currentBook.Year = Convert.ToInt32(words[4]);
-                _booksList.Add(_currentBook);
-                BooksListBox.Items.Add(_currentBook);
-                line = reader.ReadLine();
+                _booksList = JsonConvert.DeserializeObject<List<Book>>(File.ReadAllText(fileName));
+                Sort();
             }
-            reader.Close();
-            Sort();
         }
 
         // TODO: xml
@@ -339,8 +379,26 @@ namespace AppBooks.View.Panels
         /// </summary>
         private void Sort()
         {
+            indexBeforeSort = BooksListBox.SelectedIndex;
+            BooksListBox.SelectedIndexChanged -= BooksListBox_SelectedIndexChanged;
             _booksList = _booksList.OrderBy(book => book.ToString()).ToList();
             BooksListBox.DataSource = _booksList;
+            BooksListBox.SelectedIndex = indexBeforeSort;
+            BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
+        }
+
+        /// <summary>
+        /// Метод, который включает или отключает все TextBox, ComboBox и ApplyButton.
+        /// </summary>
+        /// <param name="value">True or false.</param>
+        private void EnablesOrDisablesInputBox(bool value)
+        {
+            NameTextBox.Enabled = value;
+            YearTextBox.Enabled = value;
+            AuthorTextBox.Enabled = value;
+            PageTextBox.Enabled = value;
+            GenreComboBox.Enabled = value;
+            ApplyButton.Visible = value;
         }
     }
 }

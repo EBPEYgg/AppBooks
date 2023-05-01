@@ -210,7 +210,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup AppBooks"
         "ProductCode" = "8:{B6E80B4E-6CF8-4E61-8369-B266A98B1975}"
-        "PackageCode" = "8:{FB39D32F-9D04-41F5-9FA1-049098A80363}"
+        "PackageCode" = "8:{D6B6FBC7-3B40-435D-9549-9C0CD94F7D52}"
         "UpgradeCode" = "8:{31CE74EF-ECDB-40D1-BE5D-3FEEE036472F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -330,7 +330,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_701EC5DF97DF4CC6B9D32209FE50374E"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4AE2E3037559412BB4579D003C77EB13"
+            {
+            "Name" = "8:AppBook"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E1BFD95DA70A4CDBAD1147E72230C802"
+            "Folder" = "8:_044637D3A5634DA4AD27DB6D201CFBF8"
+            "WorkingFolder" = "8:_044637D3A5634DA4AD27DB6D201CFBF8"
+            "Icon" = "8:_3D679325CBCA4ACE854D8CD78E5CCF96"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_66FB95E28EFF4A3C9A2C44A14C781DD9"
             {
             "Name" = "8:AppBook"
             "Arguments" = "8:"
@@ -344,7 +358,7 @@
             "Icon" = "8:_3D679325CBCA4ACE854D8CD78E5CCF96"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7FA5E87F1F5F419F80D0905D3CB8A144"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_72E0D648585A44639132047BE512D367"
             {
             "Name" = "8:AppBook"
             "Arguments" = "8:"
@@ -356,20 +370,6 @@
             "Folder" = "8:_818DD4EA04354F1AAAFEB4BC957BEC98"
             "WorkingFolder" = "8:_044637D3A5634DA4AD27DB6D201CFBF8"
             "Icon" = "8:_3D679325CBCA4ACE854D8CD78E5CCF96"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D2A73BCA811B433CA286E337996A096D"
-            {
-            "Name" = "8:AppBook"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_E1BFD95DA70A4CDBAD1147E72230C802"
-            "Folder" = "8:_044637D3A5634DA4AD27DB6D201CFBF8"
-            "WorkingFolder" = "8:_044637D3A5634DA4AD27DB6D201CFBF8"
-            "Icon" = "8:"
             "Feature" = "8:"
             }
         }
