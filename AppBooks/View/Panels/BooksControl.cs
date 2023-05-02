@@ -8,6 +8,17 @@ using System.Net.Http.Json;
 using System.Text;
 using Newtonsoft.Json;
 
+// TODO: замечание по добавлению и изменению. Можно использовать только _currentBook и _selectedIndex, чтобы добавлять и изменять объекты:
+// TODO: 1. При добавлении _selectedIndex приравниваем -1, _currentBook = new Book().
+//          Включаем все поля для ввода. При изменении изменяем _currentBook.
+//          После нажатия на Apply, идет проверка _selectedIndex == -1. Если _selectedIndex == -1, то значит это добавление.
+//          Тогда добавляем элемент _booksList.Add(_currentBook), сортируем, сохраняем и отключаем контролы.
+// TODO: 2. При изменении _selectedIndex равен выбранному индексу.
+//          _currentBook = (Book)_booksList[_selectedIndex].Clone.
+//          Также изменяем _currentBook. После нажатия на Apply, идет проверка _selectedIndex == -1.
+//          Если условие не пройдено, то значит это изменение. Тогда заменяем элемент _booksList[_selectedIndex]= _currentBook,
+//          сортируем, сохраняем и отключаем контролы.
+
 namespace AppBooks.View.Panels
 {
     /// <summary>
@@ -392,7 +403,7 @@ namespace AppBooks.View.Panels
             BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
         }
 
-        // TODO: переименовать в ToggleInputTextBoxes
+        // TODO: переименовать в ToggleInputBoxes
         /// <summary>
         /// Метод, который включает или отключает все TextBox, ComboBox и ApplyButton.
         /// </summary>
