@@ -72,6 +72,7 @@
             // 
             // EditButton
             // 
+            this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
@@ -114,6 +115,7 @@
             // 
             // AddBookButton
             // 
+            this.AddBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.AddBookButton.BackColor = System.Drawing.Color.Transparent;
             this.AddBookButton.FlatAppearance.BorderSize = 0;
             this.AddBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
