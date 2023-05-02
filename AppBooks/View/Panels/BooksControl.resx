@@ -61,7 +61,7 @@
   <data name="EditButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAq1JREFUaEPtmjmrE2EUhiMo2FoIohYW6nUp/AGiKGJlp427lQsWrgiK2lhp6dYo
+        DAAACwwBP0AiyAAAAq1JREFUaEPtmjmrE2EUhiMo2FoIohYW6nUp/AGiKGJlp427lQsWrgiK2lhp6dYo
         yG0EK8FOrBTRSkQsXEHFHcQFl8Ld5w1z4Dg3M0nmnsnMwH3gIZnv5s73vh+TTDJJqyaswNv4Ea/gfGwM
         2/EP/nV+wUVYe3z4J3gIvybbtS+xGS38M5yBYiF+Ro1/w6VYO7Zgp/BGrUv48E8xHd6oZQkfXh7FPGpV
         Ih3ePIB51KLEVvSHzXByvxElfPjHOB3H4YlkzNRLaB6VlNiB6fBGkRKL0Z8n5mFp+PCP0Ic3OpU4jHn4
@@ -116,4 +116,10 @@
         bg+SyeuCqfZd4AAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="ErrorToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>68, 16</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>63</value>
+  </metadata>
 </root>

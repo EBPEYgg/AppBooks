@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppBooks", "AppBooks.csproj", "{EEB9A19A-4451-4112-9166-73E0F39EE29A}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup AppBooks", "..\Setup AppBooks\Setup AppBooks.vdproj", "{9812BC9C-D742-4E78-B6F8-AF0F40C3D023}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup AppBook", "..\Setup AppBook\Setup AppBook.vdproj", "{55876A91-C215-42B6-B132-3079F291AF6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{EEB9A19A-4451-4112-9166-73E0F39EE29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB9A19A-4451-4112-9166-73E0F39EE29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB9A19A-4451-4112-9166-73E0F39EE29A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9812BC9C-D742-4E78-B6F8-AF0F40C3D023}.Debug|Any CPU.ActiveCfg = Debug
-		{9812BC9C-D742-4E78-B6F8-AF0F40C3D023}.Release|Any CPU.ActiveCfg = Release
+		{55876A91-C215-42B6-B132-3079F291AF6D}.Debug|Any CPU.ActiveCfg = Debug
+		{55876A91-C215-42B6-B132-3079F291AF6D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

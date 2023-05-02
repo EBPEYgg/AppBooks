@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 using System.Net.Http.Json;
 using System.Text;
 using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Reflection.Metadata.BlobBuilder;
+using AppBooks.Model.Classes;
 
 // TODO: замечание по добавлению и изменению. Можно использовать только _currentBook и _selectedIndex, чтобы добавлять и изменять объекты:
 // TODO: 1. При добавлении _selectedIndex приравниваем -1, _currentBook = new Book().
@@ -30,33 +33,9 @@ namespace AppBooks.View.Panels
         // TODO: некоторые поля и константы не используются
         // TODO: Все элементы класса должны разделяться одной строкой
         /// <summary>
-        /// Минимальный год выпуска книги.
-        /// </summary>
-        const int minYear = 0;
-        /// <summary>
-        /// Максимальный год выпуска книги.
-        /// </summary>
-        const int maxYear = 2024;
-        /// <summary>
-        /// Минимальное кол-во страниц в книге.
-        /// </summary>
-        const int minPage = 1;
-        /// <summary>
-        /// Максимальное кол-во страниц в книге.
-        /// </summary>
-        const int maxPage = 10000;
-        /// <summary>
-        /// Заголовок для окна возникшей ошибки при вводе неверного значения в TextBox.
-        /// </summary>
-        const string inputError = "Ошибка ввода";
-        /// <summary>
-        /// Количество элементов в перечислении <see cref="Genre"/>.
-        /// </summary>
-        int amountGenre = Enum.GetNames(typeof(Genre)).Length;
-        /// <summary>
         /// Индекс выбранной книги перед сортировкой.
         /// </summary>
-        int indexBeforeSort;
+        private int indexBeforeSort;
         /// <summary>
         /// Список с данными о книгах.
         /// </summary>
@@ -65,24 +44,6 @@ namespace AppBooks.View.Panels
         /// Список с данными текущей выбранной книги.
         /// </summary>
         private Book _currentBook = new Book();
-        /// <summary>
-        /// Массив с названиями книг.
-        /// </summary>
-        private string[] name = {
-                "Eugene Onegin",
-                "War and Peace",
-                "The Gambler",
-                "A Hero of Our Time",
-                "Anna Karenina" };
-        /// <summary>
-        /// Массив с именами авторов (Имя Фамилия).
-        /// </summary>
-        private string[] authors = {
-                "Alexander Pushkin",
-                "Mikhail Lermontov",
-                "Leo Tolstoy",
-                "Fyodor Dostoevsky",
-                "Ivan Turgenev" };
         /// <summary>
         /// Копия текущей выбранной книги.
         /// </summary>
@@ -112,25 +73,11 @@ namespace AppBooks.View.Panels
             GenreComboBox.SelectedIndex = -1;
         }
 
-        // TODO: не используется
-        /// <summary>
-        /// Выбор случайного элемента из массива строк.
-        /// </summary>
-        /// <param name="array">Массив строк.</param>
-        /// <returns>Один элемент типа string.</returns>
-        public string PickRandomAmongStringArray(string[] array)
-        {
-            Random random = new Random();
-            int randomIndex = random.Next(0, array.Length);
-            var randomArrayElement = array[randomIndex];
-            return randomArrayElement;
-        }
-
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (NameTextBox.Text != "")
+                if (!string.IsNullOrEmpty(NameTextBox.Text))
                 {
                     var flag = false;
                     foreach (var item in NameTextBox.Text)
@@ -154,7 +101,7 @@ namespace AppBooks.View.Panels
             catch (ArgumentException ex)
             {
                 NameTextBox.BackColor = Color.LightPink;
-                MessageBox.Show(ex.Message, inputError);
+                ErrorToolTip.SetToolTip((Control)sender, ex.Message);
             }
         }
 
@@ -162,7 +109,7 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                if (YearTextBox.Text != "")
+                if (!string.IsNullOrEmpty(YearTextBox.Text))
                 {
                     if (!int.TryParse(YearTextBox.Text, out var number))
                     {
@@ -177,17 +124,17 @@ namespace AppBooks.View.Panels
             catch (FormatException)
             {
                 YearTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Введите корректное число.", inputError);
+                ErrorToolTip.SetToolTip((Control)sender, "Введите корректное число.");
             }
             catch (OverflowException)
             {
                 YearTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Некорректное значение.", inputError);
+                ErrorToolTip.SetToolTip((Control)sender, "Некорректное значение.");
             }
             catch (ArgumentException ex)
             {
                 YearTextBox.BackColor = Color.LightPink;
-                MessageBox.Show(ex.Message, inputError);
+                ErrorToolTip.SetToolTip((Control)sender, ex.Message);
             }
         }
 
@@ -195,7 +142,7 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                if (AuthorTextBox.Text != "")
+                if (!string.IsNullOrEmpty(AuthorTextBox.Text))
                 {
                     var flag = false;
                     foreach (var item in AuthorTextBox.Text)
@@ -222,7 +169,7 @@ namespace AppBooks.View.Panels
             catch (ArgumentException ex)
             {
                 AuthorTextBox.BackColor = Color.LightPink;
-                MessageBox.Show(ex.Message, inputError);
+                ErrorToolTip.SetToolTip((Control)sender, ex.Message);
             }
         }
 
@@ -230,7 +177,7 @@ namespace AppBooks.View.Panels
         {
             try
             {
-                if (PageTextBox.Text != "")
+                if (!string.IsNullOrEmpty(PageTextBox.Text))
                 {
                     if (!int.TryParse(PageTextBox.Text, out var number))
                     {
@@ -245,17 +192,17 @@ namespace AppBooks.View.Panels
             catch (FormatException)
             {
                 PageTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Введите корректное число.", inputError);
+                ErrorToolTip.SetToolTip((Control)sender, "Введите корректное число.");
             }
             catch (OverflowException)
             {
                 PageTextBox.BackColor = Color.LightPink;
-                MessageBox.Show("Некорректное значение.", inputError);
+                ErrorToolTip.SetToolTip((Control)sender, "Некорректное значение.");
             }
             catch (ArgumentException ex)
             {
                 PageTextBox.BackColor = Color.LightPink;
-                MessageBox.Show(ex.Message, inputError);
+                ErrorToolTip.SetToolTip((Control)sender, ex.Message);
             }
         }
 
@@ -272,7 +219,7 @@ namespace AppBooks.View.Panels
         {
             ClearBooksInfo();
             BooksListBox.SelectedIndex = -1;
-            EnablesOrDisablesInputBox(true);
+            ToggleInputBoxes(true);
             flagAddBookButton = true;
         }
 
@@ -284,7 +231,7 @@ namespace AppBooks.View.Panels
             Sort();
             ClearBooksInfo();
             // TODO: вызывать не обработчик события, а сделать отдельно метод сохранения
-            SaveBookButton_Click(sender, e);
+            SaveBook();
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -293,25 +240,25 @@ namespace AppBooks.View.Panels
             {
                 if (flagAddBookButton)
                 {
-                    EnablesOrDisablesInputBox(true);
+                    ToggleInputBoxes(true);
                 }
 
                 return;
             }
 
             _cloneCurrentBook = (Book)_currentBook.Clone();
-            EnablesOrDisablesInputBox(true);
+            ToggleInputBoxes(true);
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             // TODO: string.IsEmpty(NameTextBox.Text) Так со всеми
-            if (flagAddBookButton && 
-                NameTextBox.Text != "" && 
-                YearTextBox.Text != "" && 
-                AuthorTextBox.Text != "" && 
-                PageTextBox.Text != "" && 
-                GenreComboBox.Text != "")
+            if (flagAddBookButton &&
+                !string.IsNullOrEmpty(NameTextBox.Text) &&
+                !string.IsNullOrEmpty(YearTextBox.Text) &&
+                !string.IsNullOrEmpty(AuthorTextBox.Text) &&
+                !string.IsNullOrEmpty(PageTextBox.Text) &&
+                !string.IsNullOrEmpty(GenreComboBox.Text))
             {
                 _currentBook = new Book(
                     NameTextBox.Text.ToString(), 
@@ -322,25 +269,27 @@ namespace AppBooks.View.Panels
                     );
                 _booksList.Add(_currentBook);
                 Sort();
-                SaveBookButton_Click(sender, e);
-                EnablesOrDisablesInputBox(false);
+                SaveBook();
+                ToggleInputBoxes(false);
                 flagAddBookButton = false;
                 return;
             }
 
             // TODO: не происходит применение, тк клонированный элемент не заменяется в самой коллекции.
-            // TODO: сначала нужно заменить значение по индексу на склонированное, затем провести сортировку (_currentBook установить между заменой в коллекции и сортировкой)
+            // TODO: сначала нужно заменить значение по индексу на склонированное,
+            // затем провести сортировку (_currentBook установить между заменой в коллекции и сортировкой)
+            _booksList[BooksListBox.SelectedIndex] = _cloneCurrentBook;
             _currentBook = _cloneCurrentBook;
             Sort();
-            SaveBookButton_Click(sender, e);
-            EnablesOrDisablesInputBox(false);
+            SaveBook();
+            ToggleInputBoxes(false);
         }
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (BooksListBox.SelectedIndex != -1)
             {
-                EnablesOrDisablesInputBox(false);
+                ToggleInputBoxes(false);
                 _currentBook = _booksList[BooksListBox.SelectedIndex];
                 _cloneCurrentBook = (Book)_currentBook.Clone();
                 NameTextBox.Text = _cloneCurrentBook.Name.ToString();
@@ -353,11 +302,16 @@ namespace AppBooks.View.Panels
 
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
-            var filePath = Environment.CurrentDirectory + @"\Books.json";
+            SaveBook();
+        }
+
+        // TODO: access to the path is denied.
+        private void SaveBook()
+        {
             if (BooksListBox.Items.Count != 0)
             {
-                string jsonString = JsonSerializer.Serialize(_booksList);
-                File.WriteAllText(filePath, jsonString);
+                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
+                File.WriteAllText("Books.json", jsonString);
             }
         }
         
@@ -367,9 +321,7 @@ namespace AppBooks.View.Panels
         /// </summary>
         private void LoadBooksInfo()
         {
-            //var filePath = Environment.CurrentDirectory + @"\Books.json";
             // TODO: не используется
-            var filePath = Directory.GetCurrentDirectory + @"\Books.json";
             if (File.Exists(fileName))
             {
                 _booksList = JsonConvert.DeserializeObject<List<Book>>(File.ReadAllText(fileName));
@@ -408,7 +360,7 @@ namespace AppBooks.View.Panels
         /// Метод, который включает или отключает все TextBox, ComboBox и ApplyButton.
         /// </summary>
         /// <param name="value">True or false.</param>
-        private void EnablesOrDisablesInputBox(bool value)
+        private void ToggleInputBoxes(bool value)
         {
             NameTextBox.Enabled = value;
             YearTextBox.Enabled = value;

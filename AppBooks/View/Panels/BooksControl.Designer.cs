@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooksControl));
             this.BooksGroupBox = new System.Windows.Forms.GroupBox();
             this.EditButton = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@
             this.YearTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.BooksControlTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ErrorToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.BooksGroupBox.SuspendLayout();
             this.SelectedBookGroupBox.SuspendLayout();
             this.BooksControlTableLayoutPanel.SuspendLayout();
@@ -221,10 +223,12 @@
             // 
             this.GenreComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GenreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GenreComboBox.Enabled = false;
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(155, 185);
             this.GenreComboBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.GenreComboBox.MaxDropDownItems = 6;
             this.GenreComboBox.Name = "GenreComboBox";
             this.GenreComboBox.Size = new System.Drawing.Size(154, 28);
             this.GenreComboBox.TabIndex = 4;
@@ -232,6 +236,7 @@
             // 
             // PageTextBox
             // 
+            this.PageTextBox.AccessibleDescription = "Некорректное число.";
             this.PageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PageTextBox.Enabled = false;
@@ -244,6 +249,7 @@
             // 
             // AuthorTextBox
             // 
+            this.AuthorTextBox.AccessibleDescription = "Некорректное имя автора.";
             this.AuthorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AuthorTextBox.Enabled = false;
@@ -256,6 +262,7 @@
             // 
             // YearTextBox
             // 
+            this.YearTextBox.AccessibleDescription = "Некорректное число.";
             this.YearTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.YearTextBox.Enabled = false;
@@ -268,6 +275,7 @@
             // 
             // NameTextBox
             // 
+            this.NameTextBox.AccessibleDescription = "Некорректное название книги.";
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Enabled = false;
@@ -292,6 +300,12 @@
             this.BooksControlTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.BooksControlTableLayoutPanel.Size = new System.Drawing.Size(720, 523);
             this.BooksControlTableLayoutPanel.TabIndex = 2;
+            // 
+            // ErrorToolTip
+            // 
+            this.ErrorToolTip.ShowAlways = true;
+            this.ErrorToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
+            this.ErrorToolTip.ToolTipTitle = "Ошибка ввода";
             // 
             // BooksControl
             // 
@@ -329,5 +343,6 @@
         private TableLayoutPanel BooksControlTableLayoutPanel;
         private Button EditButton;
         private Button ApplyButton;
+        private ToolTip ErrorToolTip;
     }
 }
