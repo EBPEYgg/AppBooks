@@ -1,8 +1,8 @@
 ﻿/// <summary>
 /// Класс, описывающий методы для проверки входящих значений.
 /// </summary>
-// TODO: bool -> void
-static internal class Validator
+// TODO: namespace
+internal static class Validator
 {
     /// <summary>
     /// Метод, который проверяет число на положительность.
@@ -63,7 +63,6 @@ static internal class Validator
     /// </summary>
     /// <param name="name">Строка.</param>
     /// <returns>True or false.</returns>
-    // TODO: Check...()
     public static bool CheckStringContainsOnlyEnglishLetters(string? value)
     {
         bool flag = true;

@@ -1,5 +1,6 @@
 ﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System;
+// TODO: namespace
 /// <summary>
 /// Класс, описывающий книгу.
 /// </summary>
@@ -92,6 +93,7 @@ internal class Book : ICloneable
     /// <summary>
     /// Возвращает и задает жанр. Должен быть написан на латинице.
     /// </summary>
+    // TODO: можно использовать авто свойство
     public string Genre
     {
         get => _genre;

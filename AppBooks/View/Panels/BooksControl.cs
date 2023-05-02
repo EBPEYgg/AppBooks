@@ -15,6 +15,9 @@ namespace AppBooks.View.Panels
     /// </summary>
     public partial class BooksControl : UserControl
     {
+        // TODO: RSDN
+        // TODO: некоторые поля и константы не используются
+        // TODO: Все элементы класса должны разделяться одной строкой
         /// <summary>
         /// Минимальный год выпуска книги.
         /// </summary>
@@ -85,8 +88,7 @@ namespace AppBooks.View.Panels
         /// JSON строка с данными элемента.
         /// </summary>
         private string jsonString;
-
-        // TODO: конструктор
+        
         public BooksControl()
         {
             InitializeComponent();
@@ -99,6 +101,7 @@ namespace AppBooks.View.Panels
             GenreComboBox.SelectedIndex = -1;
         }
 
+        // TODO: не используется
         /// <summary>
         /// Выбор случайного элемента из массива строк.
         /// </summary>
@@ -121,7 +124,6 @@ namespace AppBooks.View.Panels
                     var flag = false;
                     foreach (var item in NameTextBox.Text)
                     {
-                        // TODO: длина строки
                         if (Validator.CheckStringContainsOnlyEnglishLetters(NameTextBox.Text))
                         {
                             flag = true;
@@ -187,7 +189,6 @@ namespace AppBooks.View.Panels
                     var flag = false;
                     foreach (var item in AuthorTextBox.Text)
                     {
-                        // TODO: длина строки
                         if (Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
                         {
                             flag = true;
@@ -200,6 +201,10 @@ namespace AppBooks.View.Panels
                         AuthorTextBox.BackColor = Color.White;
                         return;
                     }
+
+                    // TODO: вместо выброса исключения изменять тут цвет, используя if/else
+                    // TODO: убрать постоянный открытие MessageBox при некорректном воде.
+                    // TODO: Если нужно показать сообщение об ошибке, то лучше использовать ToolTip
                     throw new ArgumentException("Некорректное имя автора.");
                 }
             }
@@ -267,6 +272,7 @@ namespace AppBooks.View.Panels
             BooksListBox.SelectedIndex = -1;
             Sort();
             ClearBooksInfo();
+            // TODO: вызывать не обработчик события, а сделать отдельно метод сохранения
             SaveBookButton_Click(sender, e);
         }
 
@@ -288,6 +294,7 @@ namespace AppBooks.View.Panels
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
+            // TODO: string.IsEmpty(NameTextBox.Text) Так со всеми
             if (flagAddBookButton && 
                 NameTextBox.Text != "" && 
                 YearTextBox.Text != "" && 
@@ -310,6 +317,8 @@ namespace AppBooks.View.Panels
                 return;
             }
 
+            // TODO: не происходит применение, тк клонированный элемент не заменяется в самой коллекции.
+            // TODO: сначала нужно заменить значение по индексу на склонированное, затем провести сортировку (_currentBook установить между заменой в коллекции и сортировкой)
             _currentBook = _cloneCurrentBook;
             Sort();
             SaveBookButton_Click(sender, e);
@@ -333,24 +342,22 @@ namespace AppBooks.View.Panels
 
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
-            // TODO: пути
             var filePath = Environment.CurrentDirectory + @"\Books.json";
             if (BooksListBox.Items.Count != 0)
             {
-                string jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
+                string jsonString = JsonSerializer.Serialize(_booksList);
                 File.WriteAllText(filePath, jsonString);
             }
         }
-
-        // TODO: вынести в сам метод комментарии
+        
         /// <summary>
         /// Метод, который построчно считывает текстовый файл 
         /// для заполнения <see cref="BooksListBox"/> и <see cref="_booksList"/>.
         /// </summary>
         private void LoadBooksInfo()
         {
-            // TODO: пути Directory.GetCurrentDirectory
             //var filePath = Environment.CurrentDirectory + @"\Books.json";
+            // TODO: не используется
             var filePath = Directory.GetCurrentDirectory + @"\Books.json";
             if (File.Exists(fileName))
             {
@@ -358,8 +365,7 @@ namespace AppBooks.View.Panels
                 Sort();
             }
         }
-
-        // TODO: xml
+        
         /// <summary>
         /// Метод, который очищает текстовые поля и ComboBox.
         /// </summary>
@@ -371,8 +377,7 @@ namespace AppBooks.View.Panels
             PageTextBox.Clear();
             GenreComboBox.SelectedIndex = -1;
         }
-
-        // TODO: xml
+        
         /// <summary>
         /// Метод, который сортирует <see cref="_booksList"/> и <see cref="BooksListBox"/>
         /// в алфавитном порядке.
@@ -387,6 +392,7 @@ namespace AppBooks.View.Panels
             BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
         }
 
+        // TODO: переименовать в ToggleInputTextBoxes
         /// <summary>
         /// Метод, который включает или отключает все TextBox, ComboBox и ApplyButton.
         /// </summary>

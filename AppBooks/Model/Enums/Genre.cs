@@ -1,6 +1,7 @@
 ﻿/// <summary>
 /// Перечисление, описывающее жанр художественного произведения.
 /// </summary>
+// TODO: namespace
 public enum Genre
 {
     // TODO: xml
