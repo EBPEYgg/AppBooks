@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Reflection.Metadata.BlobBuilder;
 using AppBooks.Model.Classes;
+using AppBooks.Model.Enums;
 
 // TODO: замечание по добавлению и изменению. Можно использовать только _currentBook и _selectedIndex, чтобы добавлять и изменять объекты:
 // TODO: 1. При добавлении _selectedIndex приравниваем -1, _currentBook = new Book().
@@ -33,10 +34,6 @@ namespace AppBooks.View.Panels
         // TODO: некоторые поля и константы не используются
         // TODO: Все элементы класса должны разделяться одной строкой
         /// <summary>
-        /// Индекс выбранной книги перед сортировкой.
-        /// </summary>
-        private int indexBeforeSort;
-        /// <summary>
         /// Список с данными о книгах.
         /// </summary>
         private List<Book> _booksList = new List<Book>();
@@ -48,6 +45,10 @@ namespace AppBooks.View.Panels
         /// Копия текущей выбранной книги.
         /// </summary>
         private Book _cloneCurrentBook = new();
+        /// <summary>
+        /// Индекс текущего выбранного элемента перед сортировкой.
+        /// </summary>
+        private int indexBeforeSort;
         /// <summary>
         /// Индекс текущего выбранного элемента для добавления и редактирования элементов.
         /// </summary>

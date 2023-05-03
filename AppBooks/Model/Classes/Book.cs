@@ -10,14 +10,17 @@ namespace AppBooks.Model.Classes
         /// Название книги.
         /// </summary>
         private string? _name;
+
         /// <summary>
         /// Год выхода книги.
         /// </summary>
         private int _year;
+
         /// <summary>
         /// Имя автора книги.
         /// </summary>
         private string? _author;
+
         /// <summary>
         /// Количество страниц в книге.
         /// </summary>

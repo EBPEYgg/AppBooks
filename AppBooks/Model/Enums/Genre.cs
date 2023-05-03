@@ -2,36 +2,39 @@
 /// Перечисление, описывающее жанр художественного произведения.
 /// </summary>
 // TODO: namespace
-public enum Genre
+namespace AppBooks.Model.Enums
 {
-    // TODO: xml
-    /// <summary>
-    /// Драма.
-    /// </summary>
-    Drama,
+    public enum Genre
+    {
+        // TODO: xml
+        /// <summary>
+        /// Драма.
+        /// </summary>
+        Drama,
 
-    /// <summary>
-    /// Триллер.
-    /// </summary>
-    Thriller,
+        /// <summary>
+        /// Триллер.
+        /// </summary>
+        Thriller,
 
-    /// <summary>
-    /// Ужасы.
-    /// </summary>
-    Horror,
+        /// <summary>
+        /// Ужасы.
+        /// </summary>
+        Horror,
 
-    /// <summary>
-    /// Приключения.
-    /// </summary>
-    Adventures,
+        /// <summary>
+        /// Приключения.
+        /// </summary>
+        Adventures,
 
-    /// <summary>
-    /// Фантастика.
-    /// </summary>
-    Fiction,
+        /// <summary>
+        /// Фантастика.
+        /// </summary>
+        Fiction,
 
-    /// <summary>
-    /// Фэнтези.
-    /// </summary>
-    Fantasy
+        /// <summary>
+        /// Фэнтези.
+        /// </summary>
+        Fantasy
+    }
 }

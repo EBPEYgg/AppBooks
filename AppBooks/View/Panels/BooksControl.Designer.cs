@@ -80,7 +80,7 @@
             this.EditButton.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(48, 48);
-            this.EditButton.TabIndex = 10;
+            this.EditButton.TabIndex = 3;
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
@@ -109,7 +109,7 @@
             this.DeleteBookButton.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.DeleteBookButton.Name = "DeleteBookButton";
             this.DeleteBookButton.Size = new System.Drawing.Size(48, 48);
-            this.DeleteBookButton.TabIndex = 3;
+            this.DeleteBookButton.TabIndex = 4;
             this.DeleteBookButton.UseVisualStyleBackColor = true;
             this.DeleteBookButton.Click += new System.EventHandler(this.DeleteBookButton_Click);
             // 
@@ -233,7 +233,7 @@
             this.GenreComboBox.MaxDropDownItems = 6;
             this.GenreComboBox.Name = "GenreComboBox";
             this.GenreComboBox.Size = new System.Drawing.Size(154, 28);
-            this.GenreComboBox.TabIndex = 4;
+            this.GenreComboBox.TabIndex = 9;
             this.GenreComboBox.SelectedIndexChanged += new System.EventHandler(this.GenreComboBox_SelectedIndexChanged);
             // 
             // PageTextBox
@@ -246,7 +246,7 @@
             this.PageTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.PageTextBox.Name = "PageTextBox";
             this.PageTextBox.Size = new System.Drawing.Size(154, 27);
-            this.PageTextBox.TabIndex = 3;
+            this.PageTextBox.TabIndex = 8;
             this.PageTextBox.TextChanged += new System.EventHandler(this.PageTextBox_TextChanged);
             // 
             // AuthorTextBox
@@ -259,7 +259,7 @@
             this.AuthorTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.AuthorTextBox.Name = "AuthorTextBox";
             this.AuthorTextBox.Size = new System.Drawing.Size(154, 27);
-            this.AuthorTextBox.TabIndex = 2;
+            this.AuthorTextBox.TabIndex = 7;
             this.AuthorTextBox.TextChanged += new System.EventHandler(this.AuthorTextBox_TextChanged);
             // 
             // YearTextBox
@@ -272,7 +272,7 @@
             this.YearTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.YearTextBox.Name = "YearTextBox";
             this.YearTextBox.Size = new System.Drawing.Size(154, 27);
-            this.YearTextBox.TabIndex = 1;
+            this.YearTextBox.TabIndex = 6;
             this.YearTextBox.TextChanged += new System.EventHandler(this.YearTextBox_TextChanged);
             // 
             // NameTextBox
@@ -285,7 +285,7 @@
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(154, 27);
-            this.NameTextBox.TabIndex = 0;
+            this.NameTextBox.TabIndex = 5;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // BooksControlTableLayoutPanel
@@ -305,7 +305,9 @@
             // 
             // ErrorToolTip
             // 
-            this.ErrorToolTip.ShowAlways = true;
+            this.ErrorToolTip.AutoPopDelay = 5000;
+            this.ErrorToolTip.InitialDelay = 100;
+            this.ErrorToolTip.ReshowDelay = 100;
             this.ErrorToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
             this.ErrorToolTip.ToolTipTitle = "Ошибка ввода";
             // 
