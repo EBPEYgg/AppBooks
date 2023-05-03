@@ -82,18 +82,6 @@ namespace AppBooks.View.Panels
             }
         }
 
-        /// <summary>
-        /// Метод, который сохраняет данные всех кииг в json файл "Books.json".
-        /// </summary>
-        public void SaveBook()
-        {
-            if (BooksListBox.Items.Count != 0)
-            {
-                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
-                File.WriteAllText("Books.json", jsonString);
-            }
-        }
-
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
