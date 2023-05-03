@@ -1,14 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Net.Http.Json;
 using System.Text;
 using Newtonsoft.Json;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Reflection.Metadata.BlobBuilder;
 using AppBooks.Model.Classes;
 using AppBooks.Model.Enums;
 
@@ -72,6 +68,18 @@ namespace AppBooks.View.Panels
             // заполнение GenreComboBox
             GenreComboBox.DataSource = Enum.GetValues(typeof(Genre));
             GenreComboBox.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Метод, который сохраняет данные всех книг в json файл (Books.json).
+        /// </summary>
+        public void SaveBook()
+        {
+            if (BooksListBox.Items.Count != 0)
+            {
+                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
+                File.WriteAllText("Books.json", jsonString);
+            }
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
@@ -298,16 +306,6 @@ namespace AppBooks.View.Panels
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
             SaveBook();
-        }
-
-        // TODO: access to the path is denied.
-        private void SaveBook()
-        {
-            if (BooksListBox.Items.Count != 0)
-            {
-                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
-                File.WriteAllText("Books.json", jsonString);
-            }
         }
         
         /// <summary>
