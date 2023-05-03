@@ -301,7 +301,7 @@ namespace AppBooks.View.Panels
         }
 
         // TODO: access to the path is denied.
-        private void SaveBook()
+        public void SaveBook()
         {
             if (BooksListBox.Items.Count != 0)
             {
