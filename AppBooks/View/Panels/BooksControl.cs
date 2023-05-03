@@ -49,18 +49,18 @@ namespace AppBooks.View.Panels
         /// </summary>
         private Book _cloneCurrentBook = new();
         /// <summary>
-        /// Флаг нажатия кнопки <see cref="AddBookButton"/>.
+        /// Индекс текущего выбранного элемента для добавления и редактирования элементов.
         /// </summary>
-        private bool flagAddBookButton = false;
-        /// <summary>
-        /// Название файла для сохранения или загрузки данных.
-        /// </summary>
-        private string fileName = "Books.json";
+        private int _selectedIndex;
         /// <summary>
         /// JSON строка с данными элемента.
         /// </summary>
         private string jsonString;
-        
+        /// <summary>
+        /// Название файла для сохранения или загрузки данных.
+        /// </summary>
+        private string fileName = "Books.json";
+
         public BooksControl()
         {
             InitializeComponent();
@@ -219,8 +219,8 @@ namespace AppBooks.View.Panels
         {
             ClearBooksInfo();
             BooksListBox.SelectedIndex = -1;
+            _selectedIndex = -1;
             ToggleInputBoxes(true);
-            flagAddBookButton = true;
         }
 
         private void DeleteBookButton_Click(object sender, EventArgs e)
@@ -236,24 +236,20 @@ namespace AppBooks.View.Panels
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            if (BooksListBox.Items.Count == 0)
+            if (BooksListBox.Items.Count == 0 || BooksListBox.SelectedIndex == -1)
             {
-                if (flagAddBookButton)
-                {
-                    ToggleInputBoxes(true);
-                }
-
                 return;
             }
 
-            _cloneCurrentBook = (Book)_currentBook.Clone();
+            _selectedIndex = BooksListBox.SelectedIndex;
+            _cloneCurrentBook = (Book)_booksList[_selectedIndex].Clone();
             ToggleInputBoxes(true);
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             // TODO: string.IsEmpty(NameTextBox.Text) Так со всеми
-            if (flagAddBookButton &&
+            if (_selectedIndex == -1 &&
                 !string.IsNullOrEmpty(NameTextBox.Text) &&
                 !string.IsNullOrEmpty(YearTextBox.Text) &&
                 !string.IsNullOrEmpty(AuthorTextBox.Text) &&
@@ -261,24 +257,23 @@ namespace AppBooks.View.Panels
                 !string.IsNullOrEmpty(GenreComboBox.Text))
             {
                 _currentBook = new Book(
-                    NameTextBox.Text.ToString(), 
-                    Convert.ToInt32(YearTextBox.Text), 
-                    AuthorTextBox.Text.ToString(), 
-                    Convert.ToInt32(PageTextBox.Text), 
-                    GenreComboBox.Text.ToString()
-                    );
+                                        NameTextBox.Text.ToString(),
+                                        Convert.ToInt32(YearTextBox.Text),
+                                        AuthorTextBox.Text.ToString(),
+                                        Convert.ToInt32(PageTextBox.Text),
+                                        GenreComboBox.Text.ToString()
+                                        );
                 _booksList.Add(_currentBook);
                 Sort();
                 SaveBook();
                 ToggleInputBoxes(false);
-                flagAddBookButton = false;
                 return;
             }
 
             // TODO: не происходит применение, тк клонированный элемент не заменяется в самой коллекции.
             // TODO: сначала нужно заменить значение по индексу на склонированное,
             // затем провести сортировку (_currentBook установить между заменой в коллекции и сортировкой)
-            _booksList[BooksListBox.SelectedIndex] = _cloneCurrentBook;
+            _booksList[_selectedIndex] = _cloneCurrentBook;
             _currentBook = _cloneCurrentBook;
             Sort();
             SaveBook();
@@ -290,8 +285,7 @@ namespace AppBooks.View.Panels
             if (BooksListBox.SelectedIndex != -1)
             {
                 ToggleInputBoxes(false);
-                _currentBook = _booksList[BooksListBox.SelectedIndex];
-                _cloneCurrentBook = (Book)_currentBook.Clone();
+                _cloneCurrentBook = (Book)_booksList[BooksListBox.SelectedIndex].Clone();
                 NameTextBox.Text = _cloneCurrentBook.Name.ToString();
                 YearTextBox.Text = _cloneCurrentBook.Year.ToString();
                 AuthorTextBox.Text = _cloneCurrentBook.Author.ToString();
