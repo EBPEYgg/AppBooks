@@ -74,6 +74,18 @@ namespace AppBooks.View.Panels
             GenreComboBox.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Метод, который сохраняет данные всех кииг в json файл "Books.json".
+        /// </summary>
+        public void SaveBook()
+        {
+            if (BooksListBox.Items.Count != 0)
+            {
+                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
+                File.WriteAllText("Books.json", jsonString);
+            }
+        }
+
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -298,16 +310,6 @@ namespace AppBooks.View.Panels
         private void SaveBookButton_Click(object sender, EventArgs e)
         {
             SaveBook();
-        }
-
-        // TODO: access to the path is denied.
-        private void SaveBook()
-        {
-            if (BooksListBox.Items.Count != 0)
-            {
-                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
-                File.WriteAllText("Books.json", jsonString);
-            }
         }
         
         /// <summary>
