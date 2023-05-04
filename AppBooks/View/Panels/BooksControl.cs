@@ -1,9 +1,3 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Text;
 using Newtonsoft.Json;
 using AppBooks.Model.Classes;
 using AppBooks.Model.Enums;
@@ -21,30 +15,31 @@ namespace AppBooks.View.Panels
         /// Список с данными о книгах.
         /// </summary>
         private List<Book> _booksList = new List<Book>();
+
         /// <summary>
         /// Список с данными текущей выбранной книги.
         /// </summary>
         private Book _currentBook = new Book();
+
         /// <summary>
         /// Копия текущей выбранной книги.
         /// </summary>
         private Book _cloneCurrentBook = new();
+
         /// <summary>
         /// Индекс текущего выбранного элемента перед сортировкой.
         /// </summary>
-        private int indexBeforeSort;
+        private int _indexBeforeSort;
+
         /// <summary>
         /// Индекс текущего выбранного элемента для добавления и редактирования элементов.
         /// </summary>
         private int _selectedIndex;
-        /// <summary>
-        /// JSON строка с данными элемента.
-        /// </summary>
-        private string jsonString;
+
         /// <summary>
         /// Название файла для сохранения или загрузки данных.
         /// </summary>
-        private string fileName = "Books.json";
+        private string _fileName = "Books.json";
 
         public BooksControl()
         {
@@ -65,7 +60,7 @@ namespace AppBooks.View.Panels
         {
             if (BooksListBox.Items.Count != 0)
             {
-                jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
+                var jsonString = System.Text.Json.JsonSerializer.Serialize(_booksList);
                 File.WriteAllText("Books.json", jsonString);
             }
         }
@@ -92,7 +87,10 @@ namespace AppBooks.View.Panels
                         return;
                     }
 
-                    throw new ArgumentException("Некорректное название книги.");
+                    else
+                    {
+                        NameTextBox.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (ArgumentException ex)
@@ -158,7 +156,10 @@ namespace AppBooks.View.Panels
                     }
 
                     // TODO: вместо выброса исключения изменять тут цвет, используя if/else
-                    throw new ArgumentException("Некорректное имя автора.");
+                    else
+                    {
+                        AuthorTextBox.BackColor = Color.LightPink;
+                    }
                 }
             }
             catch (ArgumentException ex)
@@ -221,12 +222,16 @@ namespace AppBooks.View.Panels
         private void DeleteBookButton_Click(object sender, EventArgs e)
         {
             // TODO: при удалении в пустой коллекции, программа падает 
+            if (BooksListBox.Items.Count == 0 || BooksListBox.SelectedIndex == -1)
+            {
+                return;
+            }
             _currentBook = _booksList[BooksListBox.SelectedIndex];
             _booksList.Remove(_currentBook);
             BooksListBox.SelectedIndex = -1;
+            SaveBook();
             Sort();
             ClearBooksInfo();
-            SaveBook();
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -246,32 +251,39 @@ namespace AppBooks.View.Panels
             // TODO: Падает программа, если ввести не все поля.
             // Перед добавлением/изменением проверять, заполнены ли все поля для ввода.
             // Если нет, то выводим MessageBox. Если да, то добавляем/обновляем
-            if (_selectedIndex == -1 &&
-                !string.IsNullOrEmpty(NameTextBox.Text) &&
+            if (!string.IsNullOrEmpty(NameTextBox.Text) &&
                 !string.IsNullOrEmpty(YearTextBox.Text) &&
                 !string.IsNullOrEmpty(AuthorTextBox.Text) &&
                 !string.IsNullOrEmpty(PageTextBox.Text) &&
                 !string.IsNullOrEmpty(GenreComboBox.Text))
             {
-                _currentBook = new Book(
-                                        NameTextBox.Text.ToString(),
-                                        Convert.ToInt32(YearTextBox.Text),
-                                        AuthorTextBox.Text.ToString(),
-                                        Convert.ToInt32(PageTextBox.Text),
-                                        GenreComboBox.Text.ToString()
-                                        );
-                _booksList.Add(_currentBook);
+                if (_selectedIndex == -1)
+                {
+                    _currentBook = new Book(
+                                            NameTextBox.Text.ToString(),
+                                            Convert.ToInt32(YearTextBox.Text),
+                                            AuthorTextBox.Text.ToString(),
+                                            Convert.ToInt32(PageTextBox.Text),
+                                            GenreComboBox.Text.ToString()
+                                            );
+                    _booksList.Add(_currentBook);
+                    Sort();
+                    SaveBook();
+                    ToggleInputBoxes(false);
+                    return;
+                }
+
+                _booksList[_selectedIndex] = _cloneCurrentBook;
+                _currentBook = _cloneCurrentBook;
                 Sort();
                 SaveBook();
                 ToggleInputBoxes(false);
-                return;
             }
 
-            _booksList[_selectedIndex] = _cloneCurrentBook;
-            _currentBook = _cloneCurrentBook;
-            Sort();
-            SaveBook();
-            ToggleInputBoxes(false);
+            else
+            {
+                MessageBox.Show("Заполните все поля.", "Ошибка ввода");
+            }
         }
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -292,20 +304,20 @@ namespace AppBooks.View.Panels
         {
             SaveBook();
         }
-        
+
         /// <summary>
         /// Метод, который построчно считывает текстовый файл 
         /// для заполнения <see cref="BooksListBox"/> и <see cref="_booksList"/>.
         /// </summary>
         private void LoadBooksInfo()
         {
-            if (File.Exists(fileName))
+            if (File.Exists(_fileName))
             {
-                _booksList = JsonConvert.DeserializeObject<List<Book>>(File.ReadAllText(fileName));
+                _booksList = JsonConvert.DeserializeObject<List<Book>>(File.ReadAllText(_fileName));
                 Sort();
             }
         }
-        
+
         /// <summary>
         /// Метод, который очищает текстовые поля и ComboBox.
         /// </summary>
@@ -317,18 +329,18 @@ namespace AppBooks.View.Panels
             PageTextBox.Clear();
             GenreComboBox.SelectedIndex = -1;
         }
-        
+
         /// <summary>
         /// Метод, который сортирует <see cref="_booksList"/> и <see cref="BooksListBox"/>
         /// в алфавитном порядке.
         /// </summary>
         private void Sort()
         {
-            indexBeforeSort = BooksListBox.SelectedIndex;
+            _indexBeforeSort = BooksListBox.SelectedIndex;
             BooksListBox.SelectedIndexChanged -= BooksListBox_SelectedIndexChanged;
             _booksList = _booksList.OrderBy(book => book.ToString()).ToList();
             BooksListBox.DataSource = _booksList;
-            BooksListBox.SelectedIndex = indexBeforeSort;
+            BooksListBox.SelectedIndex = _indexBeforeSort;
             BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
         }
 

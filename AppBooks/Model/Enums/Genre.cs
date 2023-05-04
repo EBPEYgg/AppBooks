@@ -1,9 +1,9 @@
-﻿/// <summary>
-/// Перечисление, описывающее жанр художественного произведения.
-/// </summary>
 namespace AppBooks.Model.Enums
 {
     // TODO: xml
+    /// <summary>
+    /// Перечисление, описывающее жанр художественного произведения.
+    /// </summary>
     public enum Genre
     {
         /// <summary>

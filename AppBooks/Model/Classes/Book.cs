@@ -1,4 +1,4 @@
-﻿namespace AppBooks.Model.Classes
+namespace AppBooks.Model.Classes
 {
     /// <summary>
     /// Класс, описывающий книгу.
@@ -130,6 +130,10 @@
                 $"{Genre}";
         }
 
+        /// <summary>
+        /// Клонирование объекта класса для редактирования его через TextBox.
+        /// </summary>
+        /// <returns>Клонированный объект класса.</returns>
         public object Clone()
         {
             return this.MemberwiseClone();
