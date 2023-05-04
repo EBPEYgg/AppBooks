@@ -3,7 +3,6 @@
     /// <summary>
     /// Класс, описывающий методы для проверки входящих значений.
     /// </summary>
-    // TODO: namespace
     internal static class Validator
     {
         /// <summary>

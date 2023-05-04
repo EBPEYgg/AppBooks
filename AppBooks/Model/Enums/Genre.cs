@@ -1,12 +1,11 @@
 ﻿/// <summary>
 /// Перечисление, описывающее жанр художественного произведения.
 /// </summary>
-// TODO: namespace
 namespace AppBooks.Model.Enums
 {
+    // TODO: xml
     public enum Genre
     {
-        // TODO: xml
         /// <summary>
         /// Драма.
         /// </summary>

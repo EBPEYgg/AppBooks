@@ -1,5 +1,4 @@
-﻿// TODO: namespace
-namespace AppBooks.Model.Classes
+﻿namespace AppBooks.Model.Classes
 {
     /// <summary>
     /// Класс, описывающий книгу.
@@ -92,7 +91,6 @@ namespace AppBooks.Model.Classes
         /// <summary>
         /// Возвращает и задает жанр.
         /// </summary>
-        // TODO: можно использовать авто свойство
         public string Genre { get; set; }
 
         /// <summary>

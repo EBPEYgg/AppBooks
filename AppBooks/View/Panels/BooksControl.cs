@@ -8,17 +8,6 @@ using Newtonsoft.Json;
 using AppBooks.Model.Classes;
 using AppBooks.Model.Enums;
 
-// TODO: замечание по добавлению и изменению. Можно использовать только _currentBook и _selectedIndex, чтобы добавлять и изменять объекты:
-// TODO: 1. При добавлении _selectedIndex приравниваем -1, _currentBook = new Book().
-//          Включаем все поля для ввода. При изменении изменяем _currentBook.
-//          После нажатия на Apply, идет проверка _selectedIndex == -1. Если _selectedIndex == -1, то значит это добавление.
-//          Тогда добавляем элемент _booksList.Add(_currentBook), сортируем, сохраняем и отключаем контролы.
-// TODO: 2. При изменении _selectedIndex равен выбранному индексу.
-//          _currentBook = (Book)_booksList[_selectedIndex].Clone.
-//          Также изменяем _currentBook. После нажатия на Apply, идет проверка _selectedIndex == -1.
-//          Если условие не пройдено, то значит это изменение. Тогда заменяем элемент _booksList[_selectedIndex]= _currentBook,
-//          сортируем, сохраняем и отключаем контролы.
-
 namespace AppBooks.View.Panels
 {
     /// <summary>
@@ -26,9 +15,8 @@ namespace AppBooks.View.Panels
     /// </summary>
     public partial class BooksControl : UserControl
     {
-        // TODO: RSDN
-        // TODO: некоторые поля и константы не используются
-        // TODO: Все элементы класса должны разделяться одной строкой
+        // TODO: RSDN (смотрите внимательно)
+        // TODO: Все элементы класса должны разделяться одной строкой (поля это тоже элементы)
         /// <summary>
         /// Список с данными о книгах.
         /// </summary>
@@ -170,8 +158,6 @@ namespace AppBooks.View.Panels
                     }
 
                     // TODO: вместо выброса исключения изменять тут цвет, используя if/else
-                    // TODO: убрать постоянный открытие MessageBox при некорректном воде.
-                    // TODO: Если нужно показать сообщение об ошибке, то лучше использовать ToolTip
                     throw new ArgumentException("Некорректное имя автора.");
                 }
             }
@@ -234,12 +220,12 @@ namespace AppBooks.View.Panels
 
         private void DeleteBookButton_Click(object sender, EventArgs e)
         {
+            // TODO: при удалении в пустой коллекции, программа падает 
             _currentBook = _booksList[BooksListBox.SelectedIndex];
             _booksList.Remove(_currentBook);
             BooksListBox.SelectedIndex = -1;
             Sort();
             ClearBooksInfo();
-            // TODO: вызывать не обработчик события, а сделать отдельно метод сохранения
             SaveBook();
         }
 
@@ -257,7 +243,9 @@ namespace AppBooks.View.Panels
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            // TODO: string.IsEmpty(NameTextBox.Text) Так со всеми
+            // TODO: Падает программа, если ввести не все поля.
+            // Перед добавлением/изменением проверять, заполнены ли все поля для ввода.
+            // Если нет, то выводим MessageBox. Если да, то добавляем/обновляем
             if (_selectedIndex == -1 &&
                 !string.IsNullOrEmpty(NameTextBox.Text) &&
                 !string.IsNullOrEmpty(YearTextBox.Text) &&
@@ -279,9 +267,6 @@ namespace AppBooks.View.Panels
                 return;
             }
 
-            // TODO: не происходит применение, тк клонированный элемент не заменяется в самой коллекции.
-            // TODO: сначала нужно заменить значение по индексу на склонированное,
-            // затем провести сортировку (_currentBook установить между заменой в коллекции и сортировкой)
             _booksList[_selectedIndex] = _cloneCurrentBook;
             _currentBook = _cloneCurrentBook;
             Sort();
@@ -314,7 +299,6 @@ namespace AppBooks.View.Panels
         /// </summary>
         private void LoadBooksInfo()
         {
-            // TODO: не используется
             if (File.Exists(fileName))
             {
                 _booksList = JsonConvert.DeserializeObject<List<Book>>(File.ReadAllText(fileName));
@@ -348,7 +332,6 @@ namespace AppBooks.View.Panels
             BooksListBox.SelectedIndexChanged += BooksListBox_SelectedIndexChanged;
         }
 
-        // TODO: переименовать в ToggleInputBoxes
         /// <summary>
         /// Метод, который включает или отключает все TextBox, ComboBox и ApplyButton.
         /// </summary>
