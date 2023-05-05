@@ -9,8 +9,6 @@ namespace AppBooks.View.Panels
     /// </summary>
     public partial class BooksControl : UserControl
     {
-        // TODO: RSDN (смотрите внимательно)
-        // TODO: Все элементы класса должны разделяться одной строкой (поля это тоже элементы)
         /// <summary>
         /// Список с данными о книгах.
         /// </summary>
@@ -140,6 +138,7 @@ namespace AppBooks.View.Panels
                 if (!string.IsNullOrEmpty(AuthorTextBox.Text))
                 {
                     var flag = false;
+                    // TODO: мне кажется или тут не нужен цикл
                     foreach (var item in AuthorTextBox.Text)
                     {
                         if (Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
@@ -152,10 +151,7 @@ namespace AppBooks.View.Panels
                     {
                         _cloneCurrentBook.Author = AuthorTextBox.Text;
                         AuthorTextBox.BackColor = Color.White;
-                        return;
                     }
-
-                    // TODO: вместо выброса исключения изменять тут цвет, используя if/else
                     else
                     {
                         AuthorTextBox.BackColor = Color.LightPink;
@@ -221,7 +217,6 @@ namespace AppBooks.View.Panels
 
         private void DeleteBookButton_Click(object sender, EventArgs e)
         {
-            // TODO: при удалении в пустой коллекции, программа падает 
             if (BooksListBox.Items.Count == 0 || BooksListBox.SelectedIndex == -1)
             {
                 return;
@@ -248,9 +243,10 @@ namespace AppBooks.View.Panels
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            // TODO: Падает программа, если ввести не все поля.
-            // Перед добавлением/изменением проверять, заполнены ли все поля для ввода.
-            // Если нет, то выводим MessageBox. Если да, то добавляем/обновляем
+            // TODO: Проще сделать обратное условие. Сначала проверить:
+            // Есть ли такое поле, которое не заполнено.
+            // Если да, то вызывается messagebox, а потом return.
+            // Если нет, то создаем Book и else отпадает
             if (!string.IsNullOrEmpty(NameTextBox.Text) &&
                 !string.IsNullOrEmpty(YearTextBox.Text) &&
                 !string.IsNullOrEmpty(AuthorTextBox.Text) &&
@@ -260,12 +256,12 @@ namespace AppBooks.View.Panels
                 if (_selectedIndex == -1)
                 {
                     _currentBook = new Book(
-                                            NameTextBox.Text.ToString(),
-                                            Convert.ToInt32(YearTextBox.Text),
-                                            AuthorTextBox.Text.ToString(),
-                                            Convert.ToInt32(PageTextBox.Text),
-                                            GenreComboBox.Text.ToString()
-                                            );
+                        NameTextBox.Text.ToString(),
+                        Convert.ToInt32(YearTextBox.Text),
+                        AuthorTextBox.Text.ToString(),
+                        Convert.ToInt32(PageTextBox.Text),
+                        GenreComboBox.Text.ToString()
+                    );
                     _booksList.Add(_currentBook);
                     Sort();
                     SaveBook();

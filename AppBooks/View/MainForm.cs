@@ -8,8 +8,7 @@ namespace AppBooks
         {
             InitializeComponent();
         }
-
-        // TODO: Полетела кодировка
+        
         /// <summary>
         /// Метод, который сохраняет данные при закрытии приложения пользователем.
         /// </summary>

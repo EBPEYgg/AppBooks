@@ -1,6 +1,5 @@
 namespace AppBooks.Model.Enums
 {
-    // TODO: xml
     /// <summary>
     /// Перечисление, описывающее жанр художественного произведения.
     /// </summary>
