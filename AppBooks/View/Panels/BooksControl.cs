@@ -129,14 +129,11 @@ namespace AppBooks.View.Panels
             {
                 if (!string.IsNullOrEmpty(AuthorTextBox.Text))
                 {
-                    // TODO: мне кажется или тут не нужен цикл
                     if (Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
                     {
                         _cloneCurrentBook.Author = AuthorTextBox.Text;
                         AuthorTextBox.BackColor = Color.White;
-                        return;
                     }
-
                     else
                     {
                         AuthorTextBox.BackColor = Color.LightPink;
@@ -228,10 +225,6 @@ namespace AppBooks.View.Panels
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            // TODO: Проще сделать обратное условие. Сначала проверить:
-            // Есть ли такое поле, которое не заполнено.
-            // Если да, то вызывается messagebox, а потом return.
-            // Если нет, то создаем Book и else отпадает
             if (string.IsNullOrEmpty(NameTextBox.Text) ||
                 string.IsNullOrEmpty(YearTextBox.Text) ||
                 string.IsNullOrEmpty(AuthorTextBox.Text) ||
