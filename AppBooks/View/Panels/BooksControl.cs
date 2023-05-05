@@ -25,7 +25,8 @@ namespace AppBooks.View.Panels
         private Book _cloneCurrentBook = new();
 
         /// <summary>
-        /// Индекс текущего выбранного элемента перед сортировкой.
+        /// Индекс текущего выбранного элемента перед сортировкой 
+        /// для сохранения выбранного элемента в BooksListBox.
         /// </summary>
         private int _indexBeforeSort;
 
@@ -69,16 +70,7 @@ namespace AppBooks.View.Panels
             {
                 if (!string.IsNullOrEmpty(NameTextBox.Text))
                 {
-                    var flag = false;
-                    foreach (var item in NameTextBox.Text)
-                    {
-                        if (Validator.CheckStringContainsOnlyEnglishLetters(NameTextBox.Text))
-                        {
-                            flag = true;
-                        }
-                    }
-
-                    if (flag)
+                    if (Validator.CheckStringContainsOnlyEnglishLetters(NameTextBox.Text))
                     {
                         _cloneCurrentBook.Name = NameTextBox.Text;
                         NameTextBox.BackColor = Color.White;
@@ -137,21 +129,14 @@ namespace AppBooks.View.Panels
             {
                 if (!string.IsNullOrEmpty(AuthorTextBox.Text))
                 {
-                    var flag = false;
                     // TODO: мне кажется или тут не нужен цикл
-                    foreach (var item in AuthorTextBox.Text)
-                    {
-                        if (Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
-                        {
-                            flag = true;
-                        }
-                    }
-
-                    if (flag)
+                    if (Validator.CheckStringContainsOnlyEnglishLetters(AuthorTextBox.Text))
                     {
                         _cloneCurrentBook.Author = AuthorTextBox.Text;
                         AuthorTextBox.BackColor = Color.White;
+                        return;
                     }
+
                     else
                     {
                         AuthorTextBox.BackColor = Color.LightPink;
@@ -247,39 +232,38 @@ namespace AppBooks.View.Panels
             // Есть ли такое поле, которое не заполнено.
             // Если да, то вызывается messagebox, а потом return.
             // Если нет, то создаем Book и else отпадает
-            if (!string.IsNullOrEmpty(NameTextBox.Text) &&
-                !string.IsNullOrEmpty(YearTextBox.Text) &&
-                !string.IsNullOrEmpty(AuthorTextBox.Text) &&
-                !string.IsNullOrEmpty(PageTextBox.Text) &&
-                !string.IsNullOrEmpty(GenreComboBox.Text))
+            if (string.IsNullOrEmpty(NameTextBox.Text) ||
+                string.IsNullOrEmpty(YearTextBox.Text) ||
+                string.IsNullOrEmpty(AuthorTextBox.Text) ||
+                string.IsNullOrEmpty(PageTextBox.Text) ||
+                string.IsNullOrEmpty(GenreComboBox.Text))
             {
-                if (_selectedIndex == -1)
-                {
-                    _currentBook = new Book(
-                        NameTextBox.Text.ToString(),
-                        Convert.ToInt32(YearTextBox.Text),
-                        AuthorTextBox.Text.ToString(),
-                        Convert.ToInt32(PageTextBox.Text),
-                        GenreComboBox.Text.ToString()
-                    );
-                    _booksList.Add(_currentBook);
-                    Sort();
-                    SaveBook();
-                    ToggleInputBoxes(false);
-                    return;
-                }
+                MessageBox.Show("Заполните все поля.", "Ошибка ввода");
+                return;
+            }
 
-                _booksList[_selectedIndex] = _cloneCurrentBook;
-                _currentBook = _cloneCurrentBook;
+            if (_selectedIndex == -1)
+            {
+                _currentBook = new Book(
+                    NameTextBox.Text.ToString(),
+                    Convert.ToInt32(YearTextBox.Text),
+                    AuthorTextBox.Text.ToString(),
+                    Convert.ToInt32(PageTextBox.Text),
+                    GenreComboBox.Text.ToString()
+                );
+                _booksList.Add(_currentBook);
                 Sort();
                 SaveBook();
                 ToggleInputBoxes(false);
+                return;
             }
 
-            else
-            {
-                MessageBox.Show("Заполните все поля.", "Ошибка ввода");
-            }
+            _booksList[_selectedIndex] = _cloneCurrentBook;
+            _currentBook = _cloneCurrentBook;
+            Sort();
+            SaveBook();
+            ToggleInputBoxes(false);
+            UpdateBookInfo();
         }
 
         private void BooksListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -352,6 +336,15 @@ namespace AppBooks.View.Panels
             PageTextBox.Enabled = value;
             GenreComboBox.Enabled = value;
             ApplyButton.Visible = value;
+        }
+
+        private void UpdateBookInfo()
+        {
+            NameTextBox.Text = _currentBook.Name.ToString();
+            YearTextBox.Text = _currentBook.Year.ToString();
+            AuthorTextBox.Text = _currentBook.Author.ToString();
+            PageTextBox.Text = _currentBook.Page.ToString();
+            GenreComboBox.Text = _currentBook.Genre.ToString();
         }
     }
 }
