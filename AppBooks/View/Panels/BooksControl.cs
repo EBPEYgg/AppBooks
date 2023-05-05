@@ -338,6 +338,9 @@ namespace AppBooks.View.Panels
             ApplyButton.Visible = value;
         }
 
+        /// <summary>
+        /// Метод, который обновляет данные текущей выбранной книги в TextBox и ComboBox.
+        /// </summary>
         private void UpdateBookInfo()
         {
             NameTextBox.Text = _currentBook.Name.ToString();
